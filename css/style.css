@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-bottom: 60px;
+    font: 12px/20px Arial, Helvetica, sans-serif;
+    color: #D6D6D6;
+    background: #191A1B url(../images/bg.gif) repeat-x top;
+}
+
+h1 {
+    padding-left: 40px;
+    font: normal 28px/46px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    color: White;
+}
+
+h1 a {
+    text-decoration: none;
+    color: White;
+}
+
+h1 a:hover {
+    text-decoration: none;
+    color: #FAE7D5;
+}
+
+h2 {
+    font: normal 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color: #86B226;
+}
+
+p {
+    padding: 10px 0;
+    text-align: justify;
+}
+
+a {
+    text-decoration: none;
+    color: #F8821B;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#main {
+    margin: 0 auto;
+    width: 900px;
+}
+
+#header {
+    height: 46px;
+    background: #515E6E url(../images/header.jpg) no-repeat;
+}
+
+#menu {
+    height: 46px;
+    text-align: right;
+    background: #637383 url(../images/menu.jpg) no-repeat;
+}
+
+#menu ul {
+    list-style: none;
+    padding: 0 60px 0 0;
+}
+
+#menu ul li {
+    display: inline;
+    padding: 0;
+}
+
+#menu ul li a {
+    padding: 0 0 0 50px;
+    font-size: 14px;
+    line-height: 46px;
+    text-transform: uppercase;
+    color: White;
+}
+
+#menu ul li a:hover {
+    text-decoration: none;
+    color: #FAE7D5;
+}
+
+#middle {
+    height: 1%;
+    padding: 40px 40px 39px 40px;
+    background: #1C1E20 url(../images/image.jpg) no-repeat;
+}
+
+#sidebar {
+    float: left;
+    width: 220px;
+    background: #3D4752 url(../images/bg2.gif) repeat-x top;
+}
+
+#sidebar2 {
+    padding: 10px 15px 0 15px;
+    background: url(../images/sidebar.jpg) no-repeat top;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 20px 5px 40px 10px;
+}
+
+#sidebar ul li {
+    padding: 0 0 0 18px;
+    background: url(../images/arrow.gif) no-repeat;
+}
+
+#sidebar ul li a {
+    padding: 0;
+    line-height: 22px;
+}
+
+#right {
+    float: right;
+    width: 560px;
+    background: #3D4752 url(../images/bg2.gif) repeat-x top;
+}
+
+#right2 {
+    padding: 10px 15px 0 15px;
+    background: url(../images/right.jpg) no-repeat top;
+}
+
+.box {
+    padding: 10px 0 30px 0;
+}
+
+#right ul {
+    padding: 10px 0 10px 35px;
+}
+
+#right ul li {
+    padding: 0;
+    text-align: justify;
+}
+
+.clearing {
+    clear: both;
+    height: 1px;
+    overflow: hidden;
+}
+
+#footer {
+    clear: both;
+    height: 104px;
+    background: url(../images/footer.gif) repeat-x top;
+}
+
+#footer p {
+    line-height: 40px;
+    text-align: center;
+}

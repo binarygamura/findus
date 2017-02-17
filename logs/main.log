@@ -1,0 +1,57 @@
+[2017-02-15 20:30:28] root.INFO: test ->./logs/main.log<- [] []
+[2017-02-15 21:52:09] main.ERROR: unable to load Module.::#0 C:\xampp\htdocs\speedy\index.php(26): speedy\common\ModuleLoader->loadModule('Home', Object(speedy\common\User))
+#1 {main} [] []
+[2017-02-15 21:52:12] main.ERROR: unable to load Module.::#0 C:\xampp\htdocs\speedy\index.php(26): speedy\common\ModuleLoader->loadModule('Home', Object(speedy\common\User))
+#1 {main} [] []
+[2017-02-15 21:52:13] main.ERROR: unable to load Module.::#0 C:\xampp\htdocs\speedy\index.php(26): speedy\common\ModuleLoader->loadModule('Home', Object(speedy\common\User))
+#1 {main} [] []
+[2017-02-16 23:03:56] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:04:10] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:04:50] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:05:33] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:05:34] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:05:41] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:05:42] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:06:00] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:10:03] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
+[2017-02-16 23:10:05] main.ERROR: Unable to load template 'file:main.htpl'::#0 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(216): Smarty_Internal_Template->render(false, 1)
+#1 C:\xampp\htdocs\speedy\vendor\smarty\smarty\libs\sysplugins\smarty_internal_templatebase.php(122): Smarty_Internal_TemplateBase->_execute('main.htpl', NULL, NULL, NULL, 1)
+#2 C:\xampp\htdocs\speedy\classes\speedy\common\Engine.php(57): Smarty_Internal_TemplateBase->display('main.htpl')
+#3 C:\xampp\htdocs\speedy\index.php(42): speedy\common\Engine->sendResponseToClient(Object(speedy\common\TemplateResponse))
+#4 {main} [] []
