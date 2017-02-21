@@ -10,7 +10,7 @@ namespace speedy\common;
  */
 class TemplateResponse extends Response {
     
-    private $values = array();
+    private $values = [];
     
     public function __construct() {
         parent::__construct();
@@ -24,16 +24,16 @@ class TemplateResponse extends Response {
         return $this->values;
     }
 
-    function getTemplateName() {
-        return $this->values['sub_template'];
+    function getTemplateNames() {
+        return $this->values['templates'];
     }
 
-    function setValues($values) {
+    function setValues(array $values) {
         $this->values = $values;
     }
 
-    function setTemplateName($templateName) {
-        $this->values['sub_template'] = $templateName;
+    function addTemplateName($templateName) {
+        $this->values['templates'][] = $templateName;
     }
 
 }

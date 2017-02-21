@@ -1,0 +1,19 @@
+<h2>Login</h2>
+<div class="box">
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="user_name">Login:</label>
+                <input type="text" maxlength="20" name="user_name" id="user_name" placeholder="Benutzername"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="password">Passwort:</label>
+                <input type="password"  name="password" id="password"/>
+            </div>
+            <div class="pure-controls">
+                <input class="pure-button" type="submit" value="Login"/>
+                <input class="pure-button" type="reset" value="zurücksetzen"/>
+            </div>
+        </fieldset>
+    </form>
+</div>

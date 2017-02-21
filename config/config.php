@@ -9,7 +9,8 @@ define("STAGE_PROD", "prod");
 $config = [
     "general" => [
         "maintenance" => false,
-        "stage" => STAGE_DEV
+        "stage" => STAGE_DEV,
+        "title" => "Tierhilfe"
     ],
     "templating" => [
         "templateDir" => "./templates",
@@ -22,26 +23,42 @@ $config = [
         "login" => "Login", 
         "home" => "Home"
     ],
-    $menu => [
+    "menu" => [
         "Home" => [
             "role" => 1,
-            "module" => "Home"
+            "module" => "Home",
+            "menu" => []
+            ],
+        "Mitarbeiter" => [
+            "role" => 3,
+            "module" => "Home",
+            "title" => "Home",
+            "menu" => []
             ],
         "Vorstand" => [
-            "role" => 1,
-            "module" => "Management"
+            "role" => 7,
+            "module" => "Management",
+            "menu" => []
             ],
         "Admin" => [
-            "role" => 1,
-            "module" => "Admin"
+            "role" => 15,
+            "module" => "Admin",
+            "menu" => []
             ],
         "Logout" => [
-            "role" => 1,
-            "module" => "Logout"
+            "role" => 3,
+            "module" => "Logout",
+            "menu" => []
             ],
+        "Kontakt" => [
+            "role" => 1,
+            "module" => "Contact",
+            "menu" => []
+        ],
         "Login" => [
             "role" => 1,
-            "module" => "Login"
+            "module" => "Login",
+            "menu" => []
             ]
     ]
 ];

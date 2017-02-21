@@ -37,6 +37,21 @@ class Engine {
         return $smarty;
     }
     
+    
+    private function renderTopMenu(\speedy\common\User $user){
+        $output = '<ul>';
+        foreach($this->configuration['menu'] as $name => $topLevelMenu){
+            if($user->isA($topLevelMenu['role'])){
+                $output .= '<li><a href="?module='.$topLevelMenu['module'].'">'.$name.'</a></li>';
+            }
+        }
+        return $output.'</ul>';
+    }
+    
+    private function renderSideMenu(\speedy\common\User $user){
+        $output = '<ul>';
+    }
+    
     /**
      * Send the Response, which in normal cases was produced by executing 
      * a Module on behalf of the user. It takes care of creating the template 
@@ -44,7 +59,7 @@ class Engine {
      * 
      * @param \speedy\common\Response $response
      */
-    public function sendResponseToClient(Response $response){
+    public function sendResponseToClient(Response $response, User $user){
         
         http_response_code($response->getResponseCode());
         header("Content-Type", $response->getContentType());
@@ -52,8 +67,11 @@ class Engine {
         if($response instanceof TemplateResponse){
             $smarty = $this->createSmartyInstance();
             $values = $response->getValues();
-            
-            $values['sub_template'] = $response->getTemplateName();
+            $values['title'] =  $this->configuration['general']['title'];
+            $values['topMenu'] = $this->renderTopMenu($user);
+            foreach($values as $key => $value){
+                $smarty->assign($key, $value);
+            }
             $smarty->display("index.htpl");
             echo "tet";
         }

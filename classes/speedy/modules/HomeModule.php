@@ -1,6 +1,7 @@
 <?php
 
 namespace speedy\modules;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,10 +13,12 @@ namespace speedy\modules;
  *
  * @author binary
  */
-class HomeModule implements \speedy\common\Module{
-    
+class HomeModule implements \speedy\common\Module {
+
     public function execute() {
-        
+        $response = new \speedy\common\TemplateResponse();
+        $response->addTemplateName("home.htpl");
+        return $response;
     }
 
 }

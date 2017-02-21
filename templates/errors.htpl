@@ -1,0 +1,7 @@
+<div class="box .ui-state-error">    
+    <ul>
+    {foreach item=error from=$errors}
+        <li>{$error}</li>
+    {/foreach}
+    </ul>
+</div>

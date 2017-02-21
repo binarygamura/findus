@@ -1,72 +1,83 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Through The Woods - Free Alpha Studio Web Template</title><meta name="keywords" content=""><meta name="description" content=""><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="language" content="en"><link href="./css/style.css" rel="stylesheet" type="text/css"></head><body>
-    <div id="main">
-        <div id="header">
-            <h1><a href="#">Through The Woods</a></h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>{$title}</title>
+        <meta name="keywords" content=""></meta>
+        <meta name="description" content=""></meta>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <meta name="language" content="en"></meta>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous"></link>
+        <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css"></link>
+        <link href="./css/style.css" rel="stylesheet" type="text/css"></link>
+    </head>
+    <body>
+        <div id="main">
+            <div id="header">
+                <h1><a href="#">{$title}</a></h1>
+            </div>
+            <div id="menu">{$topMenu}
+            </div>
+            <div id="middle">
+                <div id="sidebar"><div id="sidebar2">
+                        <h2>Donec laoreet</h2>
+                        <ul><li><a href="#">Class aptent</a></li>
+                            <li><a href="#">Taciti sociosqu</a></li>
+                            <li><a href="#">Ad litora torquent</a></li>
+                            <li><a href="#">Per conubia nostra</a></li>
+                            <li><a href="#">Nulla sit amet libero</a></li>
+                            <li><a href="#">Suspendisse potenti</a></li>
+                            <li><a href="#">Morbi bibendum</a></li>
+                        </ul><h2>Proin suscipit</h2>
+                        <ul><li><a href="#">Arcu quis erat</a></li>
+                            <li><a href="#">Praesent mollis</a></li>
+                            <li><a href="#">Praesent interdum</a></li>
+                            <li><a href="#">Suspendisse potenti</a></li>
+                            <li><a href="#">Morbi bibendum</a></li>
+                            <li><a href="#">Praesent luctus</a></li>
+                            <li><a href="#">Taciti sociosqu</a></li>
+                        </ul><h2>Sed interdum</h2>
+                        <ul><li><a href="#">Arcu vitae dolor</a></li>
+                            <li><a href="#">Imperdiet vehicula</a></li>
+                            <li><a href="#">Praesent luctus</a></li>
+                            <li><a href="#">Taciti sociosqu</a></li>
+                            <li><a href="#">Praesent interdum</a></li>
+                            <li><a href="#">Suspendisse potenti</a></li>
+                            <li><a href="#">Morbi bibendum</a></li>
+                        </ul></div></div>
+                <div id="right"><div id="right2">
+                        {foreach item=template from=$templates}
+                        {include file=$template}
+                        {/foreach}
+                        <!--                    <h2>Terms of use</h2>
+                                            <div class="box">
+                                                <p>The template is released under the <a href="http://creativecommons.org/licenses/by/2.5/" target="_blank">Creative Commons Attribution 2.5</a> license. 
+                                                This means it can be used for both private and commercial purposes, edited freely or redistributed as long as you keep the link back to Alpha Studio.
+                                                The link, however, can be moved to any other place of the site. Do not use the template in connection with sex, violence, discrimination and for other immoral or illegal purposes.</p>
+                                                <p>The image comes from <a target="_blank" href="http://www.pdphoto.org/">PD Photo.org</a> and is in public domain.</p>
+                                            </div>
+                                            <h2>Lorem ipsum</h2>
+                                            <div class="box">
+                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla hendrerit lacus at metus. Maecenas venenatis rhoncus nulla.</p>
+                                                <ul><li>Arcu quis erat</li>
+                                                    <li>Praesent mollis</li>
+                                                    <li>Praesent interdum</li>
+                                                    <li>Suspendisse potenti</li>
+                                                    <li>Morbi bibendum</li>
+                                                    <li>Nulla facilisi</li>
+                                                </ul><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Proin lobortis nisi nec nisi. Morbi mattis fermentum lectus. Nam vestibulum arcu vulputate ante. Maecenas rutrum dui nec quam.</p>
+                                            </div>
+                                            <h2>Cum sociis natoque</h2>
+                                            <div class="box">
+                                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean rutrum tortor a purus. Quisque convallis nisl ac augue. Nulla aliquam dui. Etiam convallis enim tincidunt erat dapibus tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.</p>
+                                            </div>-->
+                    </div></div>
+                <div class="clearing"> </div>
+            </div>
+            <div id="footer">
+                <p>Copyright © {$title}, designed by <a href="http://www.alphastudio.pl" target="_blank">Alpha Studio</a></p>
+            </div>
         </div>
-        <div id="menu">
-            <ul><li><a href="#">Home</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul></div>
-        <div id="middle">
-            <div id="sidebar"><div id="sidebar2">
-                    <h2>Donec laoreet</h2>
-                    <ul><li><a href="#">Class aptent</a></li>
-                        <li><a href="#">Taciti sociosqu</a></li>
-                        <li><a href="#">Ad litora torquent</a></li>
-                        <li><a href="#">Per conubia nostra</a></li>
-                        <li><a href="#">Nulla sit amet libero</a></li>
-                        <li><a href="#">Suspendisse potenti</a></li>
-                        <li><a href="#">Morbi bibendum</a></li>
-                    </ul><h2>Proin suscipit</h2>
-                    <ul><li><a href="#">Arcu quis erat</a></li>
-                        <li><a href="#">Praesent mollis</a></li>
-                        <li><a href="#">Praesent interdum</a></li>
-                        <li><a href="#">Suspendisse potenti</a></li>
-                        <li><a href="#">Morbi bibendum</a></li>
-                        <li><a href="#">Praesent luctus</a></li>
-                        <li><a href="#">Taciti sociosqu</a></li>
-                    </ul><h2>Sed interdum</h2>
-                    <ul><li><a href="#">Arcu vitae dolor</a></li>
-                        <li><a href="#">Imperdiet vehicula</a></li>
-                        <li><a href="#">Praesent luctus</a></li>
-                        <li><a href="#">Taciti sociosqu</a></li>
-                        <li><a href="#">Praesent interdum</a></li>
-                        <li><a href="#">Suspendisse potenti</a></li>
-                        <li><a href="#">Morbi bibendum</a></li>
-                    </ul></div></div>
-            <div id="right"><div id="right2">
-                    <h2>Terms of use</h2>
-                    <div class="box">
-                        <p>The template is released under the <a href="http://creativecommons.org/licenses/by/2.5/" target="_blank">Creative Commons Attribution 2.5</a> license. 
-                        This means it can be used for both private and commercial purposes, edited freely or redistributed as long as you keep the link back to Alpha Studio.
-                        The link, however, can be moved to any other place of the site. Do not use the template in connection with sex, violence, discrimination and for other immoral or illegal purposes.</p>
-                        <p>The image comes from <a target="_blank" href="http://www.pdphoto.org/">PD Photo.org</a> and is in public domain.</p>
-                    </div>
-                    <h2>Lorem ipsum</h2>
-                    <div class="box">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla hendrerit lacus at metus. Maecenas venenatis rhoncus nulla.</p>
-                        <ul><li>Arcu quis erat</li>
-                            <li>Praesent mollis</li>
-                            <li>Praesent interdum</li>
-                            <li>Suspendisse potenti</li>
-                            <li>Morbi bibendum</li>
-                            <li>Nulla facilisi</li>
-                        </ul><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Proin lobortis nisi nec nisi. Morbi mattis fermentum lectus. Nam vestibulum arcu vulputate ante. Maecenas rutrum dui nec quam.</p>
-                    </div>
-                    <h2>Cum sociis natoque</h2>
-                    <div class="box">
-                        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean rutrum tortor a purus. Quisque convallis nisl ac augue. Nulla aliquam dui. Etiam convallis enim tincidunt erat dapibus tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.</p>
-                    </div>
-            </div></div>
-            <div class="clearing"> </div>
-        </div>
-        <div id="footer">
-            <p>Copyright © Your Name, designed by <a href="http://www.alphastudio.pl" target="_blank">Alpha Studio</a>
-</p>
-        </div>
-    </div>
-</body></html>
+        <script src="./js/jquery.js"></script>
+        <script src="./js/jquery-ui.min.js"></script>
+    </body>
+</html>

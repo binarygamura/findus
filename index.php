@@ -7,6 +7,9 @@ session_start();
 
 //include the global config.
 require_once './config/config.php';
+require './config/custom_config.php';
+
+$config = array_merge($config, $customConfig);
 
 use speedy\common\Util;
 
@@ -20,15 +23,15 @@ try {
     }
     
     //lets figure out which module we should load.
-    if($_SESSION['user']->isOnlyVisitor()){
-        $moduleName = "Login";
-    }
-    else {
+//    if($_SESSION['user']->isOnlyVisitor()){
+//        $moduleName = "Login";
+//    }
+//    else {
         $moduleName = filter_input(INPUT_GET, 'module');
         if(!$moduleName){
             $moduleName = "Home";
         }
-    }
+//    }
     
     //create the module loader.
     $moduleLoader = new \speedy\common\ModuleLoader($classLoader);
@@ -39,7 +42,7 @@ try {
     
     //create the Engine to handle the response the module created.
     $engine = new \speedy\common\Engine($config);
-    $engine->sendResponseToClient($response);
+    $engine->sendResponseToClient($response, $_SESSION['user']);
     
 }
 catch(Exception $ex){

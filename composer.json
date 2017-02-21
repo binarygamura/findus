@@ -1,7 +1,9 @@
 {
     "name": "binary",
     "require": {
-        "monolog/monolog": "1.0.*",
-        "smarty/smarty": "~3.1"
+        "monolog/monolog": "1.17.*",
+        "smarty/smarty": "~3.1",
+        "google/apiclient": "^2.0",
+ 	"gabordemooij/redbean": "dev-master"	
     }
 }
