@@ -14,7 +14,6 @@ class TestModule implements \speedy\common\Module {
             'fields' => 'nextPageToken, files(id, name)'
           );
         $results = $service->files->listFiles($optParams);
-        echo("EY!!");
         $response = new \speedy\common\TemplateResponse();
         $response->setTemplateName("login.htpl");
         return $response;

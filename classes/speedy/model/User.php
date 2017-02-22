@@ -1,13 +1,15 @@
 <?php
 
-namespace speedy\common;
+namespace speedy\model;
+
+use RedBeanPHP\SimpleModel;
 
 /**
  * Class representing a user of the app. 
  *
  * @author binary
  */
-class User {
+class User extends SimpleModel {
     /**
      * Visitor of the Page. He should at least see the login page. 
      * Nothing more.
@@ -39,7 +41,7 @@ class User {
      * The user name. Please note that this is not the login name.
      * @var type 
      */
-    private $name;
+    private $username;
     
     /**
      * Bitset of the roles the user has. 
@@ -47,20 +49,23 @@ class User {
      */
     private $role;
     
-    public function __construct($id = 0, $name = 'Gast', $role = 1) {
+    public function __construct($id = 0, $username = 'Gast', $role = 1) {
         $this->id = $id;
         $this->role = $role;
-        $this->name = $name;
+        $this->username = $username;
     }
     
     function getId() {
         return $this->id;
     }
 
-    function getName() {
-        return $this->name;
+    function getUsername() {
+        return $this->username;
     }
 
+    function setUsername($username) {
+        $this->username = $username;
+    }    
         
     public function isA($role){
         return ($this->role & $role) == $role;
@@ -68,5 +73,9 @@ class User {
     
     public function isOnlyVisitor(){
         return ($this->role & 1) == 1;
+    }
+
+    public function open() {
+        $this->password = "";
     }
 }

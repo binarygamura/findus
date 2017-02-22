@@ -7,22 +7,32 @@ namespace speedy\modules;
  *
  * @author binary
  */
-class LoginModule implements \speedy\common\Module{
+class LoginModule implements \speedy\common\Module {
     
     public function execute() {
-        if(filter_input(INPUT_POST, "login_button") === false){
+        if(!filter_input(INPUT_POST, "login_button")){
             $response = new \speedy\common\TemplateResponse();        
             $response->addTemplateName("login.htpl");
         }
         else {
             $errors = [];
-            $username = filter_input(INPUT_POST, "username");
+            $username = filter_input(INPUT_POST, "user_name", FILTER_SANITIZE_STRING);
             if(!$username){
-                $errors[] = "Es wurde kein Passwort angegeben.";
+                $errors[] = "Es wurde kein Benutzername angegeben.";
             }
-            $password = filter_input(INPUT_POST, "password");
+            $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
             if(!$password){
-                $errors[] = "Bitte Benutzername angeben.";
+                $errors[] = "Bitte Passwort angeben.";
+            }
+            
+            if(count($errors) == 0){
+                $loaded = \speedy\controller\UserController::getUserByUsernameAndPassword($username, $password);
+                if(!$loaded){
+                    $errors[] = "Benutzer nicht gefunden.";
+                }
+                else {
+                    $_SESSION['user'] = $loaded;
+                }
             }
             
             if(count($errors) > 0){
@@ -32,7 +42,7 @@ class LoginModule implements \speedy\common\Module{
                 $response->setValue('errors', $errors);
             }
             else {
-                //TODO: redirect to home module!
+                $response = new \speedy\common\RedirectResponse("index.php");
             }
         }
         return $response;

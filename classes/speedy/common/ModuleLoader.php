@@ -30,7 +30,6 @@ class ModuleLoader {
         if(!$this->classLoader->loadClass($fullClassName)){
             throw new \Exception("Failed to load class.");
         }
-        echo($fullClassName);
         if(!class_exists($fullClassName)){
             //TODO: throw a ModuleNotFoundException
             throw new \Exception('Module does not exist.');

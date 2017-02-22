@@ -1,4 +1,4 @@
 nbproject/
 composer.lock
 vendor/
-config/custom_config.php
+config/

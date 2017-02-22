@@ -21,8 +21,18 @@ class Response {
     
     private $pageTitle;
     
+    private $headers = array();
+    
     public function __construct() {
         $this->responseCode = ResponseCode::STATUS_OKAY;
+    }
+    
+    public function getHeaders(){
+        return $this->headers;
+    }
+    
+    public function addHeader($key, $value){
+        $this->headers[$key] = $value;
     }
     
     function getResponseCode() {

@@ -16,11 +16,7 @@ class Engine {
     }
 
     
-    public function canAccess(speedy\common\User $user, $module, $config){
-        
-    }
-    
-    private function handleTemplateResponse($templateResponse){
+    public function canAccess(speedy\model\User $user, $module, $config){
         
     }
     
@@ -38,7 +34,7 @@ class Engine {
     }
     
     
-    private function renderTopMenu(\speedy\common\User $user){
+    private function renderTopMenu(\speedy\model\User $user){
         $output = '<ul>';
         foreach($this->configuration['menu'] as $name => $topLevelMenu){
             if($user->isA($topLevelMenu['role'])){
@@ -48,7 +44,7 @@ class Engine {
         return $output.'</ul>';
     }
     
-    private function renderSideMenu(\speedy\common\User $user){
+    private function renderSideMenu(\speedy\model\User $user){
         $output = '<ul>';
     }
     
@@ -59,7 +55,7 @@ class Engine {
      * 
      * @param \speedy\common\Response $response
      */
-    public function sendResponseToClient(Response $response, User $user){
+    public function sendResponseToClient(Response $response, \speedy\model\User $user){
         
         http_response_code($response->getResponseCode());
         header("Content-Type", $response->getContentType());
@@ -69,15 +65,20 @@ class Engine {
             $values = $response->getValues();
             $values['title'] =  $this->configuration['general']['title'];
             $values['topMenu'] = $this->renderTopMenu($user);
+            $values['user'] = $_SESSION['user']->box();
             foreach($values as $key => $value){
                 $smarty->assign($key, $value);
             }
             $smarty->display("index.htpl");
-            echo "tet";
         }
         else {
-            echo "tet";
-            echo $response->getBody();
+            http_response_code($response->getResponseCode());
+            foreach($response->getHeaders() as $key => $value){
+                header($key.":".$value);
+            }
+            if($response->getBody()){
+                echo $response->getBody();
+            }
         }
     }
 }

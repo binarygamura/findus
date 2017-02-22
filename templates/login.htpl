@@ -8,11 +8,11 @@
             </div>
             <div class="pure-control-group">
                 <label for="password">Passwort:</label>
-                <input type="password"  name="password" id="password"/>
+                <input type="password"  name="password" id="password" placeholder="Passwort"/>
             </div>
             <div class="pure-controls">
-                <input class="pure-button" type="submit" value="Login"/>
-                <input class="pure-button" type="reset" value="zurücksetzen"/>
+                <input class="pure-button" type="submit" name="login_button" value="Login"/>
+                <input class="pure-button" type="reset" name="reset_button" value="zurücksetzen"/>
             </div>
         </fieldset>
     </form>

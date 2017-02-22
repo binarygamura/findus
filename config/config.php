@@ -1,29 +1,35 @@
 <?php
 
-define("STAGE_DEV", "dev");
-define("STAGE_PROD", "prod");
+define('STAGE_DEV', "dev");
+define('STAGE_PROD', "prod");
+define('REDBEAN_MODEL_PREFIX', '\\speedy\\model\\' );
 
 /**
- * Globale Konfiguration der Anwendung.
+ * global configuration of the application.
  */
 $config = [
-    "general" => [
-        "maintenance" => false,
-        "stage" => STAGE_DEV,
-        "title" => "Tierhilfe"
+    'general' => [
+        'maintenance' => false,
+        'stage' => STAGE_DEV,
+        'title' => 'Tierhilfe'
     ],
-    "templating" => [
-        "templateDir" => "./templates",
-        "compileDir" => "./templates_c"
+    'templating' => [
+        'templateDir' => './templates',
+        'compileDir' => './templates_c'
     ],
-    "logging" => [
-        "logfile" => "./logs/main.log"
+    'logging' => [
+        'logfile' => './logs/main.log'
     ],
-    "routing" => [
-        "login" => "Login", 
-        "home" => "Home"
+    'routing' => [
+        'login' => 'Login', 
+        'home' => 'Home'
     ],
-    "menu" => [
+    'database' => [
+        'dsn' => 'later',
+        'username' => 'your_mother',
+        'password' => 'too_easy'
+    ],
+    'menu' => [
         "Home" => [
             "role" => 1,
             "module" => "Home",
