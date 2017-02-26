@@ -37,19 +37,30 @@ $config = [
             ],
         "Mitarbeiter" => [
             "role" => 3,
-            "module" => "Home",
-            "title" => "Home",
-            "menu" => []
+            "module" => "Employee",
+            "menu" => [
+                'Tiere suchen' => 'SearchAnimal',
+                'Tier erfassen' => 'AddAnimal',
+                'Tierarten verwalten' => 'ManageSpecies',
+                'Tierrassen verwalten' => 'ManageRaces'
+                ]
             ],
         "Vorstand" => [
             "role" => 7,
             "module" => "Management",
-            "menu" => []
+            "menu" => [
+                "Eingänge je Zeitraum" =>  "AdditionsReport",
+                "Behandlungen je Zeitraum" =>  "AdditionsReport",
+                "Vermittlungsübersicht je Zeitraum" =>  "AdditionsReport",
+                "Pflegefälle je Zeitraum" =>  "AdditionsReport"
+                ]
             ],
         "Admin" => [
             "role" => 15,
             "module" => "Admin",
-            "menu" => []
+            "menu" => [
+                    "Mitarbeiter verwalten" => "ManageUser"
+                ]
             ],
         "Logout" => [
             "role" => 3,

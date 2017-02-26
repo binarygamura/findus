@@ -1,0 +1,12 @@
+<h2>Logout</h2>
+<div class="box">
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <p>Wirlich ausloggen?</p>
+            <div class="pure-controls">
+                <input class="pure-button" type="submit" name="yes_button" value="Ja"/>
+                <input class="pure-button" type="submit" name="no_button" value="Nein"/>
+            </div>
+        </fieldset>
+    </form>
+</div>

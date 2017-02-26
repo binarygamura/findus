@@ -9,6 +9,23 @@
         <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous"></link>
         <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css"></link>
         <link href="./css/style.css" rel="stylesheet" type="text/css"></link>
+        <link rel="apple-touch-icon" sizes="57x57" href="./images/favicon/apple-icon-57x57.png"></link>
+        <link rel="apple-touch-icon" sizes="60x60" href="./images/favicon/apple-icon-60x60.png"></link>
+        <link rel="apple-touch-icon" sizes="72x72" href="./images/favicon/apple-icon-72x72.png"></link>
+        <link rel="apple-touch-icon" sizes="76x76" href="./images/favicon/apple-icon-76x76.png"></link>
+        <link rel="apple-touch-icon" sizes="114x114" href="./images/favicon/apple-icon-114x114.png"></link>
+        <link rel="apple-touch-icon" sizes="120x120" href="./images/favicon/apple-icon-120x120.png"></link>
+        <link rel="apple-touch-icon" sizes="144x144" href="./images/favicon/apple-icon-144x144.png"></link>
+        <link rel="apple-touch-icon" sizes="152x152" href="./images/favicon/apple-icon-152x152.png"></link>
+        <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-icon-180x180.png"></link>
+        <link rel="icon" type="image/png" sizes="192x192"  href="./images/favicon/android-icon-192x192.png"></link>
+        <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png"></link>
+        <link rel="icon" type="image/png" sizes="96x96" href="./images/favicon/favicon-96x96.png"></link>
+        <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png"></link>
+        <link rel="manifest" href="./images/favicon/manifest.json"></link>
+        <meta name="msapplication-TileColor" content="#ffffff"></meta>
+        <meta name="msapplication-TileImage" content="./images/favicon/ms-icon-144x144.png"></meta>
+        <meta name="theme-color" content="#ffffff"></meta>
     </head>
     <body>
         <div id="main">
@@ -18,59 +35,21 @@
             <div id="menu">{$topMenu}
             </div>
             <div id="middle">
-                <div id="sidebar"><div id="sidebar2">
-                        <h2>Donec laoreet</h2>
-                        <ul><li><a href="#">Class aptent</a></li>
-                            <li><a href="#">Taciti sociosqu</a></li>
-                            <li><a href="#">Ad litora torquent</a></li>
-                            <li><a href="#">Per conubia nostra</a></li>
-                            <li><a href="#">Nulla sit amet libero</a></li>
-                            <li><a href="#">Suspendisse potenti</a></li>
-                            <li><a href="#">Morbi bibendum</a></li>
-                        </ul><h2>Proin suscipit</h2>
-                        <ul><li><a href="#">Arcu quis erat</a></li>
-                            <li><a href="#">Praesent mollis</a></li>
-                            <li><a href="#">Praesent interdum</a></li>
-                            <li><a href="#">Suspendisse potenti</a></li>
-                            <li><a href="#">Morbi bibendum</a></li>
-                            <li><a href="#">Praesent luctus</a></li>
-                            <li><a href="#">Taciti sociosqu</a></li>
-                        </ul><h2>Sed interdum</h2>
-                        <ul><li><a href="#">Arcu vitae dolor</a></li>
-                            <li><a href="#">Imperdiet vehicula</a></li>
-                            <li><a href="#">Praesent luctus</a></li>
-                            <li><a href="#">Taciti sociosqu</a></li>
-                            <li><a href="#">Praesent interdum</a></li>
-                            <li><a href="#">Suspendisse potenti</a></li>
-                            <li><a href="#">Morbi bibendum</a></li>
-                        </ul></div></div>
-                <div id="right"><div id="right2">
+                {if $sideMenu != ""}
+                <div id="sidebar">
+                    <div id="sidebar2">
+                        <h2>Untermenu</h2>
+                        {$sideMenu}
+                    </div>
+                </div>
+                {/if}
+                <div id="right">
+                    <div id="right2">
                         {foreach item=template from=$templates}
                         {include file=$template}
                         {/foreach}
-                        <!--                    <h2>Terms of use</h2>
-                                            <div class="box">
-                                                <p>The template is released under the <a href="http://creativecommons.org/licenses/by/2.5/" target="_blank">Creative Commons Attribution 2.5</a> license. 
-                                                This means it can be used for both private and commercial purposes, edited freely or redistributed as long as you keep the link back to Alpha Studio.
-                                                The link, however, can be moved to any other place of the site. Do not use the template in connection with sex, violence, discrimination and for other immoral or illegal purposes.</p>
-                                                <p>The image comes from <a target="_blank" href="http://www.pdphoto.org/">PD Photo.org</a> and is in public domain.</p>
-                                            </div>
-                                            <h2>Lorem ipsum</h2>
-                                            <div class="box">
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla hendrerit lacus at metus. Maecenas venenatis rhoncus nulla.</p>
-                                                <ul><li>Arcu quis erat</li>
-                                                    <li>Praesent mollis</li>
-                                                    <li>Praesent interdum</li>
-                                                    <li>Suspendisse potenti</li>
-                                                    <li>Morbi bibendum</li>
-                                                    <li>Nulla facilisi</li>
-                                                </ul><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Proin lobortis nisi nec nisi. Morbi mattis fermentum lectus. Nam vestibulum arcu vulputate ante. Maecenas rutrum dui nec quam.</p>
-                                            </div>
-                                            <h2>Cum sociis natoque</h2>
-                                            <div class="box">
-                                                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean rutrum tortor a purus. Quisque convallis nisl ac augue. Nulla aliquam dui. Etiam convallis enim tincidunt erat dapibus tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.</p>
-                                            </div>-->
-                    </div></div>
+                    </div>
+                </div>
                 <div class="clearing"> </div>
             </div>
             <div id="footer">

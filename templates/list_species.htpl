@@ -1,0 +1,21 @@
+<h2>Liste aller Tierarten</h2>
+<div class="box">
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=species from=$all_species}
+            <tr>
+                <td>{$species.id}</td>
+                <td>{$species.name}</td>
+                <td></td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>

@@ -2,18 +2,16 @@
 
 namespace speedy\modules;
 
-
 /**
- * Description of HomeModule
+ * Description of EmployeeModel
  *
- * @author binary
+ * @author binary gamura
  */
-class HomeModule implements \speedy\common\Module {
+class EmployeeModule implements \speedy\common\Module {
 
     public function execute() {
         $response = new \speedy\common\TemplateResponse();
-        $response->addTemplateName("home.htpl");
+        $response->addTemplateName("admin.htpl");
         return $response;
     }
-
 }

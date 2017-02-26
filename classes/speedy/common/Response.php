@@ -75,10 +75,6 @@ class Response {
         $this->useTemplating = $useTemplating;
     }
 
-    function setTemplateName($templateName) {
-        $this->templateName = $templateName;
-    }
-
     function setPageTitle($pageTitle) {
         $this->pageTitle = $pageTitle;
     }

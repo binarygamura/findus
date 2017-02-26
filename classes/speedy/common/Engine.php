@@ -14,7 +14,6 @@ class Engine {
     function __construct(array $configuration) {
         $this->configuration = $configuration;
     }
-
     
     public function canAccess(speedy\model\User $user, $module, $config){
         
@@ -33,19 +32,35 @@ class Engine {
         return $smarty;
     }
     
-    
     private function renderTopMenu(\speedy\model\User $user){
         $output = '<ul>';
+        if(!$user->isOnlyVisitor()){
+            unset($this->configuration['menu']['Login']);
+        }
         foreach($this->configuration['menu'] as $name => $topLevelMenu){
             if($user->isA($topLevelMenu['role'])){
+                $class = 
                 $output .= '<li><a href="?module='.$topLevelMenu['module'].'">'.$name.'</a></li>';
             }
         }
         return $output.'</ul>';
-    }
+    }   
     
     private function renderSideMenu(\speedy\model\User $user){
-        $output = '<ul>';
+        $output = "";
+        $currentModule = filter_input(INPUT_GET, 'module');
+            
+        foreach($this->configuration['menu'] as $name => $topLevelMenu){
+            if($topLevelMenu['module'] == $currentModule && isset($topLevelMenu['menu']) && count($topLevelMenu['menu']) > 0){
+                $output = '<ul>'; 
+                foreach($topLevelMenu['menu'] as $title => $module){
+                    $output .= '<li><a href=?module='.$topLevelMenu['module'].'&subModule='.$module.'>'.$title.'</a></li>';
+                }
+                $output .= '</ul>';
+                break;
+            }
+        }
+        return $output;
     }
     
     /**
@@ -65,6 +80,7 @@ class Engine {
             $values = $response->getValues();
             $values['title'] =  $this->configuration['general']['title'];
             $values['topMenu'] = $this->renderTopMenu($user);
+            $values['sideMenu'] = $this->renderSideMenu($user);
             $values['user'] = $_SESSION['user']->box();
             foreach($values as $key => $value){
                 $smarty->assign($key, $value);

@@ -2,17 +2,16 @@
 
 namespace speedy\modules;
 
-
 /**
- * Description of HomeModule
+ * Description of AddAnimalModule
  *
- * @author binary
+ * @author binary gamura
  */
-class HomeModule implements \speedy\common\Module {
+class AddAnimalModule implements \speedy\common\Module {
 
     public function execute() {
         $response = new \speedy\common\TemplateResponse();
-        $response->addTemplateName("home.htpl");
+        $response->addTemplateName("add_animal.htpl");
         return $response;
     }
 
