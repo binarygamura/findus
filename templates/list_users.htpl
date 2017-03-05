@@ -1,0 +1,23 @@
+<h2>Liste aller Benutzer</h2>
+<div class="box">
+    <table id="user_table" class="user_table pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=user from=$all_users}
+            <tr>
+                <td>{$user.id}</td>
+                <td>{$user.name}</td>
+                <td></td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <a href='' id='add_user_button'>hinzufügen¼gen</a>
+</div>
+
