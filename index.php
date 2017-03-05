@@ -27,7 +27,7 @@ $logger = Util::createLogger("main", $config);
 try {
     
     R::setup($config['database']['dsn'], $config['database']['username'], $config['database']['password']);
-    R::freeze( TRUE );
+//    R::freeze( TRUE );
     
     //add user object to session. if none is set, we create a "visitor".
     if(!isset($_SESSION['user'])){
@@ -58,7 +58,8 @@ try {
 }
 catch(Exception $ex){
     //TODO: show fancy error page.
-    print_r($ex);
+    http_response_code(500);
+    echo(json_encode(["message" => $ex->getMessage()]));
     $logger->err($ex->getMessage()."::".$ex->getTraceAsString());
 }
 

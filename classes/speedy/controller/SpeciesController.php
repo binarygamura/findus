@@ -15,6 +15,14 @@ class SpeciesController {
         return R::findAll('species');
     }
     
+    public static function getSpeciesById($speciesId){
+        $species = R::findOne('species', 'id = ?', [$speciesId]);
+        if(!$species){
+            throw new ControllerException("Es existiert keine Tierart mit der ID ".$speciesId);
+        }
+        return $species;
+    }
+    
     public static function createNewSpecies(array $speciesData){
         $newSpecies = R::dispense('species');
         if(!isset($speciesData['species_name']) || trim($speciesData['species_name']) == ''){

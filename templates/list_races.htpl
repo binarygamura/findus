@@ -1,6 +1,6 @@
-<h2>Liste aller Tierarten</h2>
+<h2>Liste aller Tierrassen</h2>
 <div class="box">
-    <table id='species_table' class="pure-table">
+    <table id="races_table" class="races_table pure-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -9,14 +9,14 @@
             </tr>
         </thead>
         <tbody>
-            {foreach item=species from=$all_species}
+<!--            {foreach item=races from=$all_races}
             <tr>
-                <td>{$species.id}</td>
-                <td>{$species.name}</td>
+                <td>{$race.id}</td>
+                <td>{$race.name}</td>
                 <td></td>
             </tr>
-            {/foreach}
+            {/foreach}-->
         </tbody>
     </table>
-    <a href='' id='add_species_button'>hinzufügen</a>
 </div>
+

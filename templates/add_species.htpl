@@ -1,15 +1,15 @@
-<h2>Tierart hinzufügen</h2>
-<div class="box">
+<div>
+    <h2>Tierart hinzufügen</h2>
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
                 <label for="species_name">Name:</label>
-                <input type="text" maxlength="20" name="species_name" id="user_name" placeholder="Name der Tierart"/>
+                <input type="text" maxlength="20" name="species_name" id="species_name" placeholder="Name der Tierart"/>
             </div>
-            <div class="pure-controls">
+<!--            <div class="pure-controls">
                 <input class="pure-button" type="submit" name="create_button" value="anlegen"/>
                 <input class="pure-button" type="reset" name="reset_button" value="zurücksetzen"/>
-            </div>
+            </div>-->
         </fieldset>
     </form>
 </div>
