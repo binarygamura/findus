@@ -61,7 +61,8 @@
         <script src="./js/jquery.js"></script>
         <script src="./js/jquery-ui.min.js"></script>
         <script src="./js/jquery.blockUI.js"></script>
-        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+        <script src="./js/common.js"></script>
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
         {foreach item=script from=$scripts}
         <script src='./js/module/{$script}'></script>
         {/foreach}

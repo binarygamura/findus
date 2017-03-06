@@ -1,5 +1,5 @@
 <h2>Liste aller Tierrassen</h2>
-<div class="box">
+<div class="box" id="races_list">
     <table id="races_table" class="races_table pure-table">
         <thead>
             <tr>
@@ -18,5 +18,6 @@
             {/foreach}-->
         </tbody>
     </table>
+    <a href='' id='add_race_button'>hinzufügen</a>
 </div>
 

@@ -1,5 +1,5 @@
 <div>
-    <h2>Tierart hinzufügen</h2>
+    <!--<h2>Tierart hinzufügen</h2>-->
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">

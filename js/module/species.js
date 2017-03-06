@@ -1,109 +1,180 @@
 
-$.blockUI({
-//    theme: true,
-    baseZ: 2000,
-    css: { backgroundColor: '#f00', color: '#000'}
-})
-$(document).ajaxStop($.unblockUI); 
+$(document).ready(function () {
 
+    var speciesTable = initTable('#species_table');
 
-function initRacesTable(){
-    
-}
-
-$(document).ready(function(){
-    var table = $('#species_table').DataTable({
-            "language": {
-                "url": './js/german.json'
-            }
-        });
-        
-    var racesTable = $("#races_table").DataTable({
-        "language": {
-                "url": './js/german.json'
-            },
-        "columns": [
-            { "data": "id" },
-            { "data": "name" },
-            { 
-                "data": null,
-                "render": function(data, type, row, meta){
-                    return "<a class=\"delete_species\" href=\"\">löschen</a>";
+    var racesTable = initTable("#races_table", {
+        columns: [
+            {data: "id"},
+            {data: "name"},
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return "<a class=\"delete_race\" href=\"\">löschen</a>&nbsp;<a class=\"rename_race\" href=\"\">umbenennen</a>";
                 }
             }
         ]
     });
-        
-    $('#species_table tbody tr').click(function(e){
-        var data = table.row( this ).data();
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-        }
-        else {
-            table.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-            $.blockUI({ message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>' }); 
-            $.get("?module=GetRaces", {"species_id": data[0]}, function(e){
-                var parsedData = JSON.parse(e)
+
+    function fillRacesTables(speciedId) {
+        $.get(
+            "?module=GetRaces",{
+                "species_id": speciedId
+            }, 
+            function (e) {
+                var parsedData = JSON.parse(e);
                 racesTable.clear();
                 racesTable.rows.add(parsedData.data);
                 racesTable.draw();
-                
-                $('#races_table tbody tr').click(function(e){
-                    var data = table.row( this ).data();
-                    if ( $(this).hasClass('selected') ) {
-                        $(this).removeClass('selected');
+                initClickHandler();
+            }
+        );
+    }
+
+    function initClickHandler() {
+        $('#races_table tbody tr').click(function (e) {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                racesTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        
+        $('a.rename_race').click(function(e){
+            e.preventDefault();
+            var selectedRace = racesTable.row($(this).parent().parent()).data();
+            $.get("./templates/add_race.htpl", function (data) {
+                var content = $(data).dialog({
+                    title: "Tierrasse \""+selectedRace.name+"\" umbenennen",
+                    modal: true,
+                    buttons: {
+                        "umbenennen": function(){
+                            
+                        },
+                        "abbrechen": function(){
+                            $(this).dialog("destroy");
+                        }
                     }
-                    else {
-                        racesTable.$('tr.selected').removeClass('selected');
-                        $(this).addClass('selected');
-                    }        
+                });
+                $("#race_name", content).val(selectedRace.name);
+            });
+        });
+        
+        $('a.delete_race').click(function (e) {
+            e.preventDefault();
+            var data = racesTable.row($(this).parent().parent()).data();
+            $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
+                modal: true,
+                title: "Tierrasse entfernen?",
+                buttons: {
+                    "ja": function () {
+                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        var self = this;
+                        $.ajax({
+                            type: "POST",
+                            url: "?module=DeleteRace",
+                            data: {"race_id": data.id},
+                            success: function (e) {
+                                $(self).dialog("destroy");
+                                var speciesData = speciesTable.row(".selected").data();
+                                fillRacesTables(speciesData[0]);
+                            },
+                            error: function (e) {
+                                var error = JSON.parse(e.responseText);
+                                showErrorDialog("Fehler", error.message);
+                            }
+                        });
+                    },
+                    "nein": function () {
+                        $(this).dialog("destroy");
+                    }
+                }
+            });
+        });
+    }
+
+    $('#species_table tbody tr').click(function (e) {
+        var data = speciesTable.row(this).data();
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        } else {
+            speciesTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+            $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+            fillRacesTables(data[0]);
+        }
+    });
+    initClickHandler();
+
+    $('#add_race_button').click(function (e) {
+        e.preventDefault();
+        var currentSpecies = speciesTable.row(".selected").data();
+        if (currentSpecies) {
+            $.get("./templates/add_race.htpl?test=me", function (data) {
+                $(data).dialog({
+                    title: "Tierrasse hinzufügen",
+                    modal: true,
+                    buttons: {
+                        "erstellen": function () {
+                            $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                            var self = this;
+                            console.log(currentSpecies);
+                            $.ajax({
+                                type: "POST",
+                                url: "?module=AddRace",
+                                data: {
+                                    species_id: currentSpecies[0],
+                                    race_name: $("#race_name", self).val()
+                                },
+                                success: function (e) {
+                                    fillRacesTables(currentSpecies[0]);
+                                    $(self).dialog("destroy");
+
+
+                                },
+                                error: function (e) {
+                                    var error = JSON.parse(e.responseText);
+                                    showErrorDialog("Fehler", error.message);
+                                }});
+                        },
+                        "abbrechen": function () {
+                            $(this).dialog("close").dialog("destroy");
+                        }
+                    }
                 });
             });
-        }        
-    });
-    
-    $('#races_table tbody tr').click(function(e){
-        var data = table.row( this ).data();
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
         }
-        else {
-            table.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-        }        
     });
-    
-    $('#add_species_button').click(function(e){
+
+    $('#add_species_button').click(function (e) {
         e.preventDefault();
-        $.get("./templates/add_species.htpl", function(data){            
+        $.get("./templates/add_species.htpl", function (data) {
             $(data).dialog({
+                title: "Tierart hinzufügen",
                 modal: true,
                 buttons: {
-                  "erstellen": function(){
-                    $.blockUI({ message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>' }); 
-                    var speciesName = $("#species_name", this).val();
-                    var self = this;
-                    $.ajax({
-                        type: "POST",
-                        url: "?module=AddSpecies",
-                        data: {"species_name": speciesName},
-                        success: function(e){
-                            $(self).dialog("destroy");
-                            location.reload();
-                        },
-                        error: function(e){
-                            var error = JSON.parse(e.responseText);
-                            $("<div>"+error.message+"</div>").dialog({
-                                "modal": true,
-                                "title": "Fehler"
-                            });
-                        }
-                      });
-                  },
-                  "abbrechen": function() {
-                    $(this).dialog("close").dialog("destroy");
-                  }
+                    "erstellen": function () {
+                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        var speciesName = $("#species_name", this).val();
+                        var self = this;
+                        $.ajax({
+                            type: "POST",
+                            url: "?module=AddSpecies",
+                            data: {"species_name": speciesName},
+                            success: function (e) {
+                                $(self).dialog("destroy");
+                                location.reload();
+                            },
+                            error: function (e) {
+                                var error = JSON.parse(e.responseText);
+                                showErrorDialog("Fehler", error.message);
+                            }
+                        });
+                    },
+                    "abbrechen": function () {
+                        $(this).dialog("close").dialog("destroy");
+                    }
                 }
             });
         });

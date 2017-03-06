@@ -18,5 +18,5 @@
             {/foreach}
         </tbody>
     </table>
-    <a href='' id='add_species_button'>hinzufügen</a>
+    <a href="" id="add_species_button">hinzufügen</a>
 </div>

@@ -1,23 +1,12 @@
-<h2>Rasse hinzufügen</h2>
-<div class="box">    
-    <form action="" method="POST" class="pure-form pure-form-aligned">
-        <fieldset>
-            <div class="pure-control-group">
-                <label for="race_name">Name:</label>
-                <input type="text" maxlength="20" name="race_name" id="race_name" placeholder="Name der Rasse"/>
-            </div>
-            <div class="pure-control-group">
-                <label for="species">Tiertart:</label>
-                <select name='species' id='species'>
-                    {foreach item=species from=$all_species}
-                    <option value="{$species.id}">{$species.name}</option>
-                    {/foreach}
-                </select>
-            </div>
-            <div class="pure-controls">
-                <input class="pure-button" type="submit" name="create_button" value="anlegen"/>
-                <input class="pure-button" type="reset" name="reset_button" value="zurücksetzen"/>
-            </div>
-        </fieldset>
-    </form>
+<div>
+    <div class="box">    
+        <form action="" method="POST" class="pure-form pure-form-aligned">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="race_name">Name:</label>
+                    <input type="text" maxlength="20" name="race_name" id="race_name" placeholder="Name der Rasse"/>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </div>

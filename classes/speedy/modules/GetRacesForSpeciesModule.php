@@ -17,7 +17,7 @@ class GetRacesForSpeciesModule implements \speedy\common\Module {
             throw new \speedy\controller\ControllerException("Es wurde keine ID angegeben.");
         }
         $response = new \speedy\common\JsonResponse();
-        $species = R::findOne('species', 'id = ?', [$speciesId]);
+        $species = R::findOne('species', 'id = ? AND state = \'ACTIVE\'', [$speciesId]);
         if(!$species){
             throw new \speedy\controller\ControllerException("Es konnte keine Tierrasse mit der ID gefunden werden.");
         }

@@ -10,7 +10,6 @@ namespace speedy\modules;
 class AddSpeciesModule implements \speedy\common\Module{
     
     public function execute() {
-//        try{
         $speciesName = filter_input(INPUT_POST, 'species_name');
         if(!$speciesName){
             throw new \speedy\controller\ControllerException("Bitte geben Sie einen Namen an.");
