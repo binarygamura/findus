@@ -28,4 +28,9 @@ class UserController{
          }
          return array_pop($matches);
     }
+    
+    public static function getAllUsers(){
+    	return R::findAll('users');
+    }
+    
 }
