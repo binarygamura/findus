@@ -41,8 +41,7 @@ $config = [
             "menu" => [
                 'Tiere suchen' => 'SearchAnimal',
                 'Tier erfassen' => 'AddAnimal',
-                'Tierarten verwalten' => 'ManageSpecies',
-                'Tierrassen verwalten' => 'ManageRaces'
+                'Tierarten und Rassen' => 'ManageSpecies'
                 ]
             ],
         "Vorstand" => [

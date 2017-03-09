@@ -22,8 +22,10 @@ class ManageSpeciesModule implements \speedy\common\Module {
         }
         
         $response->setValue('all_species', \speedy\controller\SpeciesController::getAllSpecies());
-        $response->addTemplateName("add_species.htpl");
+        $response->addScript('species.js');
+//        $response->addTemplateName("add_species.htpl");
         $response->addTemplateName("list_species.htpl");
+        $response->addTemplateName("list_races.htpl");
         return $response;
     }
 

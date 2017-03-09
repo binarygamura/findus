@@ -1,6 +1,4 @@
-<?php
-
-namespace speedy\modules;
+<?php namespace speedy\modules;
 
 /**
  * Description of AddAnimalModule

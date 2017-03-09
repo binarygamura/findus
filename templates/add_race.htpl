@@ -1,0 +1,12 @@
+<div>
+    <div class="box">    
+        <form action="" method="POST" class="pure-form pure-form-aligned">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="race_name">Name:</label>
+                    <input type="text" maxlength="20" name="race_name" id="race_name" placeholder="Name der Rasse"/>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

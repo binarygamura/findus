@@ -1,3 +1,23 @@
 a.active {
     color: orange;
 }
+div.box .dataTables_info {
+    color: #fff;
+}
+
+
+div.dataTables_length label {
+    color: #fff;
+}
+
+select {
+    color: #000;
+}
+
+.ui-widget-content input {
+    color: #000;
+}
+
+h1.loading {
+    color: #000;
+}

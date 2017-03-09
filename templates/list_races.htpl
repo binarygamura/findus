@@ -1,0 +1,23 @@
+<h2>Liste aller Tierrassen</h2>
+<div class="box" id="races_list">
+    <table id="races_table" class="races_table pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+<!--            {foreach item=races from=$all_races}
+            <tr>
+                <td>{$race.id}</td>
+                <td>{$race.name}</td>
+                <td></td>
+            </tr>
+            {/foreach}-->
+        </tbody>
+    </table>
+    <a href='' id='add_race_button'>hinzufügen</a>
+</div>
+
