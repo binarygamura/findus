@@ -30,7 +30,21 @@ class UserController{
     }
     
     public static function getAllUsers(){
-    	return R::findAll('users');
+    	return R::findAll('user');
+    }
+
+    public static function createNewUser(array $userData){
+        $newUser = R::dispense('user');
+        if(!isset($speciesData['user_name']) || trim($speciesData['user_name']) == ''){
+            throw new ControllerException('Bitte einen Namen angeben.');
+        }
+        $name = trim($speciesData['user_name']);
+        $matches = R::find('user', 'LOWER(username) = ?', [strtolower($name)]);
+        if(count($matches) > 0){
+            throw new ControllerException('Dieser Benutzer ist bereits vorhanden.');
+        }
+        $newSpecies['username'] = $speciesData['user_name'];
+        R::store($newSpecies);
     }
     
 }

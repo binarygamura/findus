@@ -12,12 +12,12 @@
             {foreach item=user from=$all_users}
             <tr>
                 <td>{$user.id}</td>
-                <td>{$user.name}</td>
+                <td>{$user.username}</td>
                 <td></td>
             </tr>
             {/foreach}
         </tbody>
     </table>
-    <a href='' id='add_user_button'>hinzufügen¼gen</a>
+    <a href='' id='add_user_button'>hinzufügen</a>
 </div>
 

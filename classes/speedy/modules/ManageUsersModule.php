@@ -22,6 +22,7 @@ class ManageUsersModule implements \speedy\common\Module {
         }
         
         $response->setValue('all_users', \speedy\controller\UserController::getAllUsers());
+        $response->addTemplateName("add_user.htpl");
         $response->addTemplateName("list_users.htpl");
         return $response;
     }
