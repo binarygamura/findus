@@ -58,7 +58,7 @@ $config = [
             "role" => 15,
             "module" => "Admin",
             "menu" => [
-                    "Mitarbeiter verwalten" => "ManageUsers"
+                    "Benutzer verwalten" => "ManageUsers"
                 ]
             ],
         "Logout" => [
