@@ -6,10 +6,14 @@
                 <label for="user_name">Name:</label>
                 <input type="text" maxlength="20" name="user_name" id="user_name" placeholder="Name des Benutzers"/>
             </div>
-<!--            <div class="pure-controls">
+            <div class="pure-control-group">
+                <label for="user_name">Name:</label>
+                <input type="password" maxlength="20" name="user_name" id="user_name" placeholder="Name des Benutzers"/>
+            </div>
+            <div class="pure-controls">
                 <input class="pure-button" type="submit" name="create_button" value="anlegen"/>
                 <input class="pure-button" type="reset" name="reset_button" value="zurücksetzen"/>
-            </div>-->
+            </div>
         </fieldset>
     </form>
 </div>
