@@ -30,21 +30,26 @@ class UserController{
     }
     
     public static function getAllUsers(){
-    	return R::findAll('user');
+        return R::findAll('user');
     }
 
     public static function createNewUser(array $userData){
         $newUser = R::dispense('user');
-        if(!isset($speciesData['user_name']) || trim($speciesData['user_name']) == ''){
+        if(!isset($userData['user_name']) || trim($userData['user_name']) == ''){
             throw new ControllerException('Bitte einen Namen angeben.');
         }
-        $name = trim($speciesData['user_name']);
-        $matches = R::find('user', 'LOWER(username) = ?', [strtolower($name)]);
-        if(count($matches) > 0){
-            throw new ControllerException('Dieser Benutzer ist bereits vorhanden.');
+        $name = trim($userData['user_name']);
+        if(!isset($userData['user_password']) || trim($userData['user_password']) == ''){
+            throw new ControllerException('Bitte eine Passwort angeben.');
         }
-        $newSpecies['username'] = $speciesData['user_name'];
-        R::store($newSpecies);
+        if(!isset($userData['user_password']) || trim($userData['user_password']) == ''){
+            throw new ControllerException('Bitte ein Passwort angeben.');
+        }
+        $password = trim($userData['user_password']);
+        $newUser['username'] = $name;
+        $newUser['password'] = $password;
+        R::store($newUser);
     }
     
 }
+

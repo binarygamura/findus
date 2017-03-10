@@ -13,7 +13,7 @@ class ManageUsersModule implements \speedy\common\Module {
         $response = new \speedy\common\TemplateResponse();
         try{
             if(filter_input(INPUT_POST, 'create_button')){
-                \speedy\controller\UsersController::createNewUser(['user_name' => filter_input(INPUT_POST, 'user_name')]);
+                \speedy\controller\UserController::createNewUser(['user_name' => filter_input(INPUT_POST, 'user_name')]);
             }
         }
         catch(\speedy\controller\ControllerException $ex){
