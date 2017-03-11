@@ -13,7 +13,10 @@ class ManageUsersModule implements \speedy\common\Module {
         $response = new \speedy\common\TemplateResponse();
         try{
             if(filter_input(INPUT_POST, 'create_button')){
-                \speedy\controller\UserController::createNewUser(['user_name' => filter_input(INPUT_POST, 'user_name')]);
+                \speedy\controller\UserController::createNewUser([
+                    'user_name' => filter_input(INPUT_POST, 'user_name'),
+                    'user_password' => filter_input(INPUT_POST, 'user_password'),
+                    'user_role' => filter_input(INPUT_POST, 'user_role')]);
             }
         }
         catch(\speedy\controller\ControllerException $ex){
@@ -22,7 +25,7 @@ class ManageUsersModule implements \speedy\common\Module {
         }
         
         $response->setValue('all_users', \speedy\controller\UserController::getAllUsers());
-        $response->addTemplateName("add_user.htpl");
+        $response->addScript('user.js');
         $response->addTemplateName("list_users.htpl");
         return $response;
     }

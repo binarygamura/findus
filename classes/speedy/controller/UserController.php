@@ -21,6 +21,14 @@ class UserController{
          return array_pop($matches);
     }
     
+    public static function getUserByUsername($username){
+         $matches = R::find('user', 'username = ?', [$username]);
+         if(count($matches) == 0 || count($matches) > 1){
+             return false;
+         }
+         return array_pop($matches);
+    }
+
     public static function getGuestUser(){
         $matches = R::find('user', 'id = 1');
         if(count($matches) == 0 || count($matches) > 1){
@@ -40,14 +48,15 @@ class UserController{
         }
         $name = trim($userData['user_name']);
         if(!isset($userData['user_password']) || trim($userData['user_password']) == ''){
-            throw new ControllerException('Bitte eine Passwort angeben.');
-        }
-        if(!isset($userData['user_password']) || trim($userData['user_password']) == ''){
             throw new ControllerException('Bitte ein Passwort angeben.');
         }
         $password = trim($userData['user_password']);
+        $role = trim($userData['user_role']);
+        #TODO Rolle korrekt behandelm
         $newUser['username'] = $name;
         $newUser['password'] = $password;
+        $newUser['role'] = 3;
+        $newUser['displayname'] = 'Mitarbeiter';
         R::store($newUser);
     }
     
