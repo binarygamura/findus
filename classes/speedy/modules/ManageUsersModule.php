@@ -11,6 +11,7 @@ class ManageUsersModule implements \speedy\common\Module {
 
     public function execute() {
         $response = new \speedy\common\TemplateResponse();
+       
         try{
             if(filter_input(INPUT_POST, 'create_button')){
                 \speedy\controller\UserController::createNewUser([

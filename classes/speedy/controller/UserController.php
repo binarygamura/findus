@@ -52,6 +52,25 @@ class UserController{
         }
         $password = trim($userData['user_password']);
         $role = trim($userData['user_role']);
+        //TODO Rolle korrekt behandeln
+        $newUser['username'] = $name;
+        $newUser['password'] = $password;
+        $newUser['role'] = 3;
+        $newUser['displayname'] = 'Mitarbeiter';
+        R::store($newUser);
+    }
+    
+    public static function updateUser(array $userData){
+        $newUser = R::dispense('user');
+        if(!isset($userData['user_name']) || trim($userData['user_name']) == ''){
+            throw new ControllerException('Bitte einen Namen angeben.');
+        }
+        $name = trim($userData['user_name']);
+        if(!isset($userData['user_password']) || trim($userData['user_password']) == ''){
+            throw new ControllerException('Bitte ein Passwort angeben.');
+        }
+        $password = trim($userData['user_password']);
+        $role = trim($userData['user_role']);
         #TODO Rolle korrekt behandelm
         $newUser['username'] = $name;
         $newUser['password'] = $password;

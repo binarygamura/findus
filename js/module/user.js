@@ -28,22 +28,43 @@ $(document).ready(function () {
         $('a.edit_user').click(function(e){
             e.preventDefault();
             var selectedUser = userTable.row($(this).parent().parent()).data();
+            var userId = selectedUser.id;
+            var userName = selectedUser.name;
+            var userPassword = selectedUser.password;
+            var userRole = selectedUser.role;
             $.get("./templates/add_user.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Benutzer \""+selectedUser.name+"\" bearbeiten",
                     modal: true,
                     buttons: {
-                        "speichern": function(){
-                            
-                        },
+                    "speichern": function () {
+                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        var self = this;
+                        $.ajax({
+                            type: "POST",
+                            url: "?module=UpdateUser",
+                            data: {
+                                "user_name": userName,
+                                "user_id":userId,
+                                "user_password": userPassword,
+                                "user_role": userRole                                
+                            },
+                            success: function (e) {
+                                $(self).dialog("destroy");
+                                location.reload();
+                            },
+                            error: function (e) {
+                                var error = JSON.parse(e.responseText);
+                                showErrorDialog("Fehler", error.message);
+                            }
+                        });
+                        
+                    },
                         "abbrechen": function(){
                             $(this).dialog("destroy");
                         }
                     }
                 });
-                $("#user_name", content).val(selectedUser.name);
-                $("#user_password", content).val(selectedUser.password);
-                $("#user_role", content).val(selectedUser.role);
             });
         });
         
