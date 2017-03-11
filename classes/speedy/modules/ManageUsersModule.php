@@ -22,7 +22,7 @@ class ManageUsersModule implements \speedy\common\Module {
         }
         catch(\speedy\controller\ControllerException $ex){
             $response->setValue('errors', [$ex->getMessage()]);
-            $response->addTemplateName("errors.htpl");
+            $response->addTemplateName("page/errors.htpl");
         }
         
         $response->setValue('all_users', \speedy\controller\UserController::getAllUsers());

@@ -1,4 +1,95 @@
 <h2>Tier hinzufügen</h2>
 <div class="box">
-    
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <div class="tabs">
+            <ul>
+                <li><a href="#general_tab">Allgemeines</a></li>
+                <li><a href="#notes_tab">Hinweise</a></li>
+            </ul>
+            <div id="general_tab">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="animal[id]">ID:</label>
+                        <input type="text" maxlength="5" name="animal[id]" id="animal[id]" placeholder="ID" readonly="readonly" title="Die ID wird vom System vergeben und kann nicht manuell eingegeben werden."/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[name]">Name:</label>
+                        <input type="text"  name="animal[name]" id="animal[name]" placeholder="Name des Tieres" value="{if isset($smarty.post.animal.name)}{$smarty.post.animal.name}{/if}"/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[species]">Art:</label>
+                        <select name="animal[species]" id="animal[species]">
+                            <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                            {foreach item=species from=$all_species}
+                            <option value="{$species.id}">{$species.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[race]">Rasse:</label>
+                        <select name="animal[race]" id="animal[race]" title="Bitte die Rasse angeben.">
+                            <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                        </select>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[color]">Farbe:</label>
+                        <input type="text"  name="animal[color]" id="animal[color]" placeholder="Farbe des Tieres" title="Mögliche Wert sind hier z.B. braun, weiß, etc..."/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[attributes]">Besondere Merkmale:</label>
+                        <textarea id="animal[attributes]" name="animal[attributes]" rows="5" cols="40" title="Sind Merkmale vorhanden, die dieses Tier von anderen eindeutig unterscheiden, sind diese hier zu vermerken."></textarea>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[chip]">Chip-Nummer:</label>
+                        <input type="text"  name="animal[chip]" id="animal[chip]" placeholder="Chip-Nummer"/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[tatoo]">Tätowierung:</label>
+                        <input type="text"  name="animal[tatoo]" id="animal[tatoo]" placeholder="Tätowierung"/>
+                    </div>
+                </fieldset>
+            </div>
+            <div id="notes_tab">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="animal[vaccinationCard]">Impfausweis vorhanden:</label>
+                        <input type="checkbox" name="animal[vaccinationCard" id="animal[vaccinationCard" value="1"/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[age]">Alter:</label>
+                        <input type="text"  name="animal[age]" id="animal[age]" placeholder="Alter des Tieres"/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[sex]">Geschlecht:</label>
+                        <select name="animal[sex]" id="animal_sex">
+                            <option value="">--&gt; bitte auswählen &lt;--</option>
+                            <option value="UNKNOWN">unklar</option>
+                            <option value="FEMALE">weiblich</option>
+                            <option value="MALE">männlich</option>
+                        </select>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[knownDiseases]">Bekannte Erkrankungen:</label>
+                        <textarea id="animal[knownDiseases]" name="animal[knownDiseases]" rows="5" cols="40"></textarea>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[generalState]">Allgemeinzustand:</label>
+                        <textarea id="animal[generalState]" name="animal[generalState]" rows="5" cols="40"></textarea>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[behaviour]">Verhalten:</label>
+                        <textarea id="animal[behaviour]" name="animal[behaviour]" rows="5" cols="40"></textarea>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[notes]">Sonstige Bemerkungen:</label>
+                        <textarea id="animal[notes]" name="animal[notes]" rows="5" cols="40"></textarea>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="pure-controls">
+                <input class="button-success pure-button" type="submit" name="create_button" value="Erstellen"/>
+                <input class="button-warning pure-button" type="reset" name="reset_button" value="zurücksetzen"/>
+            </div>
+        </div>
+    </form>
 </div>

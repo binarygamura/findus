@@ -12,7 +12,7 @@ class LoginModule implements \speedy\common\Module {
     public function execute() {
         if(!filter_input(INPUT_POST, "login_button")){
             $response = new \speedy\common\TemplateResponse();        
-            $response->addTemplateName("login.htpl");
+            $response->addTemplateName("page/login.htpl");
         }
         else {
             $errors = [];
@@ -37,8 +37,8 @@ class LoginModule implements \speedy\common\Module {
             
             if(count($errors) > 0){
                 $response = new \speedy\common\TemplateResponse();        
-                $response->addTemplateName("login.htpl");
-                $response->addTemplateName("errors.htpl");
+                $response->addTemplateName("page/login.htpl");
+                $response->addTemplateName("page/errors.htpl");
                 $response->setValue('errors', $errors);
             }
             else {

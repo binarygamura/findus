@@ -54,7 +54,7 @@ class Engine {
             if($topLevelMenu['module'] == $currentModule && isset($topLevelMenu['menu']) && count($topLevelMenu['menu']) > 0){
                 $output = '<ul>'; 
                 foreach($topLevelMenu['menu'] as $title => $module){
-                    $output .= '<li><a href=?module='.$topLevelMenu['module'].'&subModule='.$module.'>'.$title.'</a></li>';
+                    $output .= '<li><a href="?module='.$topLevelMenu['module'].'&subModule='.$module.'">'.$title.'</a></li>';
                 }
                 $output .= '</ul>';
                 break;

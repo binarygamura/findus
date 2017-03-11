@@ -1,3 +1,9 @@
+/*
+ * Add your custom css in this file. Dont change the other css files unless
+ * you really have to and know what you are doing. This is a good place
+ * to overwrite css rules set by other stylesheets.
+ */
+
 a.active {
     color: orange;
 }
@@ -5,19 +11,98 @@ div.box .dataTables_info {
     color: #fff;
 }
 
-
 div.dataTables_length label {
     color: #fff;
 }
 
-select {
+/* make some texts black to make them more readable */
+h1.loading, table td, .ui-widget-content input, select {
     color: #000;
 }
 
-.ui-widget-content input {
-    color: #000;
+
+#right ul {
+    padding: 0px;
 }
 
-h1.loading {
-    color: #000;
+div.box .ui-widget-content  {
+    background-color: #000;
+    background: none;
 }
+
+div.box .ui-widget-content select {
+    height: inherit;
+}
+
+/*
+ * Make the buttons look nice.
+ * Taken from https://purecss.io/buttons/ 
+ */
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.button-warning {
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+
+.ui-tooltip, .arrow:after {
+    background: darkgray;
+    /*border: 2px solid white;*/
+  }
+  .ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 7px black;
+  }
+  .arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .arrow.top:after {
+    bottom: -20px;
+    top: auto;
+  }

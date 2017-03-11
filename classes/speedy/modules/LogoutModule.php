@@ -18,7 +18,7 @@ class LogoutModule implements \speedy\common\Module {
         }
         else {
             $response = new \speedy\common\TemplateResponse();
-            $response->addTemplateName("logout.htpl");
+            $response->addTemplateName("page/logout.htpl");
             return $response;
         }
     }
