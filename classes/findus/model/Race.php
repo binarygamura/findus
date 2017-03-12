@@ -8,7 +8,7 @@ use RedBeanPHP\SimpleModel;
 /**
  * Description of Race
  *
- * @author boreas
+ * @author binary gamura
  */
 class Race extends SimpleModel{
     

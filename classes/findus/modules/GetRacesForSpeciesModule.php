@@ -7,7 +7,7 @@ use \RedBeanPHP\R;
 /**
  * Description of GetRacesForSpeciesModule
  *
- * @author boreas
+ * @author binary gamura
  */
 class GetRacesForSpeciesModule implements \findus\common\Module {
     

@@ -7,7 +7,7 @@ use \RedBeanPHP\R;
 /**
  * Description of DeleteRaceModule
  *
- * @author boreas
+ * @author binary gamura
  */
 class DeleteRaceModule implements \findus\common\Module {
     

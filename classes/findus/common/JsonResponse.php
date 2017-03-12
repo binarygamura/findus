@@ -5,7 +5,7 @@ namespace findus\common;
 /**
  * Description of JsonResponse
  *
- * @author boreas
+ * @author binary gamura
  */
 class JsonResponse extends Response {
     

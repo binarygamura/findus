@@ -5,7 +5,7 @@ namespace findus\modules;
 /**
  * Description of AddSpeciesModule
  *
- * @author boreas
+ * @author binary gamura
  */
 class AddSpeciesModule implements \findus\common\Module{
     

@@ -21,7 +21,7 @@ namespace findus\modules;
 /**
  * Description of GetSpeciesModule
  *
- * @author boreas
+ * @author binary gamura
  */
 class GetSpeciesModule implements \findus\common\Module{
     public function execute() {

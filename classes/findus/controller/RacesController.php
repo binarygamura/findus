@@ -7,7 +7,7 @@ use \RedBeanPHP\R;
 /**
  * Description of RacesController
  *
- * @author boreas
+ * @author binary gamura
  */
 class RacesController {
     

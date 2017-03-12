@@ -5,7 +5,7 @@ namespace findus\modules;
 /**
  * Description of AddRaceModule
  *
- * @author boreas
+ * @author binary gamura
  */
 class AddRaceModule implements \findus\common\Module{
     public function execute() {

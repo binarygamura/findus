@@ -11,7 +11,7 @@ namespace findus\modules;
 /**
  * Description of GetRacesModule
  *
- * @author boreas
+ * @author binary gamura
  */
 class GetRacesModule implements \findus\common\Module {
     
