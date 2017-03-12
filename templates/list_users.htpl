@@ -1,6 +1,6 @@
 <h2>Liste aller Benutzer</h2>
 <div class="box">
-    <table id="user_table" class="user_table pure-table default">
+    <table id="user_table" class="user_table pure-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -18,6 +18,6 @@
             {/foreach}
         </tbody>
     </table>
-    <!--<a href='' id='add_user_button'>hinzufügen</a>-->
+    <a href='' id='add_user_button'>hinzufügen</a>
 </div>
 

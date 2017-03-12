@@ -1,0 +1,23 @@
+<h2>Liste aller Eingansarten</h2>
+<div class="box">
+    <table id="admissionType_table" class="admissionType_table pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bezeichnung</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=admissionType from=$all_admissionTypes}
+            <tr>
+                <td>{$admissionType.id}</td>
+                <td>{$admissionType.name}</td>
+                <td></td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <a href='' id='add_admissionType_button'>hinzufügen</a>
+</div>
+

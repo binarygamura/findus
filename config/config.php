@@ -48,6 +48,7 @@ $config = [
             "role" => 7,
             "module" => "Management",
             "menu" => [
+                "Eingangsarten" =>  "admission\\ManageAdmissionTypes",
                 "Eingänge je Zeitraum" =>  "AdditionsReport",
                 "Behandlungen je Zeitraum" =>  "AdditionsReport",
                 "Vermittlungsübersicht je Zeitraum" =>  "AdditionsReport",

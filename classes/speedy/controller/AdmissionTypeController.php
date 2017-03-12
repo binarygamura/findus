@@ -9,7 +9,7 @@ use \RedBeanPHP\R;
  *
  * @author tierhilfe
  */
-class AdmissianTypeController {
+class AdmissionTypeController {
     
     public static function getAllAdmissionTypes(){
         return R::findAll('admissionType');
@@ -23,8 +23,28 @@ class AdmissianTypeController {
         return $admissionType;
     }
     
-    public static function createAdmissionType(array $admissionTypeData){
-        $newAdmissionType = R::dispense('admissionType');
+    public static function createNewAdmissionType(array $admissionTypeData){
+        $newAdmissionType = R::dispense('admissiontype');
+        if(!isset($admissionTypeData['admissionType_name']) || trim($admissionTypeData['admissionType_name']) == ''){
+            throw new ControllerException('Bitte einen Namen angeben.');
+        }
+ 
+        $name = trim($admissionTypeData['admissionType_name']);
+        
+        $admissionType = R::findOne('admissiontype', 'name = ?', [$name]);
+        if($admissionType){
+            throw new ControllerException("Diese Eingangsart ist bereits vorhanden.");
+        }
+
+        $newAdmissionType['name'] = $name;
+        $newAdmissionType['description'] = $admissionTypeData['admissionType_description'];
+        R::store($newAdmissionType);
+    }
+    
+    public static function updateAdmissionType(array $admissionTypeData){
+        if(!isset($admissionTypeData['admissionType_id']) || trim($admissionTypeData['admissionType_id']) == ''){
+            throw new ControllerException('Bitte eine Id angeben.');
+        }
         if(!isset($admissionTypeData['admissionType_name']) || trim($admissionTypeData['admissionType_name']) == ''){
             throw new ControllerException('Bitte einen Namen angeben.');
         }
@@ -32,15 +52,16 @@ class AdmissianTypeController {
             throw new ControllerException('Bitte eine Beschreibung angeben.');
         }
  
+        $id = trim($admissionTypeData['admissionType_id']);
         $name = trim($admissionTypeData['admissionType_name']);
         
-        $admissionType = R::findOne('admissionType', 'name = ?', [$name]);
+        $admissionType = R::findOne('admissionType', 'id = ?', [$id]);
         if($admissionType){
-            throw new ControllerException("Diese Tierrasse ist bereits vorhanden.");
+            throw new ControllerException("Keine Eingangsart mit der id "+ $id + " gefunden.");
         }
 
-        $newAdmissionType['name'] = $name;
-        $newAdmissionType['description'] = $admissionTypeData['admissionType_description'];
-        R::store($newAdmissionType);
-    }
+        $admissionType['name'] = $name;
+        $admissionType['description'] = $admissionTypeData['admissionType_description'];
+        R::store($admissionType);
+    } 
 }
