@@ -1,6 +1,6 @@
 <h2>Tier hinzufügen</h2>
 <div class="box">
-    <form action="" method="POST" class="pure-form pure-form-aligned">
+    <form action="" method="POST" id="add_animal_form" class="pure-form pure-form-aligned">
         <div class="tabs">
             <ul>
                 <li><a href="#general_tab">Allgemeines</a></li>
@@ -14,7 +14,7 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[name]">Name:</label>
-                        <input type="text"  name="animal[name]" id="animal[name]" placeholder="Name des Tieres" value="{if isset($smarty.post.animal.name)}{$smarty.post.animal.name}{/if}"/>
+                        <input type="text" name="animal[name]" id="animal[name]" placeholder="Name des Tieres" value="{if isset($smarty.post.animal.name)}{$smarty.post.animal.name}{/if}"/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[species]">Art:</label>
@@ -24,11 +24,22 @@
                             <option value="{$species.id}">{$species.name}</option>
                             {/foreach}
                         </select>
+                        <a class="add_button" id="add_species_button" href=""><img src="./images/add.png" alt="Tierart hinzufügen"/></a>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[race]">Rasse:</label>
                         <select name="animal[race]" id="animal[race]" title="Bitte die Rasse angeben.">
                             <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                        </select>
+                        <a class="add_button" id="add_race_button" href=""><img src="./images/add.png" alt="Tierart hinzufügen"/></a>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[sex]">Geschlecht:</label>
+                        <select name="animal[sex]" id="animal[sex]">
+                            <option value="">--&gt; bitte auswählen &lt;--</option>
+                            <option value="UNKNOWN">unklar</option>
+                            <option value="FEMALE">weiblich</option>
+                            <option value="MALE">männlich</option>
                         </select>
                     </div>
                     <div class="pure-control-group">
@@ -60,15 +71,6 @@
                         <input type="text"  name="animal[age]" id="animal[age]" placeholder="Alter des Tieres"/>
                     </div>
                     <div class="pure-control-group">
-                        <label for="animal[sex]">Geschlecht:</label>
-                        <select name="animal[sex]" id="animal_sex">
-                            <option value="">--&gt; bitte auswählen &lt;--</option>
-                            <option value="UNKNOWN">unklar</option>
-                            <option value="FEMALE">weiblich</option>
-                            <option value="MALE">männlich</option>
-                        </select>
-                    </div>
-                    <div class="pure-control-group">
                         <label for="animal[knownDiseases]">Bekannte Erkrankungen:</label>
                         <textarea id="animal[knownDiseases]" name="animal[knownDiseases]" rows="5" cols="40"></textarea>
                     </div>
@@ -84,12 +86,17 @@
                         <label for="animal[notes]">Sonstige Bemerkungen:</label>
                         <textarea id="animal[notes]" name="animal[notes]" rows="5" cols="40"></textarea>
                     </div>
+                    <input type="hidden" name="create_button" value="true"/>
                 </fieldset>
             </div>
             <div class="pure-controls">
-                <input class="button-success pure-button" type="submit" name="create_button" value="Erstellen"/>
-                <input class="button-warning pure-button" type="reset" name="reset_button" value="zurücksetzen"/>
+                <input class="button-success pure-button" type="submit" id="create_button" name="create_button" value="Erstellen"/>
+                <input class="button-warning pure-button" type="reset" id="reset_button" name="reset_button" value="zurücksetzen"/>
             </div>
         </div>
     </form>
+    
+    <ul id="error_list">
+        
+    </ul>
 </div>

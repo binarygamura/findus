@@ -2,7 +2,7 @@
 
 define('STAGE_DEV', "dev");
 define('STAGE_PROD', "prod");
-define('REDBEAN_MODEL_PREFIX', '\\speedy\\model\\' );
+define('REDBEAN_MODEL_PREFIX', '\\findus\\model\\' );
 
 /**
  * global configuration of the application.

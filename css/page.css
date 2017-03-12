@@ -4,6 +4,18 @@
  * to overwrite css rules set by other stylesheets.
  */
 
+.pure-form input.error, .pure-form select.error {
+    border:2px solid #dc143c;
+}
+
+textarea {
+    color: #000;
+}
+
+a.add_button img {
+    vertical-align: middle;
+}
+
 a.active {
     color: orange;
 }

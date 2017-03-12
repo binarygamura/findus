@@ -1,15 +1,15 @@
 <?php
 //use the nice classloader provided by composer.
 $classLoader = require_once './vendor/autoload.php';
-$classLoader->add('speedy', "./classes");
+$classLoader->add('findus', "./classes");
 
-
-
-use speedy\common\Util;
+use findus\common\Util;
 use \RedBeanPHP\R;
 
 //always create a session.
 session_start();
+
+//TODO: remove me before deployment.
 if(isset($_GET['kill'])){
     session_destroy();
 }
@@ -27,12 +27,13 @@ $logger = Util::createLogger("main", $config);
 try {
     
     R::setup($config['database']['dsn'], $config['database']['username'], $config['database']['password']);
+    //TODO: freeze db-structure when deployed on productive stage.
 //    R::freeze( TRUE );
     
     //add user object to session. if none is set, we create a "visitor".
     if(!isset($_SESSION['user'])){
         
-        $_SESSION['user'] = speedy\controller\UserController::getGuestUser();
+        $_SESSION['user'] = findus\controller\UserController::getGuestUser();
     }
     
     $moduleName = filter_input(INPUT_GET, 'module');
@@ -45,19 +46,19 @@ try {
     }
     
     //create the module loader.
-    $moduleLoader = new \speedy\common\ModuleLoader($classLoader);
+    $moduleLoader = new \findus\common\ModuleLoader($classLoader);
     $loadedModule = $moduleLoader->loadModule($moduleName);
     
     //important -> execute the loaded module.
     $response = $loadedModule->execute();
     
     //create the Engine to handle the response the module created.
-    $engine = new \speedy\common\Engine($config);
+    $engine = new \findus\common\Engine($config);
     $engine->sendResponseToClient($response, $_SESSION['user']->box());
     
 }
 catch(Exception $ex){
-    //TODO: show fancy error page.
+    //TODO: show (more or less) fancy error page.
     http_response_code(500);
     echo(json_encode(["message" => $ex->getMessage()]));
     $logger->err($ex->getMessage()."::".$ex->getTraceAsString());

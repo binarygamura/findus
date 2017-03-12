@@ -12,6 +12,13 @@ new incoming animal.
 Feel free if you have experience in PHP, JS, CSS and webdevelopment in general.
 We are always looking for new developers. If you want to apply, please send us an email.
 
-##  Used software
+##  Used software and other stuff
 * [Pure CSS](https://purecss.io)
 * [Smarty Templating Engine](http://www.smarty.net/)
+* [FatCow Icons] (https://www.fatcow.com/free-icons)
+* [RedBeanPHP] (http://www.redbeanphp.com)
+* [jQuery] (https://jquery.com/)
+* [jQuery UI] (https://jqueryui.com/)
+* [Template by alpha studio] (http://www.alphastudio.pl/)
+
+## Thanks to

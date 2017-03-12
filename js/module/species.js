@@ -111,7 +111,7 @@ $(document).ready(function () {
         e.preventDefault();
         var currentSpecies = speciesTable.row(".selected").data();
         if (currentSpecies) {
-            $.get("./templates/add_race.htpl?test=me", function (data) {
+            $.get("./templates/add_race.htpl", function (data) {
                 $(data).dialog({
                     title: "Tierrasse hinzufügen",
                     modal: true,
