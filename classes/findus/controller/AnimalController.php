@@ -1,6 +1,6 @@
 <?php
+namespace findus\controller;
 
-use \RedBeanPHP\R;
 
 /*
  * Copyright 2017 binary gamura.
@@ -18,8 +18,8 @@ use \RedBeanPHP\R;
  * limitations under the License.
  */
 
-namespace findus\controller;
 
+use \RedBeanPHP\R;
 /**
  * Description of AnimalController
  *

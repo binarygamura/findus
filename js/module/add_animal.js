@@ -74,12 +74,13 @@
             $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
             $.ajax({
                 type: "POST",
-                url: "?module=Employee&subModule=AddAnimal",
+                url: "?module=AddAnimal",
                 data: $("#add_animal_form").serialize(),
                 success: function (e) {
-                    $("<div>Tier wurde erfolgreich erfasst.</div>").dialog({
+                    var response = JSON.parse(e);
+                    $("<div>\n\Tier wurde erfolgreich erfasst und mit der ID <strong>"+response.id+"</strong> ins System eingetragen.</div>").dialog({
                         modal: true,
-                        title: "Tier wurde erfasst.",
+                        title: "Tier wurde erfasst",
                         buttons: {
                             "okay": function(){
                                 $(this).dialog("destroy");
