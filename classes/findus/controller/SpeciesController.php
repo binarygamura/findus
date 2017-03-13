@@ -39,6 +39,6 @@ class SpeciesController {
             throw new ControllerException('Diese Tierart ist bereits vorhanden.');
         }
         $newSpecies['name'] = $speciesData['species_name'];
-        R::store($newSpecies);
+        return R::store($newSpecies);
     }
 }

@@ -1,6 +1,6 @@
 <?php namespace findus\modules;
 
-use \RedBeanPHP\R;
+
 
 /**
  * Description of AddAnimalModule
@@ -53,18 +53,11 @@ class AddAnimalModule implements \findus\common\Module {
             $animalData['notes'] = isset($animalData['notes']) ? trim($animalData['notes']) : "";
             
             if(count($errors) > 0){
-                $response = new \findus\common\JsonResponse();
-                $response->setJson($errors);
-                $response->setResponseCode(400);
+                $response = new \findus\common\JsonResponse($errors, 400);
             }
             else {
-                $response = new \findus\common\JsonResponse();
-                $animal = R::dispense('animal');
-                foreach($animalData as $key => $value){
-                    $animal->$key = $value;
-                }
-                R::store($animal);
-                $response->setBody("{}");
+                $id = \findus\controller\AnimalController::createNewAnimal($animalData);
+                $response = new \findus\common\JsonResponse(["id" => $id]);
             }
         }
         else {
@@ -72,9 +65,7 @@ class AddAnimalModule implements \findus\common\Module {
             $response->setValue('all_species', \findus\controller\SpeciesController::getAllSpecies());
             $response->addScript("add_animal.js");
             $response->addTemplateName("add_animal.htpl");
-            return $response;
         }
         return $response;
     }
-
 }

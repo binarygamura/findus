@@ -14,12 +14,10 @@ class AddRaceModule implements \findus\common\Module{
             throw new \findus\controller\ControllerException("Bitte geben Sie einen Namen an.");
             
         }
-        \findus\controller\RacesController::createNewRace([
+        $id = \findus\controller\RacesController::createNewRace([
             'race_name' => filter_input(INPUT_POST, 'race_name'),
             'species_id' => filter_input(INPUT_POST, 'species_id')
             ]);
-        $resonse = new \findus\common\JsonResponse();
-        $resonse->setBody("{}");
-        return $resonse;
+        return new \findus\common\JsonResponse(["id" => $id]);
     }
 }

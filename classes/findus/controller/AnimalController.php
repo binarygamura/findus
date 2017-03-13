@@ -1,5 +1,7 @@
 <?php
 
+use \RedBeanPHP\R;
+
 /*
  * Copyright 2017 binary gamura.
  *
@@ -24,5 +26,11 @@ namespace findus\controller;
  * @author binary gamura
  */
 class AnimalController {
-    //put your code here
+    public static function createNewAnimal(array $animalData){
+        $animal = R::dispense('animal');
+        foreach($animalData as $key => $value){
+            $animal->$key = $value;
+        }
+        return R::store($animal);
+    }
 }

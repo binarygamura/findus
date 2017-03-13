@@ -68,7 +68,9 @@ class Response {
     }
 
     function setBody($body) {
-        $this->body = $body;
+        if($body != null){
+            $this->body = $body;
+        }
     }
 
     function setUseTemplating($useTemplating) {

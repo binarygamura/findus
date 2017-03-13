@@ -44,9 +44,9 @@ class RacesController {
         $newRace = R::dispense('race');
         $newRace->name = $raceName;
         $newRace->species = $species;
-        $species->races[] = $newRace;
+//        $species->races[] = $newRace;
         
-        R::store($newRace);
         R::store($species);
+        return R::store($newRace);
     }
 }
