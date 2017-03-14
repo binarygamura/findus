@@ -1,0 +1,17 @@
+<div>
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <input type="text" name="therapyType_id" id="therapyType_id"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="therapyType_name">Bezeichnung:</label>
+                <input type="text" maxlength="20" name="therapyType_name" id="therapyType_name" placeholder="Bezeichnung der Art des Eingangs"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="therapyType_description">Beschreibung:</label>
+                <input type="text" maxlength="200" name="therapyType_description" id="therapyType_description" placeholder="Beschreibung der Art des Eingangs"/>
+            </div>
+        </fieldset>
+    </form>
+</div>

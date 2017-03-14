@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-     var admissionTypeTable = initTable("#admissionType_table", {
+     var therapyTypeTable = initTable("#therapyType_table", {
         columns: [
             {data: "id"},
             {data: "name"},
@@ -9,33 +9,32 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return "<a class=\"delete_admissionType\" href=\"\">löschen</a>&nbsp;<a class=\"edit_admissionType\" href=\"\">bearbeiten</a>";
+                    return "<a class=\"delete_therapyType\" href=\"\">löschen</a>&nbsp;<a class=\"edit_therapyType\" href=\"\">bearbeiten</a>";
                 }
             }
         ]
     });
 
     function initClickHandler() {
-        $('#admissionType_table tbody tr').click(function (e) {
+        $('#therapyType_table tbody tr').click(function (e) {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             } else {
-                admissionTypeTable.$('tr.selected').removeClass('selected');
+                therapyTypeTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
         });
         
-        $('a.edit_admissionType').click(function(e){
+        $('a.edit_therapyType').click(function(e){
             e.preventDefault();
             initClickHandler();
-            var selectedAdmissionType = admissionTypeTable.row($(this).parent().parent()).data();
-            var admissionTypeId = selectedAdmissionType.id;
-            var admissionTypeName = selectedAdmissionType.name;
-            var admissionTypeDescription = selectedAdmissionType.description;
-            ////TODO: FRED! bitte . danke...
-            $.get("./templates/admission/add_admissionType.htpl", function (data) {
+            var selectedTherapyType = therapyTypeTable.row($(this).parent().parent()).data();
+            var therapyTypeId = selectedTherapyType.id;
+            var therapyTypeName = selectedTherapyType.name;
+            var therapyTypeDescription = selectedTherapyType.description;
+            $.get("./templates/therapy/add_therapyType.htpl", function (data) {
                 var content = $(data).dialog({
-                    title: "Eingangsart \""+selectedAdmissionType.name+"\" bearbeiten",
+                    title: "Behandlungsart \""+selectedTherapyType.name+"\" bearbeiten",
                     modal: true,
                     buttons: {
                     "speichern": function () {
@@ -43,11 +42,11 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=admission\\UpdateAdmissionType",
+                            url: "?module=therapy\\UpdateTherapyType",
                             data: {
-                                admissionType_name: admissionTypeName,
-                                admissionType_id:admissionTypeId,
-                                admissionType_description: admissionTypeDescription,
+                                therapyType_name: therapyTypeName,
+                                therapyType_id:therapyTypeId,
+                                therapyType_description: therapyTypeDescription,
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -65,27 +64,27 @@ $(document).ready(function () {
                         }
                     }
                 });
-                $("#admissionType_name", content).val(selectedAdmissionType.name);
-                $("#admissionType_id", content).val(selectedAdmissionType.id);
-                $("#admissionType_description", content).val(selectedAdmissionType.description);
+                $("#therapyType_name", content).val(selectedTherapyType.name);
+                $("#therapyType_id", content).val(selectedTherapyType.id);
+                $("#therapyType_description", content).val(selectedTherapyType.description);
             });
         });
         
-        $('a.delete_admissionType').click(function (e) {
+        $('a.delete_therapyType').click(function (e) {
             e.preventDefault();
             initClickHandler();
-            var data = admissionTypeTable.row($(this).parent().parent()).data();
+            var data = therapyTypeTable.row($(this).parent().parent()).data();
             $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
                 modal: true,
-                title: "Eingangsart entfernen?",
+                title: "Behandlungsart entfernen?",
                 buttons: {
                     "ja": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=admission\\DeleteAdmissionType",
-                            data: {admissionType_id: data.id},
+                            url: "?module=therapy\\DeleteTherapyType",
+                            data: {therapyType_id: data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");
                                 location.reload();
@@ -107,24 +106,24 @@ $(document).ready(function () {
 
     initClickHandler();
 
-    $('#add_admissionType_button').click(function (e) {
+    $('#add_therapyType_button').click(function (e) {
         e.preventDefault();
-        $.get("./templates/admission/add_admissionType.htpl", function (data) {
+        $.get("./templates/therapy/add_therapyType.htpl", function (data) {
             $(data).dialog({
-                title: "Eingangsart hinzufügen",
+                title: "Behandlungsart hinzufügen",
                 modal: true,
                 buttons: {
                     "erstellen": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
-                        var admissionTypeName = $("#admissionType_name", this).val();
-                        var admissionTypeDescription = $("#admissionType_description", this).val();
+                        var therapyTypeName = $("#therapyType_name", this).val();
+                        var therapyTypeDescription = $("#therapyType_description", this).val();
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=admission\\AddAdmissionType",
+                            url: "?module=therapy\\AddTherapyType",
                             data: {
-                                admissionType_name: admissionTypeName,
-                                admissionType_description: admissionTypeDescription,
+                                therapyType_name: therapyTypeName,
+                                therapyType_description: therapyTypeDescription,
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

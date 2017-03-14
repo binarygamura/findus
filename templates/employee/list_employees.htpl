@@ -1,0 +1,25 @@
+<h2>Liste aller Vereinsmitglieder</h2>
+<div class="box">
+    <table id="employee_table" class="employee_table pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Vorname</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=employee from=$all_employees}
+            <tr>
+                <td>{$employee.id}</td>
+                <td>{$employee.name}</td>
+                <td>{$employee.firstName}</td>
+                <td></td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <a href='' id='add_employee_button'>hinzufügen</a>
+</div>
+

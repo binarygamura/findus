@@ -26,6 +26,7 @@ $(document).ready(function () {
         
         $('a.edit_user').click(function(e){
             e.preventDefault();
+            initClickHandler();
             var selectedUser = userTable.row($(this).parent().parent()).data();
             var userId = selectedUser.id;
             var userName = selectedUser.name;
@@ -64,12 +65,17 @@ $(document).ready(function () {
                         }
                     }
                 });
+                $("#user_name", content).val(selectedUser.name);
+                $("#user_id", content).val(selectedUser.id);
+                $("#user_password", content).val(selectedUser.password);
+                $("#user_role", content).val(selectedUser.role);                
             });
         });
          
          
         $('a.delete_user').click(function (e) {
             e.preventDefault();
+            initClickHandler();
             var data = userTable.row($(this).parent().parent()).data();
             $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
                 modal: true,
@@ -111,28 +117,28 @@ $(document).ready(function () {
                 modal: true,
                 buttons: {
                     "erstellen": function () {
-//                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
-//                        var userName = $("#user_name", this).val();
-//                        var userPassword = $("#user_password", this).val();
-//                        var userRole = $("#user_role", this).val();
-//                        var self = this;
-//                        $.ajax({
-//                            type: "POST",
-//                            url: "?module=AddUser",
-//                            data: {
-//                                "user_name": userName,
-//                                "user_password": userPassword,
-//                                "user_role": userRole
-//                            },
-//                            success: function (e) {
-//                                $(self).dialog("destroy");
-//                                location.reload();
-//                            },
-//                            error: function (e) {
-//                                var error = JSON.parse(e.responseText);
-//                                showErrorDialog("Fehler", error.message);
-//                            }
-//                        });
+                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        var userName = $("#user_name", this).val();
+                        var userPassword = $("#user_password", this).val();
+                        var userRole = $("#user_role", this).val();
+                        var self = this;
+                        $.ajax({
+                            type: "POST",
+                            url: "?module=AddUser",
+                            data: {
+                                "user_name": userName,
+                                "user_password": userPassword,
+                                "user_role": userRole
+                            },
+                            success: function (e) {
+                                $(self).dialog("destroy");
+                                location.reload();
+                            },
+                            error: function (e) {
+                                var error = JSON.parse(e.responseText);
+                                showErrorDialog("Fehler", error.message);
+                            }
+                        });
                     },
                     "abbrechen": function () {
                         $(this).dialog("close").dialog("destroy");
