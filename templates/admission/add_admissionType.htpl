@@ -2,8 +2,7 @@
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
-                <label for="admissionType_id">Id:</label>
-                <input type="number" name="admissionType_id" id="admissionType_id" placeholder="ID der Art des Eingangs"/>
+                <input type="text" name="admissionType_id" id="admissionType_id"/>
             </div>
             <div class="pure-control-group">
                 <label for="admissionType_name">Bezeichnung:</label>
@@ -11,7 +10,7 @@
             </div>
             <div class="pure-control-group">
                 <label for="admissionType_description">Beschreibung:</label>
-                <input type="text" maxlength="20" name="admissionType_description" id="admissionType_description" placeholder="Name der Art des Eingangs"/>
+                <input type="text" maxlength="200" name="admissionType_description" id="admissionType_description" placeholder="Beschreibung der Art des Eingangs"/>
             </div>
         </fieldset>
     </form>

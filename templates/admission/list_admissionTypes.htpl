@@ -5,6 +5,7 @@
             <tr>
                 <th>ID</th>
                 <th>Bezeichnung</th>
+                <th>Beschreibung</th>
                 <th>Aktionen</th>
             </tr>
         </thead>
@@ -13,6 +14,7 @@
             <tr>
                 <td>{$admissionType.id}</td>
                 <td>{$admissionType.name}</td>
+                <td>{$admissionType.description}</td>
                 <td></td>
             </tr>
             {/foreach}

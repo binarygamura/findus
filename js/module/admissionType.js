@@ -5,6 +5,7 @@ $(document).ready(function () {
         columns: [
             {data: "id"},
             {data: "name"},
+            {data: "description"},
             {
                 data: null,
                 render: function (data, type, row, meta) {
@@ -40,11 +41,11 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=admission\UpdateAdmissionType",
+                            url: "?module=admission\\UpdateAdmissionType",
                             data: {
-                                "admissionType_name": admissionTypeName,
-                                "admissionType_id":admissionTypeId,
-                                "admissionType_description": admissionTypeDescription,
+                                admissionType_name: admissionTypeName,
+                                admissionType_id:admissionTypeId,
+                                admissionType_description: admissionTypeDescription,
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -62,6 +63,9 @@ $(document).ready(function () {
                         }
                     }
                 });
+                $("#admissionType_name", content).val(selectedAdmissionType.name);
+                $("#admissionType_id", content).val(selectedAdmissionType.id);
+                $("#admissionType_description", content).val(selectedAdmissionType.description);
             });
         });
         
@@ -77,8 +81,8 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=admission\DeleteAdmissionType",
-                            data: {"admissionType_id": data.id},
+                            url: "?module=admission\\DeleteAdmissionType",
+                            data: {admissionType_id: data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");
                                 location.reload();
@@ -116,8 +120,8 @@ $(document).ready(function () {
                             type: "POST",
                             url: "?module=admission\\AddAdmissionType",
                             data: {
-                                "admissionType_name": admissionTypeName,
-                                "admissionType_description": admissionTypeDescription,
+                                admissionType_name: admissionTypeName,
+                                admissionType_description: admissionTypeDescription,
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

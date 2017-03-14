@@ -31,7 +31,7 @@ class AdmissionTypeController {
  
         $name = trim($admissionTypeData['admissionType_name']);
         
-        $admissionType = R::findOne('admissiontype', 'name = ?', [$name]);
+        $admissionType = R::findOne('admissionType', 'name = ?', [$name]);
         if($admissionType){
             throw new ControllerException("Diese Eingangsart ist bereits vorhanden.");
         }
@@ -48,11 +48,11 @@ class AdmissionTypeController {
         if(!isset($admissionTypeData['admissionType_name']) || trim($admissionTypeData['admissionType_name']) == ''){
             throw new ControllerException('Bitte einen Namen angeben.');
         }
-        if(!isset($admissionTypeData['admissionType_description']) || trim($admissionTypeData['person_description']) == ''){
+        if(!isset($admissionTypeData['admissionType_description']) || trim($admissionTypeData['admissionType_description']) == ''){
             throw new ControllerException('Bitte eine Beschreibung angeben.');
         }
  
-        $id = trim($admissionTypeData['admissionType_id']);
+        $id = $admissionTypeData['admissionType_id'];
         $name = trim($admissionTypeData['admissionType_name']);
         
         $admissionType = R::findOne('admissionType', 'id = ?', [$id]);
