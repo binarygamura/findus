@@ -1,40 +1,40 @@
 
 $(document).ready(function () {
 
-     var userTable = initTable("#user_table", {
+     var therapyTypeTable = initTable("#therapyType_table", {
         columns: [
             {data: "id"},
             {data: "name"},
+            {data: "description"},
             {
-                data: "user",
+                data: null,
                 render: function (data, type, row, meta) {
-                    return "<a class=\"delete_user\" href=\"\">löschen</a>&nbsp;<a class=\"edit_user\" href=\"\">bearbeiten</a>";
+                    return "<a class=\"delete_therapyType\" href=\"\">löschen</a>&nbsp;<a class=\"edit_therapyType\" href=\"\">bearbeiten</a>";
                 }
             }
         ]
     });
 
     function initClickHandler() {
-        $('#user_table tbody tr').click(function (e) {
+        $('#therapyType_table tbody tr').click(function (e) {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             } else {
-                userTable.$('tr.selected').removeClass('selected');
+                therapyTypeTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
         });
         
-        $('a.edit_user').click(function(e){
+        $('a.edit_therapyType').click(function(e){
             e.preventDefault();
             initClickHandler();
-            var selectedUser = userTable.row($(this).parent().parent()).data();
-            var userId = selectedUser.id;
-            var userName = selectedUser.name;
-            var userPassword = selectedUser.password;
-            var userRole = selectedUser.role;
-            $.get("./templates/add_user.htpl", function (data) {
+            var selectedTherapyType = therapyTypeTable.row($(this).parent().parent()).data();
+            var therapyTypeId = selectedTherapyType.id;
+            var therapyTypeName = selectedTherapyType.name;
+            var therapyTypeDescription = selectedTherapyType.description;
+            $.get("./templates/therapy/add_therapyType.htpl", function (data) {
                 var content = $(data).dialog({
-                    title: "Benutzer \""+selectedUser.name+"\" bearbeiten",
+                    title: "Behandlungsart \""+selectedTherapyType.name+"\" bearbeiten",
                     modal: true,
                     buttons: {
                     "speichern": function () {
@@ -42,12 +42,11 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=UpdateUser",
+                            url: "?module=therapy\\UpdateTherapyType",
                             data: {
-                                "user_name": userName,
-                                "user_id":userId,
-                                "user_password": userPassword,
-                                "user_role": userRole                                
+                                therapyType_name: therapyTypeName,
+                                therapyType_id:therapyTypeId,
+                                therapyType_description: therapyTypeDescription,
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -65,29 +64,27 @@ $(document).ready(function () {
                         }
                     }
                 });
-                $("#user_name", content).val(selectedUser.name);
-                $("#user_id", content).val(selectedUser.id);
-                $("#user_password", content).val(selectedUser.password);
-                $("#user_role", content).val(selectedUser.role);                
+                $("#therapyType_name", content).val(selectedTherapyType.name);
+                $("#therapyType_id", content).val(selectedTherapyType.id);
+                $("#therapyType_description", content).val(selectedTherapyType.description);
             });
         });
-         
-         
-        $('a.delete_user').click(function (e) {
+        
+        $('a.delete_therapyType').click(function (e) {
             e.preventDefault();
             initClickHandler();
-            var data = userTable.row($(this).parent().parent()).data();
+            var data = therapyTypeTable.row($(this).parent().parent()).data();
             $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
                 modal: true,
-                title: "Benutzer entfernen?",
+                title: "Behandlungsart entfernen?",
                 buttons: {
                     "ja": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=DeleteUser",
-                            data: {"user_id": data.id},
+                            url: "?module=therapy\\DeleteTherapyType",
+                            data: {therapyType_id: data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");
                                 location.reload();
@@ -109,26 +106,24 @@ $(document).ready(function () {
 
     initClickHandler();
 
-    $('#add_user_button').click(function (e) {
+    $('#add_therapyType_button').click(function (e) {
         e.preventDefault();
-        $.get("./templates/add_user.htpl", function (data) {
+        $.get("./templates/therapy/add_therapyType.htpl", function (data) {
             $(data).dialog({
-                title: "Benutzer hinzufügen",
+                title: "Behandlungsart hinzufügen",
                 modal: true,
                 buttons: {
                     "erstellen": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
-                        var userName = $("#user_name", this).val();
-                        var userPassword = $("#user_password", this).val();
-                        var userRole = $("#user_role", this).val();
+                        var therapyTypeName = $("#therapyType_name", this).val();
+                        var therapyTypeDescription = $("#therapyType_description", this).val();
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=AddUser",
+                            url: "?module=therapy\\AddTherapyType",
                             data: {
-                                "user_name": userName,
-                                "user_password": userPassword,
-                                "user_role": userRole
+                                therapyType_name: therapyTypeName,
+                                therapyType_description: therapyTypeDescription,
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

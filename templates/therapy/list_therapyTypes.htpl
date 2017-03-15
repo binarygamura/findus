@@ -1,0 +1,25 @@
+<h2>Liste aller Behandlungsarten</h2>
+<div class="box">
+    <table id="therapyType_table" class="therapyType_table pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bezeichnung</th>
+                <th>Beschreibung</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=therapyType from=$all_therapyTypes}
+            <tr>
+                <td>{$therapyType.id}</td>
+                <td>{$therapyType.name}</td>
+                <td>{$therapyType.description}</td>
+                <td></td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <a href='' id='add_therapyType_button'>hinzufügen</a>
+</div>
+

@@ -27,6 +27,7 @@ $(document).ready(function () {
         
         $('a.edit_admissionType').click(function(e){
             e.preventDefault();
+            initClickHandler();
             //the following gets data for the currently selected row.
             var selectedAdmissionType = admissionTypeTable.row($(this).parent().parent()).data();
             var admissionTypeId = selectedAdmissionType.id;
@@ -77,6 +78,7 @@ $(document).ready(function () {
         
         $('a.delete_admissionType').click(function (e) {
             e.preventDefault();
+            initClickHandler();
             var data = admissionTypeTable.row($(this).parent().parent()).data();
             $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
                 modal: true,

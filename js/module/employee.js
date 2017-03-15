@@ -1,40 +1,40 @@
 
 $(document).ready(function () {
 
-     var userTable = initTable("#user_table", {
+     var employeeTable = initTable("#employee_table", {
         columns: [
             {data: "id"},
             {data: "name"},
+            {data: "firstName"},
             {
-                data: "user",
+                data: null,
                 render: function (data, type, row, meta) {
-                    return "<a class=\"delete_user\" href=\"\">löschen</a>&nbsp;<a class=\"edit_user\" href=\"\">bearbeiten</a>";
+                    return "<a class=\"delete_employee\" href=\"\">löschen</a>&nbsp;<a class=\"edit_employee\" href=\"\">bearbeiten</a>";
                 }
             }
         ]
     });
 
     function initClickHandler() {
-        $('#user_table tbody tr').click(function (e) {
+        $('#employee_table tbody tr').click(function (e) {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             } else {
-                userTable.$('tr.selected').removeClass('selected');
+                employeeTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
         });
         
-        $('a.edit_user').click(function(e){
+        $('a.edit_employee').click(function(e){
             e.preventDefault();
             initClickHandler();
-            var selectedUser = userTable.row($(this).parent().parent()).data();
-            var userId = selectedUser.id;
-            var userName = selectedUser.name;
-            var userPassword = selectedUser.password;
-            var userRole = selectedUser.role;
-            $.get("./templates/add_user.htpl", function (data) {
+            var selectedEmployee = employeeTable.row($(this).parent().parent()).data();
+            var employeeId = selectedEmployee.id;
+            var employeeName = selectedEmployee.name;
+            var employeeDescription = selectedEmployee.firstName;
+            $.get("./templates/employee/add_employee.htpl", function (data) {
                 var content = $(data).dialog({
-                    title: "Benutzer \""+selectedUser.name+"\" bearbeiten",
+                    title: "Vereinsmitglied \""+selectedEmployee.name+"\" bearbeiten",
                     modal: true,
                     buttons: {
                     "speichern": function () {
@@ -42,12 +42,11 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=UpdateUser",
+                            url: "?module=employee\\UpdateEmployee",
                             data: {
-                                "user_name": userName,
-                                "user_id":userId,
-                                "user_password": userPassword,
-                                "user_role": userRole                                
+                                employee_name: employeeName,
+                                employee_id:employeeId,
+                                employee_firstName: employeeDescription,
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -65,29 +64,27 @@ $(document).ready(function () {
                         }
                     }
                 });
-                $("#user_name", content).val(selectedUser.name);
-                $("#user_id", content).val(selectedUser.id);
-                $("#user_password", content).val(selectedUser.password);
-                $("#user_role", content).val(selectedUser.role);                
+                $("#employee_name", content).val(selectedEmployee.name);
+                $("#employee_id", content).val(selectedEmployee.id);
+                $("#employee_firstName", content).val(selectedEmployee.firstName);
             });
         });
-         
-         
-        $('a.delete_user').click(function (e) {
+        
+        $('a.delete_employee').click(function (e) {
             e.preventDefault();
             initClickHandler();
-            var data = userTable.row($(this).parent().parent()).data();
+            var data = employeeTable.row($(this).parent().parent()).data();
             $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
                 modal: true,
-                title: "Benutzer entfernen?",
+                title: "Vereinsmitglied entfernen?",
                 buttons: {
                     "ja": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=DeleteUser",
-                            data: {"user_id": data.id},
+                            url: "?module=employee\\DeleteEmployee",
+                            data: {employee_id: data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");
                                 location.reload();
@@ -109,26 +106,24 @@ $(document).ready(function () {
 
     initClickHandler();
 
-    $('#add_user_button').click(function (e) {
+    $('#add_employee_button').click(function (e) {
         e.preventDefault();
-        $.get("./templates/add_user.htpl", function (data) {
+        $.get("./templates/employee/add_employee.htpl", function (data) {
             $(data).dialog({
-                title: "Benutzer hinzufügen",
+                title: "Vereinsmitglied hinzufügen",
                 modal: true,
                 buttons: {
                     "erstellen": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
-                        var userName = $("#user_name", this).val();
-                        var userPassword = $("#user_password", this).val();
-                        var userRole = $("#user_role", this).val();
+                        var employeeName = $("#employee_name", this).val();
+                        var employeeDescription = $("#employee_firstName", this).val();
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=AddUser",
+                            url: "?module=employee\\AddEmployee",
                             data: {
-                                "user_name": userName,
-                                "user_password": userPassword,
-                                "user_role": userRole
+                                employee_name: employeeName,
+                                employee_firstName: employeeDescription,
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");
