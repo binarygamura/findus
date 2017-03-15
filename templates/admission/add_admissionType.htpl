@@ -2,7 +2,7 @@
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
-                <input type="text" name="admissionType_id" id="admissionType_id"/>
+                <input type="hidden" name="admissionType_id" id="admissionType_id"/>
             </div>
             <div class="pure-control-group">
                 <label for="admissionType_name">Bezeichnung:</label>

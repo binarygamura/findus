@@ -21,6 +21,8 @@ class GetRacesModule implements \findus\common\Module {
             throw new \findus\controller\ControllerException("Bitte eine ID angeben.");
         }
         $species = \findus\controller\SpeciesController::getSpeciesById($speciesId);
+        
+        
         $response = new \findus\common\JsonResponse();
         $response->setJson(["data" => \findus\controller\RacesController::getAllRacesFor($species->box())]);
         return $response;

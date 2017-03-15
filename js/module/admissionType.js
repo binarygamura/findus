@@ -27,6 +27,7 @@ $(document).ready(function () {
         
         $('a.edit_admissionType').click(function(e){
             e.preventDefault();
+            //the following gets data for the currently selected row.
             var selectedAdmissionType = admissionTypeTable.row($(this).parent().parent()).data();
             var admissionTypeId = selectedAdmissionType.id;
             var admissionTypeName = selectedAdmissionType.name;
@@ -44,9 +45,11 @@ $(document).ready(function () {
                             type: "POST",
                             url: "?module=admission\\UpdateAdmissionType",
                             data: {
-                                admissionType_name: admissionTypeName,
+                                //get the name currently typed into the name field of the dialog.
+                                admissionType_name: $("#admissionType_name", self).val(),
+                                //the id is immutable.
                                 admissionType_id:admissionTypeId,
-                                admissionType_description: admissionTypeDescription,
+                                admissionType_description: $("#admissionType_description", self).val()
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -64,6 +67,8 @@ $(document).ready(function () {
                         }
                     }
                 });
+                //prefill all the fields of the form with data from the previously selected
+                //row.
                 $("#admissionType_name", content).val(selectedAdmissionType.name);
                 $("#admissionType_id", content).val(selectedAdmissionType.id);
                 $("#admissionType_description", content).val(selectedAdmissionType.description);

@@ -14,7 +14,6 @@ if(isset($_GET['kill'])){
     session_destroy();
 }
 
-
 //include the global config.
 require_once './config/config.php';
 require './config/custom_config.php';
@@ -32,8 +31,11 @@ try {
     
     //add user object to session. if none is set, we create a "visitor".
     if(!isset($_SESSION['user'])){
-        
-        $_SESSION['user'] = findus\controller\UserController::getGuestUser();
+        $user = findus\controller\UserController::getGuestUser();
+        if(!$user){
+            throw new Exception("Es konnte kein Gast-User erzeugt werden. Bitte DB prüfen.");
+        }
+        $_SESSION['user'] = $user;
     }
     
     $moduleName = filter_input(INPUT_GET, 'module');

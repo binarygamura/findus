@@ -12,7 +12,7 @@ use \RedBeanPHP\R;
 class AdmissionTypeController {
     
     public static function getAllAdmissionTypes(){
-        return R::findAll('admissionType');
+        return R::findAll('admissiontype');
     }
     
     public static function getAdmissionTypeById($admissionTypeId){
@@ -31,7 +31,7 @@ class AdmissionTypeController {
  
         $name = trim($admissionTypeData['admissionType_name']);
         
-        $admissionType = R::findOne('admissionType', 'name = ?', [$name]);
+        $admissionType = R::findOne('admissiontype', 'name = ?', [$name]);
         if($admissionType){
             throw new ControllerException("Diese Eingangsart ist bereits vorhanden.");
         }
@@ -55,9 +55,9 @@ class AdmissionTypeController {
         $id = $admissionTypeData['admissionType_id'];
         $name = trim($admissionTypeData['admissionType_name']);
         
-        $admissionType = R::findOne('admissionType', 'id = ?', [$id]);
-        if($admissionType){
-            throw new ControllerException("Keine Eingangsart mit der id "+ $id + " gefunden.");
+        $admissionType = R::findOne('admissiontype', 'id = ?', [$id]);
+        if(!$admissionType){
+            throw new ControllerException("Keine Eingangsart mit der id ". $id . " gefunden.");
         }
 
         $admissionType['name'] = $name;
