@@ -44,12 +44,33 @@ $(document).ready(function () {
         $('a.rename_race').click(function(e){
             e.preventDefault();
             var selectedRace = racesTable.row($(this).parent().parent()).data();
+            var raceId = selectedRace.id;
             $.get("./templates/species/add_race.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Tierrasse \""+selectedRace.name+"\" umbenennen",
                     modal: true,
                     buttons: {
                         "umbenennen": function(){
+                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        var self = this;
+                        $.ajax({
+                            type: "POST",
+                            url: "?module=species\\UpdateRace",
+                            data: {
+                                //get the name currently typed into the name field of the dialog.
+                                race_name: $("#race_name", self).val(),
+                                //the id is immutable.
+                                race_id:raceId,
+                            },
+                            success: function (e) {
+                                $(self).dialog("destroy");
+                                location.reload();
+                            },
+                            error: function (e) {
+                                var error = JSON.parse(e.responseText);
+                                showErrorDialog("Fehler", error.message);
+                            }
+                        });
                             
                         },
                         "abbrechen": function(){

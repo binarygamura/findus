@@ -9,7 +9,7 @@ use \RedBeanPHP\R;
  *
  * @author binary gamura
  */
-class RacesController {
+class RaceController {
     
     public static function getAllRacesFor(\findus\model\Species $species){
         $result = R::find('race', 'species_id = ? AND state = \'ACTIVE\'', [$species->id]);
@@ -49,4 +49,23 @@ class RacesController {
         R::store($species);
         return R::store($newRace);
     }
+    public static function updateRace(array $raceData){
+        if(!isset($raceData['race_id']) || trim($raceData['race_id']) == ''){
+            throw new ControllerException('Bitte eine Id angeben.');
+        }
+        if(!isset($raceData['race_name']) || trim($raceData['race_name']) == ''){
+            throw new ControllerException('Bitte eine Bezeichnung angeben.');
+        }
+ 
+        $id = $raceData['race_id'];
+        $name = trim($raceData['race_name']);
+        
+        $race = R::findOne('race', 'id = ?', [$id]);
+        if(!$race){
+            throw new ControllerException("Keine Rasse mit der id "+ $id + " gefunden.");
+        }
+
+        $race['name'] = $name;
+        R::store($race);
+    } 
 }

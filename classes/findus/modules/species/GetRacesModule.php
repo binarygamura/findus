@@ -24,7 +24,7 @@ class GetRacesModule implements \findus\common\Module {
         
         
         $response = new \findus\common\JsonResponse();
-        $response->setJson(["data" => \findus\controller\RacesController::getAllRacesFor($species->box())]);
+        $response->setJson(["data" => \findus\controller\RaceController::getAllRacesFor($species->box())]);
         return $response;
     }
 }

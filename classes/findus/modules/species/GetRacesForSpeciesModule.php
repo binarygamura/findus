@@ -21,7 +21,7 @@ class GetRacesForSpeciesModule implements \findus\common\Module {
         if(!$species){
             throw new \findus\controller\ControllerException("Es konnte keine Tierrasse mit der ID gefunden werden.");
         }
-        $response->setJson(\findus\controller\RacesController::getAllRacesFor($species->box()));
+        $response->setJson(\findus\controller\RaceController::getAllRacesFor($species->box()));
         return $response;
     }
 }
