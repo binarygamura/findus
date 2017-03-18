@@ -28,10 +28,14 @@ class EmployeeController {
         if(!isset($employeeData['employee_name']) || trim($employeeData['employee_name']) == ''){
             throw new ControllerException('Bitte einen Namen angeben.');
         }
+        if(!isset($employeeData['employee_firstName']) || trim($employeeData['employee_firstName']) == ''){
+            throw new ControllerException('Bitte einen Vornamen angeben.');
+        }
  
         $name = trim($employeeData['employee_name']);
+        $firstName = trim($employeeData['employee_firstName']);
         
-        $employee = R::findOne('employee', 'name = ?', [$name]);
+        $employee = R::findOne('employee', 'name = ? and firstname = ?', [$name, $firstName]);
         if($employee){
             throw new ControllerException("Dieses Vereinsmitglied ist bereits vorhanden.");
         }
@@ -54,14 +58,15 @@ class EmployeeController {
  
         $id = $employeeData['employee_id'];
         $name = trim($employeeData['employee_name']);
+        $firstName = trim($employeeData['employee_firstName']);
         
         $employee = R::findOne('employee', 'id = ?', [$id]);
-        if($employee){
+        if(!$employee){
             throw new ControllerException("Kein Vereinsmitglied mit der id "+ $id + " gefunden.");
         }
 
         $employee['name'] = $name;
-        $employee['firstName'] = $employeeData['employee_firstName'];
+        $employee['firstName'] = $firstName;
         R::store($employee);
     } 
 }

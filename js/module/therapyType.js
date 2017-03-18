@@ -44,9 +44,9 @@ $(document).ready(function () {
                             type: "POST",
                             url: "?module=therapy\\UpdateTherapyType",
                             data: {
-                                therapyType_name: therapyTypeName,
+                                therapyType_name: $("#therapyType_name", self).val(),
                                 therapyType_id:therapyTypeId,
-                                therapyType_description: therapyTypeDescription,
+                                therapyType_description: $("#therapyType_description", self).val(),
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

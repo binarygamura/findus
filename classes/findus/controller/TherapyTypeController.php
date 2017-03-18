@@ -12,11 +12,11 @@ use \RedBeanPHP\R;
 class TherapyTypeController {
     
     public static function getAllTherapyTypes(){
-        return R::findAll('therapyType');
+        return R::findAll('therapytype');
     }
     
     public static function getTherapyTypeById($therapyTypeId){
-        $therapyType = R::findOne('therapyType', 'id = ?', [$therapyTypeId]);
+        $therapyType = R::findOne('therapytype', 'id = ?', [$therapyTypeId]);
         if(!$therapyType){
             throw new ControllerException("Es existiert keine Behandlungsart mit der ID ".$therapyTypeId);
         }
@@ -31,9 +31,9 @@ class TherapyTypeController {
  
         $name = trim($therapyTypeData['therapyType_name']);
         
-        $therapyType = R::findOne('therapyType', 'name = ?', [$name]);
+        $therapyType = R::findOne('therapytype', 'name = ?', [$name]);
         if($therapyType){
-            throw new ControllerException("Diese Eingangsart ist bereits vorhanden.");
+            throw new ControllerException("Diese Behandlungsart ist bereits vorhanden.");
         }
 
         $newTherapyType['name'] = $name;
@@ -55,9 +55,9 @@ class TherapyTypeController {
         $id = $therapyTypeData['therapyType_id'];
         $name = trim($therapyTypeData['therapyType_name']);
         
-        $therapyType = R::findOne('therapyType', 'id = ?', [$id]);
-        if($therapyType){
-            throw new ControllerException("Keine Eingangsart mit der id "+ $id + " gefunden.");
+        $therapyType = R::findOne('therapytype', 'id = ?', [$id]);
+        if(!$therapyType){
+            throw new ControllerException("Keine Behandlungsart mit der id "+ $id + " gefunden.");
         }
 
         $therapyType['name'] = $name;

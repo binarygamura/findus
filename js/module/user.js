@@ -44,10 +44,10 @@ $(document).ready(function () {
                             type: "POST",
                             url: "?module=UpdateUser",
                             data: {
-                                "user_name": userName,
+                                "user_name": $("#user_name", self).val(),
                                 "user_id":userId,
-                                "user_password": userPassword,
-                                "user_role": userRole                                
+                                "user_password": $("#user_password", self).val(),
+                                "user_role": $("#user_role", self).val()                                
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

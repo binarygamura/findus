@@ -30,8 +30,6 @@ $(document).ready(function () {
             initClickHandler();
             var selectedEmployee = employeeTable.row($(this).parent().parent()).data();
             var employeeId = selectedEmployee.id;
-            var employeeName = selectedEmployee.name;
-            var employeeDescription = selectedEmployee.firstName;
             $.get("./templates/employee/add_employee.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Vereinsmitglied \""+selectedEmployee.name+"\" bearbeiten",
@@ -44,9 +42,9 @@ $(document).ready(function () {
                             type: "POST",
                             url: "?module=employee\\UpdateEmployee",
                             data: {
-                                employee_name: employeeName,
+                                employee_name: $("#employee_name",self).val(),
                                 employee_id:employeeId,
-                                employee_firstName: employeeDescription,
+                                employee_firstName: $("#employee_firstName",self).val(),
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

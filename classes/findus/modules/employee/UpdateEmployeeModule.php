@@ -14,7 +14,7 @@ class UpdateEmployeeModule implements \findus\common\Module {
     public function execute() {
         $employeeId = filter_input(INPUT_POST, 'employee_id', FILTER_VALIDATE_INT);
         $employeeName = filter_input(INPUT_POST, 'employee_name');
-        $employeeDescription = filter_input(INPUT_POST, 'employee_firstName');
+        $employeeFirstName = filter_input(INPUT_POST, 'employee_firstName');
         if(!$employeeId){
             throw new \findus\controller\ControllerException("Es wurde keine ID angegeben.");
         }
@@ -25,7 +25,7 @@ class UpdateEmployeeModule implements \findus\common\Module {
         \findus\controller\EmployeeController::updateEmployee([
             'employee_id' => $employeeId,
             'employee_name' => $employeeName,
-            'employee_firstName' => $employeeDescription
+            'employee_firstName' => $employeeFirstName
             ]);
 
         $response = new \findus\common\JsonResponse();

@@ -31,9 +31,6 @@ $(document).ready(function () {
             //the following gets data for the currently selected row.
             var selectedAdmissionType = admissionTypeTable.row($(this).parent().parent()).data();
             var admissionTypeId = selectedAdmissionType.id;
-            var admissionTypeName = selectedAdmissionType.name;
-            var admissionTypeDescription = selectedAdmissionType.description;
-            ////TODO: FRED! bitte . danke...
             $.get("./templates/admission/add_admissionType.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Eingangsart \""+selectedAdmissionType.name+"\" bearbeiten",
