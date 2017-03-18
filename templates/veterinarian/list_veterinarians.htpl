@@ -1,0 +1,25 @@
+<h2>Liste aller Tierärzte</h2>
+<div class="box">
+    <table id="veterinarian_table" class="veterinarian_table pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Beschreibung</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=veterinarian from=$all_veterinarians}
+            <tr>
+                <td>{$veterinarian.id}</td>
+                <td>{$veterinarian.name}</td>
+                <td>{$veterinarian.description}</td>
+                <td></td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <a href='' id='add_veterinarian_button'>hinzufügen</a>
+</div>
+

@@ -1,0 +1,17 @@
+<div>
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <input type="hidden" name="veterinarian_id" id="veterinarian_id"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="veterinarian_name">Bezeichnung:</label>
+                <input type="text" maxlength="20" name="veterinarian_name" id="veterinarian_name" placeholder="Name des Tieraztes"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="veterinarian_description">Beschreibung:</label>
+                <input type="text" maxlength="200" name="veterinarian_description" id="veterinarian_description" placeholder="Beschreibung des Tieraztes"/>
+            </div>
+        </fieldset>
+    </form>
+</div>

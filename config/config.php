@@ -51,6 +51,7 @@ $config = [
                 "Eingangsarten" =>  "admission\\ManageAdmissionTypes",
                 "Behandlungsarten" =>  "therapy\\ManageTherapyTypes",
                 "Vereinsmitglieder" =>  "employee\\ManageEmployees",
+                "Tierärzte" =>  "veterinarian\\ManageVeterinarians",
                 "Eingänge je Zeitraum" =>  "AdditionsReport",
                 "Behandlungen je Zeitraum" =>  "AdditionsReport",
                 "Vermittlungsübersicht je Zeitraum" =>  "AdditionsReport",

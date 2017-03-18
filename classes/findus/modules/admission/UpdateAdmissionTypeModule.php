@@ -22,7 +22,7 @@ class UpdateAdmissionTypeModule implements \findus\common\Module {
         $admissionType = R::findOne('admissionType', 'id = ?', [$admissionTypeId]);
         if(!$admissionType){
             
-            throw new \findus\controller\ControllerException("Es wurde kein Benutzer mit der ID ".$admissionTypeId." gefunden.");
+            throw new \findus\controller\ControllerException("Es wurde keine Eingangsart mit der ID ".$admissionTypeId." gefunden.");
         }
         
         \findus\controller\AdmissionTypeController::updateAdmissionType([
