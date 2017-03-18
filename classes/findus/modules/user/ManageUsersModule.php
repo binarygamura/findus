@@ -1,6 +1,6 @@
 <?php
 
-namespace findus\modules;
+namespace findus\modules\user;
 
 /**
  * Description of ManageUsersModule
@@ -27,7 +27,7 @@ class ManageUsersModule implements \findus\common\Module {
         
         $response->setValue('all_users', \findus\controller\UserController::getAllUsers());
         $response->addScript('user.js');
-        $response->addTemplateName("list_users.htpl");
+        $response->addTemplateName("user\list_users.htpl");
         return $response;
     }
 

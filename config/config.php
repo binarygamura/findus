@@ -32,21 +32,21 @@ $config = [
     'menu' => [
         "Home" => [
             "role" => 1,
-            "module" => "Home",
+            "module" => "menu\\Home",
             "menu" => []
             ],
         "Mitarbeiter" => [
             "role" => 3,
-            "module" => "Employee",
+            "module" => "menu\\Employee",
             "menu" => [
                 'Tiere suchen' => 'SearchAnimal',
                 'Tier erfassen' => 'AddAnimal',
-                'Tierarten und Rassen' => 'ManageSpecies'
+                'Tierarten und Rassen' => 'species\\ManageSpecies'
                 ]
             ],
         "Vorstand" => [
             "role" => 7,
-            "module" => "Management",
+            "module" => "menu\\Management",
             "menu" => [
                 "Eingangsarten" =>  "admission\\ManageAdmissionTypes",
                 "Behandlungsarten" =>  "therapy\\ManageTherapyTypes",
@@ -60,24 +60,24 @@ $config = [
             ],
         "Admin" => [
             "role" => 15,
-            "module" => "Admin",
+            "module" => "menu\\Admin",
             "menu" => [
-                    "Benutzer verwalten" => "ManageUsers"
+                    "Benutzer verwalten" => "user\\ManageUsers"
                 ]
             ],
         "Logout" => [
             "role" => 3,
-            "module" => "Logout",
+            "module" => "user\\Logout",
             "menu" => []
             ],
         "Kontakt" => [
             "role" => 1,
-            "module" => "Contact",
+            "module" => "menu\\Contact",
             "menu" => []
         ],
         "Login" => [
             "role" => 1,
-            "module" => "Login",
+            "module" => "user\\Login",
             "menu" => []
             ]
     ]

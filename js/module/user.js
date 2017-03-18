@@ -32,7 +32,7 @@ $(document).ready(function () {
             var userName = selectedUser.name;
             var userPassword = selectedUser.password;
             var userRole = selectedUser.role;
-            $.get("./templates/add_user.htpl", function (data) {
+            $.get("./templates/user/add_user.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Benutzer \""+selectedUser.name+"\" bearbeiten",
                     modal: true,
@@ -42,7 +42,7 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=UpdateUser",
+                            url: "?module=user\\UpdateUser",
                             data: {
                                 "user_name": $("#user_name", self).val(),
                                 "user_id":userId,
@@ -86,7 +86,7 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=DeleteUser",
+                            url: "?module=user\\DeleteUser",
                             data: {"user_id": data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -111,7 +111,7 @@ $(document).ready(function () {
 
     $('#add_user_button').click(function (e) {
         e.preventDefault();
-        $.get("./templates/add_user.htpl", function (data) {
+        $.get("./templates/user/add_user.htpl", function (data) {
             $(data).dialog({
                 title: "Benutzer hinzufügen",
                 modal: true,
@@ -124,7 +124,7 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=AddUser",
+                            url: "?module=user\\AddUser",
                             data: {
                                 "user_name": userName,
                                 "user_password": userPassword,

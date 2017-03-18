@@ -1,15 +1,15 @@
 <?php
 
-namespace findus\modules;
+namespace findus\modules\user;
 
 use \RedBeanPHP\R;
 
 /**
- * Description of UpdateUserModule
+ * Description of DeleteRaceModule
  *
- * @author tierhilfe
+ * @author binary gamura
  */
-class UpdateUserModule implements \findus\common\Module {
+class DeleteUserModule implements \findus\common\Module {
     
     public function execute() {
         $userId = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
@@ -20,13 +20,7 @@ class UpdateUserModule implements \findus\common\Module {
         if(!$user){
             throw new \findus\controller\ControllerException("Es wurde kein Benutzer mit der ID ".$userId." gefunden.");
         }
-                \findus\controller\UserController::updateUser([
-            userId,
-            'user_name' => filter_input(INPUT_POST, 'user_name'),
-            'user_password' => filter_input(INPUT_POST, 'user_password'),
-            'user_role' => filter_input(INPUT_POST, 'user_role')
-            ]);
-
+        R::trash($user);
         $response = new \findus\common\JsonResponse();
         $response->setBody("{}");
         return $response;

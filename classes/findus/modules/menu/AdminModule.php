@@ -1,14 +1,18 @@
 <?php
-namespace findus\modules;
+
+namespace findus\modules\menu;
+
 /**
- * Description of EmployeeModel
+ * Description of AdminModule
  *
  * @author binary gamura
  */
-class EmployeeModule implements \findus\common\Module {
+class AdminModule implements \findus\common\Module {
+
     public function execute() {
         $response = new \findus\common\TemplateResponse();
         $response->addTemplateName("admin.htpl");
         return $response;
     }
+
 }

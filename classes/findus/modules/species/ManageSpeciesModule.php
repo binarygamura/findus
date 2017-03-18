@@ -1,6 +1,6 @@
 <?php
 
-namespace findus\modules;
+namespace findus\modules\species;
 
 /**
  * Description of ManageSpeciesModule
@@ -14,8 +14,8 @@ class ManageSpeciesModule implements \findus\common\Module {
         
         $response->setValue('all_species', \findus\controller\SpeciesController::getAllSpecies());
         $response->addScript('species.js');
-        $response->addTemplateName("list_species.htpl");
-        $response->addTemplateName("list_races.htpl");
+        $response->addTemplateName("species\list_species.htpl");
+        $response->addTemplateName("species\list_races.htpl");
         return $response;
     }
 }

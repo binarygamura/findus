@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace findus\modules;
+namespace findus\modules\menu;
 
 /**
  * Description of ManagementModule

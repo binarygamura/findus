@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     function fillRacesTables(speciedId) {
         $.get(
-            "?module=GetRaces",{
+            "?module=species\\GetRaces",{
                 "species_id": speciedId
             }, 
             function (e) {
@@ -44,7 +44,7 @@ $(document).ready(function () {
         $('a.rename_race').click(function(e){
             e.preventDefault();
             var selectedRace = racesTable.row($(this).parent().parent()).data();
-            $.get("./templates/add_race.htpl", function (data) {
+            $.get("./templates/species/add_race.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Tierrasse \""+selectedRace.name+"\" umbenennen",
                     modal: true,
@@ -73,7 +73,7 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=DeleteRace",
+                            url: "?module=species\\DeleteRace",
                             data: {"race_id": data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -111,7 +111,7 @@ $(document).ready(function () {
         e.preventDefault();
         var currentSpecies = speciesTable.row(".selected").data();
         if (currentSpecies) {
-            $.get("./templates/add_race.htpl", function (data) {
+            $.get("./templates/species/add_race.htpl", function (data) {
                 $(data).dialog({
                     title: "Tierrasse hinzufügen",
                     modal: true,
@@ -122,7 +122,7 @@ $(document).ready(function () {
                             console.log(currentSpecies);
                             $.ajax({
                                 type: "POST",
-                                url: "?module=AddRace",
+                                url: "?module=species\\AddRace",
                                 data: {
                                     species_id: currentSpecies[0],
                                     race_name: $("#race_name", self).val()
@@ -149,7 +149,7 @@ $(document).ready(function () {
 
     $('#add_species_button').click(function (e) {
         e.preventDefault();
-        $.get("./templates/add_species.htpl", function (data) {
+        $.get("./templates/species/add_species.htpl", function (data) {
             $(data).dialog({
                 title: "Tierart hinzufügen",
                 modal: true,
@@ -160,7 +160,7 @@ $(document).ready(function () {
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=AddSpecies",
+                            url: "?module=species\\AddSpecies",
                             data: {"species_name": speciesName},
                             success: function (e) {
                                 $(self).dialog("destroy");

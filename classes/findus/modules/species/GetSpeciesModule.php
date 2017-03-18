@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace findus\modules;
+namespace findus\modules\species;
 
 /**
  * Description of GetSpeciesModule

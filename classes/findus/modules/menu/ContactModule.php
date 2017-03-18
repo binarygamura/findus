@@ -1,5 +1,5 @@
 <?php
-namespace findus\modules;
+namespace findus\modules\menu;
 
 class ContactModule implements \findus\common\Module {
     

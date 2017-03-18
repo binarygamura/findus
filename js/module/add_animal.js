@@ -3,7 +3,7 @@
         return new Promise(function(resolve, reject){
             $.ajax({
                 type: "GET",
-                url: "?module=GetRaces",
+                url: "?module=species\\GetRaces",
                 data: {"species_id": speciesId},
                 success: function(e){
                     resolve(JSON.parse(e));
@@ -14,7 +14,7 @@
             });
         });
          $.get(
-            "?module=GetRaces", {
+            "?module=species\\GetRaces", {
                 "species_id": speciesId
             },
             function (e) {
@@ -42,7 +42,7 @@
         return new Promise(function(resolve, reject){
             $.ajax({
                 type: "GET",
-                url: "?module=GetSpecies",
+                url: "?module=species\\GetSpecies",
                 success: function(e){
                     resolve(JSON.parse(e));
                 },
@@ -105,7 +105,7 @@
 
         $('#add_species_button').click(function (e) {
             e.preventDefault();
-            $.get("./templates/add_species.htpl", function (data) {
+            $.get("./templates/species/add_species.htpl", function (data) {
                 $(data).dialog({
                     title: "Tierart hinzufügen",
                     modal: true,
@@ -116,7 +116,7 @@
                             var self = this;
                             $.ajax({
                                 type: "POST",
-                                url: "?module=AddSpecies",
+                                url: "?module=species\\AddSpecies",
                                 data: {"species_name": speciesName},
                                 success: function (e) {
                                     var data = JSON.parse(e);
@@ -144,7 +144,7 @@
             e.preventDefault();
             var currentSpecies = $("#animal\\[species\\]").val();
             if(currentSpecies >= 0) {
-                $.get("./templates/add_race.htpl", function (data) {
+                $.get("./templates/species/add_race.htpl", function (data) {
                     $(data).dialog({
                         title: "Tierrasse hinzufügen",
                         modal: true,
@@ -154,7 +154,7 @@
                                 var self = this;
                                 $.ajax({
                                     type: "POST",
-                                    url: "?module=AddRace",
+                                    url: "?module=species\\AddRace",
                                     data: {
                                         species_id: currentSpecies,
                                         race_name: $("#race_name", self).val()

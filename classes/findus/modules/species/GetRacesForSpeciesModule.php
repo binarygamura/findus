@@ -1,6 +1,6 @@
 <?php
 
-namespace findus\modules;
+namespace findus\modules\species;
 
 use \RedBeanPHP\R;
 

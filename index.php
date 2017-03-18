@@ -44,7 +44,7 @@ try {
         $moduleName = $subModuleName;
     }
     if(!$moduleName){
-        $moduleName = "Home";
+        $moduleName = "menu\\Home";
     }
     
     //create the module loader.
