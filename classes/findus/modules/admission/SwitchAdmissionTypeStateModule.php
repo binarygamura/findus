@@ -5,7 +5,7 @@ namespace findus\modules\admission;
 use \RedBeanPHP\R;
 
 /**
- * Description of DeleteAdmissionTypeModule
+ * Description of SwitchAdmissionTypeStateModule
  *
  * @author tierhilfe
  */

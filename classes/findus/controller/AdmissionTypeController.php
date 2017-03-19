@@ -42,6 +42,7 @@ class AdmissionTypeController {
 
         $newAdmissionType['name'] = $name;
         $newAdmissionType['description'] = $admissionTypeData['admissionType_description'];
+        $newAdmissionType['state'] = 'ACTIVE';
         R::store($newAdmissionType);
     }
     

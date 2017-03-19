@@ -7,9 +7,13 @@ $(document).ready(function () {
             {data: "name"},
             {data: "firstName"},
             {
-                data: null,
+                data: "state",
                 render: function (data, type, row, meta) {
-                    return "<a class=\"delete_employee\" href=\"\">löschen</a>&nbsp;<a class=\"edit_employee\" href=\"\">bearbeiten</a>";
+                    if(data==='DEACTIVE'){
+                        return "<a class=\"switch_employeeState\" href=\"\">aktivieren</a>";
+                    } else {
+                        return "<a class=\"switch_employeeState\" href=\"\">entfernen</a>&nbsp;<a class=\"edit_employee\" href=\"\">bearbeiten</a>";
+                    }
                 }
             }
         ]
@@ -68,20 +72,27 @@ $(document).ready(function () {
             });
         });
         
-        $('a.delete_employee').click(function (e) {
+        $('a.switch_employeeState').click(function (e) {
             e.preventDefault();
             initClickHandler();
             var data = employeeTable.row($(this).parent().parent()).data();
-            $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
+            if (data.state === 'ACTIVE') {
+                $msg = $("<div>Wollen Sie wirklich " + data.firstName + " " + data.name + " deaktivieren?</div>")
+                $title = "Vereinsmitglied entfernen?"
+            } else {
+                $msg = $("<div>Wollen Sie wirklich " + data.firstName + " " +  data.name + " reaktivieren?</div>")
+                $title = "Vereinsmitglied hinzufügen?"
+            }
+                $msg.dialog({
                 modal: true,
-                title: "Vereinsmitglied entfernen?",
+                title: $title,
                 buttons: {
                     "ja": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=employee\\DeleteEmployee",
+                            url: "?module=employee\\SwitchEmployeeState",
                             data: {employee_id: data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");

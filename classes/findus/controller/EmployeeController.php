@@ -42,6 +42,7 @@ class EmployeeController {
 
         $newEmployee['name'] = $name;
         $newEmployee['firstName'] = $employeeData['employee_firstName'];
+        $newEmployee['state'] = 'ACTIVE';
         R::store($newEmployee);
     }
     
@@ -67,6 +68,25 @@ class EmployeeController {
 
         $employee['name'] = $name;
         $employee['firstName'] = $firstName;
+        R::store($employee);
+    } 
+    public static function switchEmployeeState(array $employeeData){
+        if(!isset($employeeData['employee_id']) || trim($employeeData['employee_id']) == ''){
+            throw new ControllerException('Bitte eine Id angeben.');
+        }
+ 
+        $id = $employeeData['employee_id'];
+        
+        $employee = R::findOne('employee', 'id = ?', [$id]);
+        if(!$employee){
+            throw new ControllerException("Kein Vereinsmitglied mit der id "+ $id + " gefunden.");
+        }
+
+        if ($employee['state']==='ACTIVE') {
+            $employee['state'] = 'DEACTIVE';
+        } else {
+            $employee['state'] = 'ACTIVE';
+        }
         R::store($employee);
     } 
 }

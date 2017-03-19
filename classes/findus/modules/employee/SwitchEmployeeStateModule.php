@@ -9,18 +9,17 @@ use \RedBeanPHP\R;
  *
  * @author tierhilfe
  */
-class DeleteEmployeeModule implements \findus\common\Module {
+class SwitchEmployeeStateModule implements \findus\common\Module {
     
     public function execute() {
         $employeeId = filter_input(INPUT_POST, 'employee_id', FILTER_VALIDATE_INT);
         if(!$employeeId){
             throw new \findus\controller\ControllerException("Es wurde keine ID angegeben.");
         }
-        $employee = R::findOne('employee', 'id = ?', [$employeeId]);
-        if(!$employee){
-            throw new \findus\controller\ControllerException("Es wurde kein Benutzer mit der ID ".$employeeId." gefunden.");
-        }
-        R::trash($employee);
+        \findus\controller\EmployeeController::switchEmployeeState([
+            'employee_id' => $employeeId
+            ]);
+
         $response = new \findus\common\JsonResponse();
         $response->setBody("{}");
         return $response;
