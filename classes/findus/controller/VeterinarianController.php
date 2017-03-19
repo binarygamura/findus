@@ -14,6 +14,10 @@ class VeterinarianController {
     public static function getAllVeterinarians(){
         return R::findAll('veterinarian');
     }
+
+    public static function getAllActiveVeterinarians(){
+        return R::find('veterinarian','state=\'ACTIVE\'');
+    }
     
     public static function getVeterinarianById($veterinarianId){
         $veterinarian = R::findOne('veterinarian', 'id = ?', [$veterinarianId]);
@@ -37,6 +41,7 @@ class VeterinarianController {
         }
 
         $newVeterinarian['name'] = $name;
+        $newVeterinarian['state'] = 'ACTIVE';
         $newVeterinarian['description'] = $veterinarianData['veterinarian_description'];
         R::store($newVeterinarian);
     }
@@ -61,4 +66,25 @@ class VeterinarianController {
         $veterinarian['description'] = $veterinarianData['veterinarian_description'];
         R::store($veterinarian);
     } 
-}
+
+    public static function switchVeterinarianState(array $veterinarianData){
+        if(!isset($veterinarianData['veterinarian_id']) || trim($veterinarianData['veterinarian_id']) == ''){
+            throw new ControllerException('Bitte eine Id angeben.');
+        }
+ 
+        $id = $veterinarianData['veterinarian_id'];
+        
+        $veterinarian = R::findOne('veterinarian', 'id = ?', [$id]);
+        if(!$veterinarian){
+            throw new ControllerException("Kein Tierarzt mit der id ". $id . " gefunden.");
+        }
+
+        if ($veterinarian['state']==='ACTIVE') {
+            $veterinarian['state'] = 'DEACTIVE';
+        } else {
+            $veterinarian['state'] = 'ACTIVE';
+        }
+        R::store($veterinarian);
+    } 
+    
+        }

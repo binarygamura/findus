@@ -15,7 +15,7 @@
                 <td>{$veterinarian.id}</td>
                 <td>{$veterinarian.name}</td>
                 <td>{$veterinarian.description}</td>
-                <td></td>
+                <td>{$veterinarian.state}</td>
             </tr>
             {/foreach}
         </tbody>

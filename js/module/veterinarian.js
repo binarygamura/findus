@@ -7,9 +7,13 @@ $(document).ready(function () {
             {data: "name"},
             {data: "description"},
             {
-                data: null,
+                data: "state",
                 render: function (data, type, row, meta) {
-                    return "<a class=\"delete_veterinarian\" href=\"\">löschen</a>&nbsp;<a class=\"edit_veterinarian\" href=\"\">bearbeiten</a>";
+                    if(data==='DEACTIVE'){
+                        return "<a class=\"switch_veterinarianState\" href=\"\">aktivieren</a>";
+                    } else {
+                        return "<a class=\"switch_veterinarianState\" href=\"\">entfernen</a>&nbsp;<a class=\"edit_veterinarian\" href=\"\">bearbeiten</a>";
+                    }
                 }
             }
         ]
@@ -73,20 +77,27 @@ $(document).ready(function () {
             });
         });
         
-        $('a.delete_veterinarian').click(function (e) {
+        $('a.switch_veterinarianState').click(function (e) {
             e.preventDefault();
             initClickHandler();
             var data = veterinarianTable.row($(this).parent().parent()).data();
-            $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
+            if (data.state === 'ACTIVE') {
+                $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>")
+                $title = "Tierarzt entfernen?"
+            } else {
+                $msg = $("<div>Wollen Sie wirklich " + data.name + " reaktivieren?</div>")
+                $title = "Tierarzt hinzufügen?"
+            }
+                $msg.dialog({
                 modal: true,
-                title: "Tierarzt entfernen?",
+                title: $title,
                 buttons: {
                     "ja": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=veterinarian\\DeleteVeterinarian",
+                            url: "?module=veterinarian\\SwitchVeterinarianState",
                             data: {veterinarian_id: data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");

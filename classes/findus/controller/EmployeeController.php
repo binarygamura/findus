@@ -14,6 +14,10 @@ class EmployeeController {
     public static function getAllEmployees(){
         return R::findAll('employee');
     }
+
+    public static function getAllActiveEmployees(){
+        return R::find('employee','state=\'ACTIVE\'');
+    }
     
     public static function getEmployeeById($employeeId){
         $employee = R::findOne('employee', 'id = ?', [$employeeId]);

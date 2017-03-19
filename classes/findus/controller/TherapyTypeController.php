@@ -14,6 +14,10 @@ class TherapyTypeController {
     public static function getAllTherapyTypes(){
         return R::findAll('therapytype');
     }
+
+    public static function getAllActiveTherapyTypes(){
+        return R::find('therapytype','state=\'ACTIVE\'');
+    }
     
     public static function getTherapyTypeById($therapyTypeId){
         $therapyType = R::findOne('therapytype', 'id = ?', [$therapyTypeId]);
