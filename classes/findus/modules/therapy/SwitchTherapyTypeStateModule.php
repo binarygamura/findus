@@ -5,22 +5,20 @@ namespace findus\modules\therapy;
 use \RedBeanPHP\R;
 
 /**
- * Description of DeleteTherapyTypeModule
+ * Description of SwitchTherapyTypeStateModule
  *
  * @author tierhilfe
  */
-class DeleteTherapyTypeModule implements \findus\common\Module {
+class SwitchTherapyTypeStateModule implements \findus\common\Module {
     
     public function execute() {
         $therapyTypeId = filter_input(INPUT_POST, 'therapyType_id', FILTER_VALIDATE_INT);
         if(!$therapyTypeId){
             throw new \findus\controller\ControllerException("Es wurde keine ID angegeben.");
         }
-        $therapyType = R::findOne('therapyType', 'id = ?', [$therapyTypeId]);
-        if(!$therapyType){
-            throw new \findus\controller\ControllerException("Es wurde kein Benutzer mit der ID ".$therapyTypeId." gefunden.");
-        }
-        R::trash($therapyType);
+        \findus\controller\TherapyTypeController::switchTherapyTypeState([
+            'therapyType_id' => $therapyTypeId
+            ]);
         $response = new \findus\common\JsonResponse();
         $response->setBody("{}");
         return $response;

@@ -15,7 +15,7 @@
                 <td>{$therapyType.id}</td>
                 <td>{$therapyType.name}</td>
                 <td>{$therapyType.description}</td>
-                <td></td>
+                <td>{$therapyType.state}</td>
             </tr>
             {/foreach}
         </tbody>

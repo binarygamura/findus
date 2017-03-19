@@ -38,6 +38,7 @@ class TherapyTypeController {
 
         $newTherapyType['name'] = $name;
         $newTherapyType['description'] = $therapyTypeData['therapyType_description'];
+        $newTherapyType['state'] = 'ACTIVE';
         R::store($newTherapyType);
     }
     
@@ -62,6 +63,25 @@ class TherapyTypeController {
 
         $therapyType['name'] = $name;
         $therapyType['description'] = $therapyTypeData['therapyType_description'];
+        R::store($therapyType);
+    } 
+    public static function switchTherapyTypeState(array $therapyTypeData){
+        if(!isset($therapyTypeData['therapyType_id']) || trim($therapyTypeData['therapyType_id']) == ''){
+            throw new ControllerException('Bitte eine Id angeben.');
+        }
+ 
+        $id = $therapyTypeData['therapyType_id'];
+        
+        $therapyType = R::findOne('therapytype', 'id = ?', [$id]);
+        if(!$therapyType){
+            throw new ControllerException("Keine Behandlungsart mit der id "+ $id + " gefunden.");
+        }
+
+        if ($therapyType['state']==='ACTIVE') {
+            $therapyType['state'] = 'DEACTIVE';
+        } else {
+            $therapyType['state'] = 'ACTIVE';
+        }
         R::store($therapyType);
     } 
 }
