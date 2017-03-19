@@ -15,6 +15,10 @@ class AdmissionTypeController {
         return R::findAll('admissiontype');
     }
     
+    public static function getAllActiveAdmissionTypes(){
+        return R::find('admissiontype','state = \'ACTIVE\'');
+    }
+
     public static function getAdmissionTypeById($admissionTypeId){
         $admissionType = R::findOne('admissionType', 'id = ?', [$admissionTypeId]);
         if(!$admissionType){
@@ -61,7 +65,28 @@ class AdmissionTypeController {
         }
 
         $admissionType['name'] = $name;
+        $admissionType['state'] = 'ACTIVE';
         $admissionType['description'] = $admissionTypeData['admissionType_description'];
         R::store($admissionType);
     } 
+
+    public static function switchAdmissionTypeState(array $admissionTypeData){
+        if(!isset($admissionTypeData['admissionType_id']) || trim($admissionTypeData['admissionType_id']) == ''){
+            throw new ControllerException('Bitte eine Id angeben.');
+        }
+        $id = $admissionTypeData['admissionType_id'];
+        
+        $admissionType = R::findOne('admissiontype', 'id = ?', [$id]);
+        if(!$admissionType){
+            throw new ControllerException("Keine Eingangsart mit der id ". $id . " gefunden.");
+        }
+
+        if ($admissionType['state']==='ACTIVE') {
+            $admissionType['state'] = 'DEACTIVE';
+        } else {
+            $admissionType['state'] = 'ACTIVE';
+        }
+        R::store($admissionType);
+    } 
+    
 }

@@ -7,9 +7,13 @@ $(document).ready(function () {
             {data: "name"},
             {data: "description"},
             {
-                data: null,
+                data: "state",
                 render: function (data, type, row, meta) {
-                    return "<a class=\"delete_admissionType\" href=\"\">löschen</a>&nbsp;<a class=\"edit_admissionType\" href=\"\">bearbeiten</a>";
+                    if(data==='DEACTIVE'){
+                        return "<a class=\"switch_admissionTypeState\" href=\"\">aktivieren</a>";
+                    } else {
+                        return "<a class=\"switch_admissionTypeState\" href=\"\">entfernen</a>&nbsp;<a class=\"edit_admissionType\" href=\"\">bearbeiten</a>";
+                    }
                 }
             }
         ]
@@ -73,20 +77,27 @@ $(document).ready(function () {
             });
         });
         
-        $('a.delete_admissionType').click(function (e) {
+        $('a.switch_admissionTypeState').click(function (e) {
             e.preventDefault();
             initClickHandler();
             var data = admissionTypeTable.row($(this).parent().parent()).data();
-            $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
+            if (data.state === 'ACTIVE') {
+                $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>")
+                $title = "Eingangsart entfernen?"
+            } else {
+                $msg = $("<div>Wollen Sie wirklich " + data.name + " reaktivieren?</div>")
+                $title = "Eingangsart hinzufügen?"
+            }
+                $msg.dialog({
                 modal: true,
-                title: "Eingangsart entfernen?",
+                title: $title,
                 buttons: {
                     "ja": function () {
                         $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=admission\\DeleteAdmissionType",
+                            url: "?module=admission\\SwitchAdmissionTypeState",
                             data: {admissionType_id: data.id},
                             success: function (e) {
                                 $(self).dialog("destroy");
