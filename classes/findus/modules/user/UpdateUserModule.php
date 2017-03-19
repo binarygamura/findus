@@ -21,7 +21,7 @@ class UpdateUserModule implements \findus\common\Module {
             throw new \findus\controller\ControllerException("Es wurde kein Benutzer mit der ID ".$userId." gefunden.");
         }
                 \findus\controller\UserController::updateUser([
-            userId,
+            'user_id' => $userId,
             'user_name' => filter_input(INPUT_POST, 'user_name'),
             'user_password' => filter_input(INPUT_POST, 'user_password'),
             'user_role' => filter_input(INPUT_POST, 'user_role')

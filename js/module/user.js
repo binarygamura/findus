@@ -10,7 +10,9 @@ $(document).ready(function () {
                 render: function (data, type, row, meta) {
                     return "<a class=\"delete_user\" href=\"\">löschen</a>&nbsp;<a class=\"edit_user\" href=\"\">bearbeiten</a>";
                 }
-            }
+            },
+            {data:"password"},
+            {data:"role"}
         ]
     });
 
@@ -26,12 +28,8 @@ $(document).ready(function () {
         
         $('a.edit_user').click(function(e){
             e.preventDefault();
-            initClickHandler();
             var selectedUser = userTable.row($(this).parent().parent()).data();
             var userId = selectedUser.id;
-            var userName = selectedUser.name;
-            var userPassword = selectedUser.password;
-            var userRole = selectedUser.role;
             $.get("./templates/user/add_user.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Benutzer \""+selectedUser.name+"\" bearbeiten",
@@ -65,10 +63,6 @@ $(document).ready(function () {
                         }
                     }
                 });
-                $("#user_name", content).val(selectedUser.name);
-                $("#user_id", content).val(selectedUser.id);
-                $("#user_password", content).val(selectedUser.password);
-                $("#user_role", content).val(selectedUser.role);                
             });
         });
          

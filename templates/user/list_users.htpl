@@ -14,6 +14,8 @@
                 <td>{$user.id}</td>
                 <td>{$user.username}</td>
                 <td></td>
+                <td style="display:none;">{$user.password}</td>
+                <td style="display:none;">{$user.role}</td>
             </tr>
             {/foreach}
         </tbody>
