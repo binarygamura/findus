@@ -7,7 +7,12 @@ namespace findus\modules\user;
  *
  * @author tierhilfe
  */
-class AddUserModule implements \findus\common\Module{
+class AddUserModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::VISITOR;
+    }
+
     
     public function execute() {
 //        try{

@@ -1,7 +1,11 @@
 <?php
 namespace findus\modules\menu;
 
-class ContactModule implements \findus\common\Module {
+class ContactModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::VISITOR;
+    }
     
     public function execute() {
         $response = new \findus\common\TemplateResponse();

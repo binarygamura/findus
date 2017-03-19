@@ -1,9 +1,9 @@
 
 $(document).ready(function () {
 
-    var speciesTable = initTable('#species_table');
+    var speciesTable = FindusUtil.initTable('#species_table');
 
-    var racesTable = initTable("#races_table", {
+    var racesTable = FindusUtil.initTable("#races_table", {
         columns: [
             {data: "id"},
             {data: "name"},
@@ -51,7 +51,7 @@ $(document).ready(function () {
                     modal: true,
                     buttons: {
                         "umbenennen": function(){
-                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        FindusUtil.blockUI();
                         var self = this;
                         $.ajax({
                             type: "POST",
@@ -68,7 +68,7 @@ $(document).ready(function () {
                             },
                             error: function (e) {
                                 var error = JSON.parse(e.responseText);
-                                showErrorDialog("Fehler", error.message);
+                                FindusUtil.showErrorDialog("Fehler", error.message);
                             }
                         });
                             
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 title: "Tierrasse entfernen?",
                 buttons: {
                     "ja": function () {
-                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        FindusUtil.blockUI();
                         var self = this;
                         $.ajax({
                             type: "POST",
@@ -103,7 +103,7 @@ $(document).ready(function () {
                             },
                             error: function (e) {
                                 var error = JSON.parse(e.responseText);
-                                showErrorDialog("Fehler", error.message);
+                                FindusUtil.showErrorDialog("Fehler", error.message);
                             }
                         });
                     },
@@ -122,7 +122,7 @@ $(document).ready(function () {
         } else {
             speciesTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-            $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+            FindusUtil.blockUI();
             fillRacesTables(data[0]);
         }
     });
@@ -138,7 +138,7 @@ $(document).ready(function () {
                     modal: true,
                     buttons: {
                         "erstellen": function () {
-                            $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                            FindusUtil.blockUI();
                             var self = this;
                             console.log(currentSpecies);
                             $.ajax({
@@ -156,7 +156,7 @@ $(document).ready(function () {
                                 },
                                 error: function (e) {
                                     var error = JSON.parse(e.responseText);
-                                    showErrorDialog("Fehler", error.message);
+                                    FindusUtil.showErrorDialog("Fehler", error.message);
                                 }});
                         },
                         "abbrechen": function () {
@@ -176,7 +176,7 @@ $(document).ready(function () {
                 modal: true,
                 buttons: {
                     "erstellen": function () {
-                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        FindusUtil.blockUI();
                         var speciesName = $("#species_name", this).val();
                         var self = this;
                         $.ajax({
@@ -189,7 +189,7 @@ $(document).ready(function () {
                             },
                             error: function (e) {
                                 var error = JSON.parse(e.responseText);
-                                showErrorDialog("Fehler", error.message);
+                                FindusUtil.showErrorDialog("Fehler", error.message);
                             }
                         });
                     },

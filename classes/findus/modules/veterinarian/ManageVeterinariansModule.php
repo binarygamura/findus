@@ -7,8 +7,12 @@ namespace findus\modules\veterinarian;
  *
  * @author Tierhilfe
  */
-class ManageVeterinariansModule implements \findus\common\Module {
-
+class ManageVeterinariansModule  extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
+    
     public function execute() {
         $response = new \findus\common\TemplateResponse();
        

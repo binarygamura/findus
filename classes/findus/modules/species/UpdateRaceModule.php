@@ -9,7 +9,11 @@ use \RedBeanPHP\R;
  *
  * @author tierhilfe
  */
-class UpdateRaceModule implements \findus\common\Module {
+class UpdateRaceModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
     
     public function execute() {
         $raceId = filter_input(INPUT_POST, 'race_id', FILTER_VALIDATE_INT);

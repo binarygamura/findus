@@ -5,6 +5,7 @@
             <ul>
                 <li><a href="#general_tab">Allgemeines</a></li>
                 <li><a href="#notes_tab">Hinweise</a></li>
+                <li><a href="#pictures_tab">Bild</a></li>
             </ul>
             <div id="general_tab">
                 <fieldset>
@@ -89,14 +90,25 @@
                     <input type="hidden" name="create_button" value="true"/>
                 </fieldset>
             </div>
+            <div id="pictures_tab">
+                <div class="pure-control-group">          
+                    <!-- TODO: add a placeholder image -->
+                    <img  id="portrait" alt="Bild des Tieres"/>
+                </div>
+                <div class="pure-control-group">
+                    <input type="file"  id="portrait_select"/>                    
+                    <input type="hidden" name="animal[portrait]" id="animal[portrait]" value=""/>
+                </div>
+            </div>
             <div class="pure-controls">
                 <input class="button-success pure-button" type="submit" id="create_button" name="create_button" value="Erstellen"/>
                 <input class="button-warning pure-button" type="reset" id="reset_button" name="reset_button" value="zurücksetzen"/>
             </div>
         </div>
     </form>
-    
-    <ul id="error_list">
-        
-    </ul>
+    <div>
+        <ul id="error_list">
+
+        </ul>
+    </div>
 </div>

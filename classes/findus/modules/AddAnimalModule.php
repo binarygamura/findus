@@ -7,8 +7,12 @@
  *
  * @author binary gamura
  */
-class AddAnimalModule implements \findus\common\Module {
-
+class AddAnimalModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
+    
     public function execute() {
         
         if(filter_input(INPUT_POST, 'create_button')){

@@ -9,7 +9,11 @@ use \RedBeanPHP\R;
  *
  * @author tierhilfe
  */
-class UpdateTherapyTypeModule implements \findus\common\Module {
+class UpdateTherapyTypeModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
     
     public function execute() {
         $therapyTypeId = filter_input(INPUT_POST, 'therapyType_id', FILTER_VALIDATE_INT);

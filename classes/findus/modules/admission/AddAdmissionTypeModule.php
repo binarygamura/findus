@@ -7,10 +7,13 @@ namespace findus\modules\admission;
  *
  * @author tierhilfe
  */
-class AddAdmissionTypeModule implements \findus\common\Module{
+class AddAdmissionTypeModule  extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
     
     public function execute() {
-//        try{
         $admissionTypeName = filter_input(INPUT_POST, 'admissionType_name');
         if(!$admissionTypeName){
             throw new \findus\controller\ControllerException("Bitte geben Sie einen Namen an.");

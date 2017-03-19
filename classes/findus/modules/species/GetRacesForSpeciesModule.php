@@ -9,7 +9,11 @@ use \RedBeanPHP\R;
  *
  * @author binary gamura
  */
-class GetRacesForSpeciesModule implements \findus\common\Module {
+class GetRacesForSpeciesModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
     
     public function execute() {
         $speciesId = filter_input(INPUT_GET, 'species_id', FILTER_VALIDATE_INT);        

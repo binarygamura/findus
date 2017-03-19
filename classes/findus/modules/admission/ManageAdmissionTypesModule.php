@@ -7,8 +7,12 @@ namespace findus\modules\admission;
  *
  * @author Tierhilfe
  */
-class ManageAdmissionTypesModule implements \findus\common\Module {
-
+class ManageAdmissionTypesModule  extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
+    
     public function execute() {
         $response = new \findus\common\TemplateResponse();
        

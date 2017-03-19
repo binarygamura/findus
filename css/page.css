@@ -4,6 +4,12 @@
  * to overwrite css rules set by other stylesheets.
  */
 
+#portrait {
+    object-fit: contain;
+    width: 100%;
+    height: 450px;
+}
+
 .pure-form input.error, .pure-form select.error {
     border:2px solid #dc143c;
 }

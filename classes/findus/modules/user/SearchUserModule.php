@@ -7,7 +7,11 @@ namespace findus\modules\user;
  *
  * @author tierhilfe
  */
-class SearchUserModule implements \findus\common\Module{
+class SearchUserModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::ADMIN;
+    }
     
     public function execute() {
         $userName = filter_input(INPUT_POST, 'user_name');

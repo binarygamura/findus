@@ -9,4 +9,6 @@ namespace findus\common;
  */
 interface Module {
     public function execute();
+    
+    public function canAccess(\findus\model\User $user);
 }

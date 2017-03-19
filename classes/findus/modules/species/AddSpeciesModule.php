@@ -7,7 +7,11 @@ namespace findus\modules\species;
  *
  * @author binary gamura
  */
-class AddSpeciesModule implements \findus\common\Module{
+class AddSpeciesModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
     
     public function execute() {
         $speciesName = filter_input(INPUT_POST, 'species_name');

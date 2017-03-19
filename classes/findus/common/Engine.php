@@ -15,10 +15,6 @@ class Engine {
         $this->configuration = $configuration;
     }
     
-    public function canAccess(findus\model\User $user, $module, $config){
-        
-    }
-    
     /**
      * Create a preconfigured Smarty instance. Every caller gets his own instance,
      * no instance sharing oder lazy loading.

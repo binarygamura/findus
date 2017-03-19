@@ -1,4 +1,8 @@
 (function(){
+    
+    
+    
+    
     function updateRacesList(speciesId){
         return new Promise(function(resolve, reject){
             $.ajax({
@@ -62,16 +66,46 @@
     }
 
     $(document).ready(function () {
+        $('#portrait_select').on('change', function() {
+        if($('#portrait_select').prop('files').length > 0){
+            FindusUtil.blockUI();            
+            var formData = new FormData();                  
+            formData.append('file', $('#portrait_select').prop('files')[0]);
+            $.ajax({
+                url: 'index.php?module=UploadPicture', 
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,                         
+                type: 'POST',
+                success: function(e){
+                    console.log(e);
+                    var result = JSON.parse(e);
+                    $("#portrait").attr("src", "./images/portraits/"+result.name);
+                    $("#animal\\[portrait\\]").val(result.name);
+                },
+                error: function(e){
+                    FindusUtil.showErrorDialog("Fehler beim Hochladen des Bildes.", 
+                    "Es ist ein Fehler beim Hochladen des Bildes aufgetreten.");
+                }
+             });
+         }
+         else {
+            $("#portrait").attr("src", "");
+            $("#animal\\[portrait\\]").val("");
+         }
+        });
+        
         $("#animal\\[species\\]").change(function (event) {
             var selected = parseInt($("#animal\\[species\\]").val(), 10);
             if (selected > 0) {
-                $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                FindusUtil.blockUI();
                 updateRacesList(selected).then(renderRacesList);
             }
         });
 
         $('#create_button').click(function (e) {
-            $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+            FindusUtil.blockUI();
             $.ajax({
                 type: "POST",
                 url: "?module=AddAnimal",
@@ -90,7 +124,7 @@
                     });
                 },
                 error: function (e) {
-                    $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                    FindusUtil.blockUI();
                     $(".error").removeClass("error");
                     var errors = JSON.parse(e.responseText);
                     var errorList = $("#error_list").empty();
@@ -99,7 +133,7 @@
                         errorList.append("<li>"+value+"</li>");
                     });
                 }
-            })
+            });
             e.preventDefault();
         });
 
@@ -111,7 +145,7 @@
                     modal: true,
                     buttons: {
                         "erstellen": function () {
-                            $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                            FindusUtil.blockUI();
                             var speciesName = $("#species_name", this).val();
                             var self = this;
                             $.ajax({
@@ -128,7 +162,7 @@
                                 },
                                 error: function (e) {
                                     var error = JSON.parse(e.responseText);
-                                    showErrorDialog("Fehler", error.message);
+                                    FindusUtil.showErrorDialog("Fehler", error.message);
                                 }
                             });
                         },
@@ -150,7 +184,7 @@
                         modal: true,
                         buttons: {
                             "erstellen": function () {
-                                $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                                FindusUtil.blockUI();
                                 var self = this;
                                 $.ajax({
                                     type: "POST",
@@ -168,7 +202,7 @@
                                     },
                                     error: function (e) {
                                         var error = JSON.parse(e.responseText);
-                                        showErrorDialog("Fehler", error.message);
+                                        FindusUtil.showErrorDialog("Fehler", error.message);
                                     }});
                             },
                             "abbrechen": function () {

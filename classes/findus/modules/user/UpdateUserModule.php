@@ -9,7 +9,11 @@ use \RedBeanPHP\R;
  *
  * @author tierhilfe
  */
-class UpdateUserModule implements \findus\common\Module {
+class UpdateUserModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::ADMIN;
+    }
     
     public function execute() {
         $userId = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);

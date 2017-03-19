@@ -9,7 +9,11 @@ use \RedBeanPHP\R;
  *
  * @author binary gamura
  */
-class DeleteRaceModule implements \findus\common\Module {
+class DeleteRaceModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
     
     public function execute() {
         $raceId = filter_input(INPUT_POST, 'race_id', FILTER_VALIDATE_INT);

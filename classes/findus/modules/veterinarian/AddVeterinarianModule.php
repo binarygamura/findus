@@ -7,7 +7,11 @@ namespace findus\modules\veterinarian;
  *
  * @author tierhilfe
  */
-class AddVeterinarianModule implements \findus\common\Module{
+class AddVeterinarianModule  extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
     
     public function execute() {
 //        try{

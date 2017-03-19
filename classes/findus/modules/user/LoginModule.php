@@ -7,7 +7,12 @@ namespace findus\modules\user;
  *
  * @author binary
  */
-class LoginModule implements \findus\common\Module {
+class LoginModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::VISITOR;
+    }
+
     
     public function execute() {
         if(!filter_input(INPUT_POST, "login_button")){

@@ -13,6 +13,9 @@ $config = [
         'stage' => STAGE_DEV,
         'title' => 'Tierhilfe'
     ],
+    'uploads' => [
+        
+    ],
     'templating' => [
         'templateDir' => './templates',
         'compileDir' => './templates_c'

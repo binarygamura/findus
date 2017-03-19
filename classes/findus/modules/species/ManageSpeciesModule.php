@@ -7,8 +7,12 @@ namespace findus\modules\species;
  *
  * @author binary gamura
  */
-class ManageSpeciesModule implements \findus\common\Module {
-
+class ManageSpeciesModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
+    
     public function execute() {
         $response = new \findus\common\TemplateResponse();
         

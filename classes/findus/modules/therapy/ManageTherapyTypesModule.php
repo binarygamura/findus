@@ -7,8 +7,12 @@ namespace findus\modules\therapy;
  *
  * @author Tierhilfe
  */
-class ManageTherapyTypesModule implements \findus\common\Module {
-
+class ManageTherapyTypesModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
+    
     public function execute() {
         $response = new \findus\common\TemplateResponse();
        

@@ -16,23 +16,20 @@
  * limitations under the License.
  */
 
-namespace findus\modules\species;
+namespace findus\common;
+
+use findus\model\User;
 
 /**
- * Description of GetSpeciesModule
+ * Description of AbstractModule
  *
  * @author binary gamura
  */
-class GetSpeciesModule extends \findus\common\AbstractModule {
+abstract class AbstractModule implements Module {
     
-    function __construct() {
-        $this->requiredRole = \findus\model\User::USER;
-    }
+    protected $requiredRole = User::ADMIN;
     
-    public function execute() {
-        $species = \findus\controller\SpeciesController::getAllSpecies();
-        $response = new \findus\common\JsonResponse();
-        $response->setJson(["data" => $species]);
-        return $response;
-    }
+    public function canAccess(\findus\model\User $user) {
+        return $user->isA($this->requiredRole);
+    }    
 }

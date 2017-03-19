@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-     var userTable = initTable("#user_table", {
+     var userTable = FindusUtil.initTable("#user_table", {
         columns: [
             {data: "id"},
             {data: "name"},
@@ -36,7 +36,7 @@ $(document).ready(function () {
                     modal: true,
                     buttons: {
                     "speichern": function () {
-                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        FindusUtil.blockUI();
                         var self = this;
                         $.ajax({
                             type: "POST",
@@ -53,7 +53,7 @@ $(document).ready(function () {
                             },
                             error: function (e) {
                                 var error = JSON.parse(e.responseText);
-                                showErrorDialog("Fehler", error.message);
+                                FindusUtil.showErrorDialog("Fehler", error.message);
                             }
                         });
                         
@@ -76,7 +76,7 @@ $(document).ready(function () {
                 title: "Benutzer entfernen?",
                 buttons: {
                     "ja": function () {
-                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        FindusUtil.blockUI();
                         var self = this;
                         $.ajax({
                             type: "POST",
@@ -88,7 +88,7 @@ $(document).ready(function () {
                             },
                             error: function (e) {
                                 var error = JSON.parse(e.responseText);
-                                showErrorDialog("Fehler", error.message);
+                                FindusUtil.showErrorDialog("Fehler", error.message);
                             }
                         });
                         
@@ -111,7 +111,7 @@ $(document).ready(function () {
                 modal: true,
                 buttons: {
                     "erstellen": function () {
-                        $.blockUI({message: '<h1 class="loading"><img src="./images/animal.gif" /> Bitte warten...</h1>'});
+                        FindusUtil.blockUI();
                         var userName = $("#user_name", this).val();
                         var userPassword = $("#user_password", this).val();
                         var userRole = $("#user_role", this).val();
@@ -130,7 +130,7 @@ $(document).ready(function () {
                             },
                             error: function (e) {
                                 var error = JSON.parse(e.responseText);
-                                showErrorDialog("Fehler", error.message);
+                                FindusUtil.showErrorDialog("Fehler", error.message);
                             }
                         });
                     },

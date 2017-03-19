@@ -7,8 +7,12 @@ namespace findus\modules\user;
  *
  * @author Tierhilfe
  */
-class ManageUsersModule implements \findus\common\Module {
-
+class ManageUsersModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::ADMIN;
+    }
+    
     public function execute() {
         $response = new \findus\common\TemplateResponse();
        

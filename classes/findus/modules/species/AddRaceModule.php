@@ -7,7 +7,12 @@ namespace findus\modules\species;
  *
  * @author binary gamura
  */
-class AddRaceModule implements \findus\common\Module{
+class AddRaceModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
+    
     public function execute() {
         $raceName = filter_input(INPUT_POST, 'race_name');
         if(!$raceName){

@@ -7,8 +7,12 @@ namespace findus\modules\employee;
  *
  * @author Tierhilfe
  */
-class ManageEmployeesModule implements \findus\common\Module {
-
+class ManageEmployeesModule  extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
+    
     public function execute() {
         $response = new \findus\common\TemplateResponse();
        

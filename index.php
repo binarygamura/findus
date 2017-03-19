@@ -49,7 +49,7 @@ try {
     
     //create the module loader.
     $moduleLoader = new \findus\common\ModuleLoader($classLoader);
-    $loadedModule = $moduleLoader->loadModule($moduleName);
+    $loadedModule = $moduleLoader->loadModule($moduleName, $_SESSION['user']->box());
     
     //important -> execute the loaded module.
     $response = $loadedModule->execute();

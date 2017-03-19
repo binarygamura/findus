@@ -16,23 +16,16 @@
  * limitations under the License.
  */
 
-namespace findus\modules\species;
+namespace findus\common;
 
 /**
- * Description of GetSpeciesModule
+ * Description of ModuleException
  *
  * @author binary gamura
  */
-class GetSpeciesModule extends \findus\common\AbstractModule {
-    
-    function __construct() {
-        $this->requiredRole = \findus\model\User::USER;
+class ModuleException extends \Exception {
+    function __construct($message) {
+        parent::__construct($message);
     }
-    
-    public function execute() {
-        $species = \findus\controller\SpeciesController::getAllSpecies();
-        $response = new \findus\common\JsonResponse();
-        $response->setJson(["data" => $species]);
-        return $response;
-    }
+
 }

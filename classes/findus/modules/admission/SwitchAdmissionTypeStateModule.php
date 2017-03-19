@@ -9,7 +9,11 @@ use \RedBeanPHP\R;
  *
  * @author tierhilfe
  */
-class SwitchAdmissionTypeStateModule implements \findus\common\Module {
+class SwitchAdmissionTypeStateModule  extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
     
     public function execute() {
         $admissionTypeId = filter_input(INPUT_POST, 'admissionType_id', FILTER_VALIDATE_INT);

@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace findus\modules\menu;
 
 /**
@@ -13,7 +7,11 @@ namespace findus\modules\menu;
  *
  * @author binary gamura
  */
-class ManagementModule implements \findus\common\Module {
+class ManagementModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
     
     public function execute() {
         $templateResponse = new \findus\common\TemplateResponse();

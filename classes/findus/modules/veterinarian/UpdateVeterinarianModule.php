@@ -9,7 +9,11 @@ use \RedBeanPHP\R;
  *
  * @author tierhilfe
  */
-class UpdateVeterinarianModule implements \findus\common\Module {
+class UpdateVeterinarianModule  extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::MANAGEMENT;
+    }
     
     public function execute() {
         $veterinarianId = filter_input(INPUT_POST, 'veterinarian_id', FILTER_VALIDATE_INT);

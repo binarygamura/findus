@@ -24,7 +24,7 @@ class ModuleLoader {
      * @return \findus\common\Module
      * @throws Exception
      */
-    public function loadModule($moduleName){
+    public function loadModule($moduleName, \findus\model\User $user){
         $className = $moduleName."Module";
         $fullClassName = "findus\\modules\\".$className;
         if(!$this->classLoader->loadClass($fullClassName)){
@@ -37,6 +37,9 @@ class ModuleLoader {
         $instance = new $fullClassName();
         if(! ($instance instanceof Module)){
             throw new \Exception($fullClassName.' is not a valid Module.');
+        }
+        if(!$instance->canAccess($user)){
+            throw new \Exception("you are not allowed to execute this module.");
         }
         return $instance;
     }

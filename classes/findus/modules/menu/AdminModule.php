@@ -7,8 +7,11 @@ namespace findus\modules\menu;
  *
  * @author binary gamura
  */
-class AdminModule implements \findus\common\Module {
-
+class AdminModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::ADMIN;
+    }
     public function execute() {
         $response = new \findus\common\TemplateResponse();
         $response->addTemplateName("admin.htpl");

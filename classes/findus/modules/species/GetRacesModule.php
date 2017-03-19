@@ -13,7 +13,11 @@ namespace findus\modules\species;
  *
  * @author binary gamura
  */
-class GetRacesModule implements \findus\common\Module {
+class GetRacesModule extends \findus\common\AbstractModule {
+    
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
     
     public function execute() {
         $speciesId = filter_input(INPUT_GET, 'species_id', FILTER_VALIDATE_INT);

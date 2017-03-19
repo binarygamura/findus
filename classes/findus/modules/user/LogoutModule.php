@@ -7,8 +7,12 @@ namespace findus\modules\user;
  *
  * @author binary gamura
  */
-class LogoutModule implements \findus\common\Module {
+class LogoutModule extends \findus\common\AbstractModule  {
 
+    function __construct() {
+        $this->requiredRole = \findus\model\User::USER;
+    }
+    
     public function execute() {
         if(filter_input(INPUT_POST, 'yes_button') || filter_input(INPUT_POST, 'no_button')){
             if(filter_input(INPUT_POST, 'yes_button')){
