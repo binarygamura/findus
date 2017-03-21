@@ -42,8 +42,8 @@ $config = [
             "role" => 3,
             "module" => "menu\\Employee",
             "menu" => [
-                'Tiere suchen' => 'SearchAnimal',
-                'Tier erfassen' => 'AddAnimal',
+                'Tiere suchen' => 'animal\\SearchAnimal',
+                'Tier erfassen' => 'animal\\AddAnimal',
                 'Tierarten und Rassen' => 'species\\ManageSpecies'
                 ]
             ],

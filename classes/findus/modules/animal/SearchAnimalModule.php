@@ -1,6 +1,6 @@
 <?php
 
-namespace findus\modules;
+namespace findus\modules\animal;
 
 /**
  * Description of SearchAnimalModule
@@ -14,7 +14,7 @@ class SearchAnimalModule  extends \findus\common\AbstractModule {
     }
     public function execute() {
         $response = new \findus\common\TemplateResponse();
-        $response->addTemplateName("search_animal.htpl");
+        $response->addTemplateName("animal\search_animal.htpl");
         return $response;
     }
 

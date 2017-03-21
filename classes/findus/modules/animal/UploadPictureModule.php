@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace findus\modules;
+namespace findus\modules\animal;
 
 /**
  * Description of UploadPictureModule

@@ -1,4 +1,4 @@
-<?php namespace findus\modules;
+<?php namespace findus\modules\animal;
 
 
 
@@ -68,7 +68,7 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             $response = new \findus\common\TemplateResponse();
             $response->setValue('all_species', \findus\controller\SpeciesController::getAllSpecies());
             $response->addScript("add_animal.js");
-            $response->addTemplateName("add_animal.htpl");
+            $response->addTemplateName("animal\add_animal.htpl");
         }
         return $response;
     }

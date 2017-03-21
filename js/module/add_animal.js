@@ -72,7 +72,7 @@
             var formData = new FormData();                  
             formData.append('file', $('#portrait_select').prop('files')[0]);
             $.ajax({
-                url: 'index.php?module=UploadPicture', 
+                url: 'index.php?module=animal\\UploadPicture', 
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -108,7 +108,7 @@
             FindusUtil.blockUI();
             $.ajax({
                 type: "POST",
-                url: "?module=AddAnimal",
+                url: "?module=animal\\AddAnimal",
                 data: $("#add_animal_form").serialize(),
                 success: function (e) {
                     var response = JSON.parse(e);
