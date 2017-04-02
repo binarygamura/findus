@@ -1,4 +1,42 @@
 <h2>Tier suchen</h2>
-<div class="box">
-    
+<div>
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="animal[species]">Art:</label>
+                <select name="animal[species]" id="animal[species]">
+                    <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                    {foreach item=species from=$all_species}
+                    <option value="{$species.id}">{$species.name}</option>
+                    {/foreach}
+                </select>
+                <a class="add_button" id="add_species_button" href=""><img src="./images/add.png" alt="Tierart hinzufügen"/></a>
+            </div>
+            <div class="pure-control-group">
+                <label for="animal[race]">Rasse:</label>
+                <select name="animal[race]" id="animal[race]" title="Bitte die Rasse angeben.">
+                    <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                </select>
+                <a class="add_button" id="add_race_button" href=""><img src="./images/add.png" alt="Tierart hinzufügen"/></a>
+            </div>
+            <div class="pure-control-group">
+                <label for="animal[color]">Farbe:</label>
+                <input type="text"  name="animal[color]" id="animal[color]" placeholder="Farbe des Tieres" title="Mögliche Wert sind hier z.B. braun, weiß, etc..."/>
+            </div>
+            <div class="pure-control-group">
+                <label for="animal[sex]">Geschlecht:</label>
+                <select name="animal[sex]" id="animal[sex]">
+                    <option value="">--&gt; bitte auswählen &lt;--</option>
+                    <option value="UNKNOWN">unklar</option>
+                    <option value="FEMALE">weiblich</option>
+                    <option value="MALE">männlich</option>
+                </select>
+            </div>
+            <div>
+                <ul id="error_list">
+
+                </ul>
+            </div>
+      </fieldset>
+    </form>
 </div>

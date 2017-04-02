@@ -1,0 +1,25 @@
+<h2>Liste aller Vereinsmitglieder</h2>
+<div class="box">
+    <table id="animal_table" class="animal_table pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Alter</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=animal from=$all_animals}
+            <tr>
+                <td>{$animal.id}</td>
+                <td>{$animal.name}</td>
+                <td>{$animal.age}</td>
+                <td></td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <a href='' id='add_animal_button'>hinzufügen</a>
+</div>
+

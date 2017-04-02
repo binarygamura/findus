@@ -26,6 +26,9 @@ use \RedBeanPHP\R;
  * @author binary gamura
  */
 class AnimalController {
+    public static function getAllAnimals(){
+        return R::findAll('animal');
+    }
     public static function createNewAnimal(array $animalData){
         $animal = R::dispense('animal');
         foreach($animalData as $key => $value){
