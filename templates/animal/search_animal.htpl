@@ -10,14 +10,12 @@
                     <option value="{$species.id}">{$species.name}</option>
                     {/foreach}
                 </select>
-                <a class="add_button" id="add_species_button" href=""><img src="./images/add.png" alt="Tierart hinzufügen"/></a>
             </div>
             <div class="pure-control-group">
                 <label for="animal[race]">Rasse:</label>
                 <select name="animal[race]" id="animal[race]" title="Bitte die Rasse angeben.">
                     <option value="-1">--&gt; bitte auswählen &lt;--</option>
                 </select>
-                <a class="add_button" id="add_race_button" href=""><img src="./images/add.png" alt="Tierart hinzufügen"/></a>
             </div>
             <div class="pure-control-group">
                 <label for="animal[color]">Farbe:</label>

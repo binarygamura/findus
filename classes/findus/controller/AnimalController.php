@@ -26,9 +26,29 @@ use \RedBeanPHP\R;
  * @author binary gamura
  */
 class AnimalController {
+    
     public static function getAllAnimals(){
         return R::findAll('animal');
     }
+    
+    public static function getAnimalsByFilter($searchFilter){
+        foreach ($searchFilter as $nr => $inhalt)
+        {
+            $sql .= strtolower($inhalt['field']) ." = ?, ";
+            $values .= $inhalt['value'] .", ";
+        }
+        
+        $result = R::find('person', substr($sql,0,-2), substr($values,0,-2));
+        if(!$result){
+            throw new ControllerException("Es existiert kein Tier mit den Parametern ".$searchFilter);
+        }
+        $data = [];
+        foreach($result as $key => $value){
+            $data[] = $value;
+        }
+        return $data;
+    }
+
     public static function createNewAnimal(array $animalData){
         $animal = R::dispense('animal');
         foreach($animalData as $key => $value){
