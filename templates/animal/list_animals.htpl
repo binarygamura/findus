@@ -1,11 +1,12 @@
-<h2>Liste aller Vereinsmitglieder</h2>
+<h2>Liste aller Tiere</h2>
 <div class="box">
-    <table id="animal_table" class="animal_table pure-table">
+    <table id='animal_table' class="pure-table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Alter</th>
+                <th>Farbe</th>
                 <th>Aktionen</th>
             </tr>
         </thead>
@@ -15,6 +16,7 @@
                 <td>{$animal.id}</td>
                 <td>{$animal.name}</td>
                 <td>{$animal.age}</td>
+                <td>{$animal.color}</td>
                 <td></td>
             </tr>
             {/foreach}

@@ -7,7 +7,7 @@ namespace findus\modules\animal;
  *
  * @author binary gamura
  */
-class SearchAnimalModule  extends \findus\common\AbstractModule {
+class SearchAnimalByFilterModule  extends \findus\common\AbstractModule {
      
     function __construct() {
         $this->requiredRole = \findus\model\User::USER;
@@ -16,27 +16,38 @@ class SearchAnimalModule  extends \findus\common\AbstractModule {
         $speciesId = filter_input(INPUT_GET, 'species_id', FILTER_VALIDATE_INT);        
         $raceId = filter_input(INPUT_GET, 'race_id', FILTER_VALIDATE_INT);        
         $sex = filter_input(INPUT_GET, 'sex');        
-        $age = filter_input(INPUT_GET, 'age');        
+        $color = filter_input(INPUT_GET, 'color');        
+        $chip = filter_input(INPUT_GET, 'chip');        
+        $tatoo = filter_input(INPUT_GET, 'tatoo');        
 
-        if ($speciesId) {
-            $filter[] = array('field' => 'species_id', 
+        if ($speciesId && $speciesId > -1) {
+            $filter[] = array('field' => 'species', 
                       'value'   => $speciesId);
         }
-        if ($raceId) {
-            $filter[] = array('field' => 'race_id', 
+        if ($raceId && $raceId > -1) {
+            $filter[] = array('field' => 'race', 
                       'value'   => $raceId);
         }
         if ($sex) {
             $filter[] = array('field' => 'sex', 
                       'value'   => $sex);
         }
-        if ($age) {
-            $filter[] = array('field' => 'age', 
-                      'value'   => $age);
+        if ($chip) {
+            $filter[] = array('field' => 'chip', 
+                      'value'   => $chip);
+        }
+        if ($color) {
+            $filter[] = array('field' => 'color', 
+                      'value'   => $color);
+        }
+        if ($tatoo) {
+            $filter[] = array('field' => 'tatoo', 
+                      'value'   => $tatoo);
         }
         
-        $response = new \findus\common\TemplateResponse();
-        $response->setValue('all_animals', \findus\controller\AnimalController::getAnimalsByFilter($filter));
+
+        $response = new \findus\common\JsonResponse();
+        $response->setJson(["data" => \findus\controller\AnimalController::getAnimalsByFilter($filter)]);
         return $response;
     }
 

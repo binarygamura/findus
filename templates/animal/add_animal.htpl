@@ -108,6 +108,7 @@
                 </div>
             </div>
             <div class="pure-controls">
+                <input class="button-success pure-button" type="submit" id="update_button" name="update_button" value="Speichern"/>
                 <input class="button-success pure-button" type="submit" id="create_button" name="create_button" value="Erstellen"/>
                 <input class="button-warning pure-button" type="reset" id="reset_button" name="reset_button" value="zurücksetzen"/>
             </div>

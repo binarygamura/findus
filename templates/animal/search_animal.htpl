@@ -3,6 +3,14 @@
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
+                <label for="animal[chip]">Chip-Nummer:</label>
+                <input type="text"  name="animal[chip]" id="animal[chip]" placeholder="Chip-Nummer"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="animal[tatoo]">Tätowierung:</label>
+                <input type="text"  name="animal[tatoo]" id="animal[tatoo]" placeholder="Tätowierung"/>
+            </div>
+            <div class="pure-control-group">
                 <label for="animal[species]">Art:</label>
                 <select name="animal[species]" id="animal[species]">
                     <option value="-1">--&gt; bitte auswählen &lt;--</option>
