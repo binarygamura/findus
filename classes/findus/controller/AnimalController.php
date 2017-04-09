@@ -32,16 +32,20 @@ class AnimalController {
     }
     
     public static function getAnimalsByFilter($searchFilter){
+        $sql = "";
+        $valueArray = array();
         foreach ($searchFilter as $nr => $inhalt)
-        {
-            $sql .= strtolower($inhalt['field']) ." = ?, ";
-            $values .= $inhalt['value'] .", ";
+        {            
+            if ($inhalt['field'] == 'color') {
+                $sql .= strtolower($inhalt['field']) ." like ? " ." and ";
+                $valueArray[] = "%" .strtolower($inhalt['value']) ."%";
+            } else {
+                $sql .= strtolower($inhalt['field']) ." = ? " ." and ";
+                $valueArray[] = $inhalt['value'];
+            }
         }
         
-        $result = R::find('person', substr($sql,0,-2), substr($values,0,-2));
-        if(!$result){
-            throw new ControllerException("Es existiert kein Tier mit den Parametern ".$searchFilter);
-        }
+        $result = R::find('animal', substr($sql,0,-4), $valueArray);
         $data = [];
         foreach($result as $key => $value){
             $data[] = $value;

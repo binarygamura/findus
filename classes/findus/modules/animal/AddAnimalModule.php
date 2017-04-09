@@ -39,6 +39,8 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             $animalData['color'] = isset($animalData['color']) ? trim($animalData['color']) : "";
             if($animalData <= 0){
                 $errors['color'] = "Bitte geben Sie die Färbung des Tieres an.";
+            } else {
+                $animalData['color'] = tolower($animalData['color']);
             }
             
             $animalData['attributes'] = isset($animalData['attributes']) ? trim($animalData['attributes']) : "";

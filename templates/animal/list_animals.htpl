@@ -1,6 +1,6 @@
-<h2>Liste aller Vereinsmitglieder</h2>
+<h2>Liste aller Tiere</h2>
 <div class="box">
-    <table id="animal_table" class="animal_table pure-table">
+    <table id='animal_table' class="pure-table">
         <thead>
             <tr>
                 <th>ID</th>
