@@ -117,20 +117,20 @@ $(document).ready(function () {
         
         $('a.edit_animal').click(function(e){
             e.preventDefault();
-            initClickHandler();
-            var selectedTherapyType = animalTable.row($(this).parent().parent()).data();
-            var animalId = selectedTherapyType.id;
+//            initClickHandler();
+            var selectedAnimal = animalTable.row($(this).parent().parent()).data();
+            var animalId = selectedAnimal.id;
             $.get("./templates/animal/add_animal.htpl", function (data) {
                 var content = $(data).dialog({
-                    title: "Tier \""+selectedTherapyType.name+"\" bearbeiten",
+                    title: "Tier \""+selectedAnimal.name+"\" bearbeiten",
                     modal: true,
                     buttons: {
-                    "speichern": function () {
+                        "speichern": function () {
                         FindusUtil.blockUI();
                         var self = this;
                         $.ajax({
                             type: "POST",
-                            url: "?module=animal\\AddAnimal",
+                            url: "?module=animal\\UpdateAnimal",
                             data: {
                                 animal_name: $("#animal_name", self).val(),
                                 animal_id:animalId,

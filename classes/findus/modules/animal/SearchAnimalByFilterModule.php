@@ -17,8 +17,8 @@ class SearchAnimalByFilterModule  extends \findus\common\AbstractModule {
         $raceId = filter_input(INPUT_GET, 'race_id', FILTER_VALIDATE_INT);        
         $sex = filter_input(INPUT_GET, 'sex');        
         $color = filter_input(INPUT_GET, 'color');        
-        $chip = filter_input(INPUT_GET, 'color');        
-        $tatoo = filter_input(INPUT_GET, 'color');        
+        $chip = filter_input(INPUT_GET, 'chip');        
+        $tatoo = filter_input(INPUT_GET, 'tatoo');        
 
         if ($speciesId && $speciesId > -1) {
             $filter[] = array('field' => 'species', 
@@ -35,6 +35,10 @@ class SearchAnimalByFilterModule  extends \findus\common\AbstractModule {
         if ($chip) {
             $filter[] = array('field' => 'chip', 
                       'value'   => $chip);
+        }
+        if ($color) {
+            $filter[] = array('field' => 'color', 
+                      'value'   => $color);
         }
         if ($tatoo) {
             $filter[] = array('field' => 'tatoo', 

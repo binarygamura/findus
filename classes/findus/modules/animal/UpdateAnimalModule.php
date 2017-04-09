@@ -3,11 +3,11 @@
 
 
 /**
- * Description of AddAnimalModule
+ * Description of UpdateAnimalModule
  *
- * @author binary gamura
+ * @author tierhilfe
  */
-class AddAnimalModule extends \findus\common\AbstractModule {
+class UpdateAnimalModule extends \findus\common\AbstractModule {
     
     function __construct() {
         $this->requiredRole = \findus\model\User::USER;
@@ -15,15 +15,15 @@ class AddAnimalModule extends \findus\common\AbstractModule {
     
     public function execute() {
         
-        if(filter_input(INPUT_POST, 'create_button')){
+        if(filter_input(INPUT_POST, 'update_button')){
             $errors = [];
             $animalData = $_POST['animal'];
             
             //TODO: the following code looks very repetitive. perhaps we should refactor things here
             //and put code into functions.
             $animalData['id'] = isset($animalData['id']) ? intval(trim($animalData['id'])) : 0;
-            if($animalData['id'] > 0){
-                $errors['id'] = "Bitte den Datensatz speichern.";
+            if($animalData['id'] <= 0){
+                $errors['id'] = "Bitte den Datensatz erst anlegen.";
             }
 
             $animalData['name'] = isset($animalData['name']) ? trim($animalData['name']) : "";
