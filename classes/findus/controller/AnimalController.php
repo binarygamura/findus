@@ -36,7 +36,7 @@ class AnimalController {
         $valueArray = array();
         foreach ($searchFilter as $nr => $inhalt)
         {            
-            if ($inhalt['field'] == 'color') {
+            if (($inhalt['field'] == 'color') || ($inhalt['field'] == 'tatoo')) {
                 $sql .= strtolower($inhalt['field']) ." like ? " ." and ";
                 $valueArray[] = "%" .strtolower($inhalt['value']) ."%";
             } else {

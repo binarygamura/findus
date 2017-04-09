@@ -5,6 +5,7 @@
             {data: "id"},
             {data: "name"},
             {data: "age"},
+            {data: "color"},
             {
                 data: null,
                 render: function (data, type, row, meta) {
@@ -61,15 +62,17 @@
         });
     }
 
-    function updateAnimalTable(speciesId, raceId, color, sex){
+    function updateAnimalTable(){
         return new Promise(function(resolve, reject){
             $.ajax({
                 type: "GET",
                 url: "?module=animal\\SearchAnimalByFilter",
-                data: {"species_id": speciesId,
-                    "race_id": raceId,
-                    "color":color,
-                    "sex":sex
+                data: {"species_id": parseInt($("#animal\\[species\\]").val(), 10),
+                    "race_id": parseInt($("#animal\\[race\\]").val(), 10),
+                    "color": $("#animal\\[color\\]").val(),
+                    "chip": $("#animal\\[chip\\]").val(),
+                    "tatoo": $("#animal\\[tatoo\\]").val(),
+                    "sex":$("#animal\\[sex\\]").val()
                 },
                 success: function(e){
                     resolve(JSON.parse(e));
@@ -85,10 +88,12 @@
         });
          $.get(
             "?module=animal\\SearchAnimalByFilter", {
-                "species_id": speciesId,
-                    "race_id": raceId,
-                    "sex":sex,
-                    "color":color
+                "species_id": parseInt($("#animal\\[species\\]").val(), 10),
+                    "race_id": parseInt($("#animal\\[race\\]").val(), 10),
+                    "color": $("#animal\\[color\\]").val(),
+                    "chip": $("#animal\\[chip\\]").val(),
+                    "tatoo": $("#animal\\[tatoo\\]").val(),
+                    "sex":$("#animal\\[sex\\]").val()
             },
             function (e) {
                     resolve(JSON.parse(e));
@@ -158,23 +163,23 @@ $(document).ready(function () {
                 FindusUtil.blockUI();
                 updateRacesList(selected).then(renderRacesList);
                 FindusUtil.blockUI();
-                updateAnimalTable(parseInt($("#animal\\[species\\]").val(), 10), parseInt($("#animal\\[race\\]").val(), 10),$("#animal\\[color\\]").val(),$("#animal\\[sex\\]").val());
+                updateAnimalTable();
              }
         });
     
     $("#animal\\[race\\]").change(function (event) {
             FindusUtil.blockUI();
-            updateAnimalTable(parseInt($("#animal\\[species\\]").val(), 10), parseInt($("#animal\\[race\\]").val(), 10),$("#animal\\[color\\]").val(),$("#animal\\[sex\\]").val());
+            updateAnimalTable();
         });
 
     $("#animal\\[color\\]").change(function (event) {
             FindusUtil.blockUI();
-            updateAnimalTable(parseInt($("#animal\\[species\\]").val(), 10), parseInt($("#animal\\[race\\]").val(), 10),$("#animal\\[color\\]").val(),$("#animal\\[sex\\]").val());
+            updateAnimalTable();
         });
 
     $("#animal\\[sex\\]").change(function (event) {
             FindusUtil.blockUI();
-            updateAnimalTable(parseInt($("#animal\\[species\\]").val(), 10), parseInt($("#animal\\[race\\]").val(), 10),$("#animal\\[color\\]").val(),$("#animal\\[sex\\]").val());
+            updateAnimalTable();
         });
 
     initClickHandler();

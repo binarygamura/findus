@@ -6,6 +6,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Alter</th>
+                <th>Farbe</th>
                 <th>Aktionen</th>
             </tr>
         </thead>
@@ -15,6 +16,7 @@
                 <td>{$animal.id}</td>
                 <td>{$animal.name}</td>
                 <td>{$animal.age}</td>
+                <td>{$animal.color}</td>
                 <td></td>
             </tr>
             {/foreach}
