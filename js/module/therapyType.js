@@ -48,7 +48,7 @@ $(document).ready(function () {
                             data: {
                                 therapyType_name: $("#therapyType_name", self).val(),
                                 therapyType_id:therapyTypeId,
-                                therapyType_description: $("#therapyType_description", self).val(),
+                                therapyType_description: $("#therapyType_description", self).val()
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -77,11 +77,11 @@ $(document).ready(function () {
             initClickHandler();
             var data = therapyTypeTable.row($(this).parent().parent()).data();
             if (data.state === 'ACTIVE') {
-                $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>")
-                $title = "Behandlungsart entfernen?"
+                $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>");
+                $title = "Behandlungsart entfernen?";
             } else {
-                $msg = $("<div>Wollen Sie wirklich " + data.name + " reaktivieren?</div>")
-                $title = "Behandlungsart hinzufügen?"
+                $msg = $("<div>Wollen Sie wirklich " + data.name + " reaktivieren?</div>");
+                $title = "Behandlungsart hinzufügen?";
             }
                 $msg.dialog({
                 modal: true,
@@ -132,7 +132,7 @@ $(document).ready(function () {
                             url: "?module=therapy\\AddTherapyType",
                             data: {
                                 therapyType_name: therapyTypeName,
-                                therapyType_description: therapyTypeDescription,
+                                therapyType_description: therapyTypeDescription
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

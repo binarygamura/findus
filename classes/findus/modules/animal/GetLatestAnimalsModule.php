@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * Copyright 2017 binary gamura.
  *
@@ -19,23 +20,17 @@
 namespace findus\modules\animal;
 
 /**
- * Description of UploadPictureModule
+ * Description of GetLatestAnimalsModule
  *
- * @author binary gamura
+ * @author boreas
  */
-class UploadPictureModule extends \findus\common\AbstractModule {
+class GetLatestAnimalsModule extends \findus\common\AbstractModule {
     
-    function __construct() {
+    public function __construct() {
         $this->requiredRole = \findus\model\User::USER;
     }
-    
+
     public function execute() {
-        
-        $bundleId = filter_input(INPUT_GET, "bundleId", FILTER_SANITIZE_NUMBER_INT);
-        if($bundleId === false){
-            throw new \findus\common\ModuleException("Es wurde keine Bundle-Id angegeben.");
-        }
-        $bundle = \findus\controller\ImageBundleController::addUploadToImageBundle($bundleId);
-        return new \findus\common\JsonResponse($bundle);
+        return new \findus\common\JsonResponse(\findus\controller\AnimalController::getLatestFoundAnimals());
     }
 }

@@ -81,7 +81,7 @@ $(document).ready(function () {
                 $title = "Vereinsmitglied entfernen?"
             } else {
                 $msg = $("<div>Wollen Sie wirklich " + data.firstName + " " +  data.name + " reaktivieren?</div>")
-                $title = "Vereinsmitglied hinzufügen?"
+                $title = "Vereinsmitglied hinzufügen?";
             }
                 $msg.dialog({
                 modal: true,
@@ -132,7 +132,7 @@ $(document).ready(function () {
                             url: "?module=employee\\AddEmployee",
                             data: {
                                 employee_name: employeeName,
-                                employee_firstName: employeeDescription,
+                                employee_firstName: employeeDescription
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

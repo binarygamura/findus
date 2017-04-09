@@ -1,8 +1,4 @@
 (function(){
-    
-    
-    
-    
     function updateRacesList(speciesId){
         return new Promise(function(resolve, reject){
             $.ajax({
@@ -64,15 +60,31 @@
             speciesSelect.append("<option value=\"" + element.id + "\">" + element.name + "</option>");
         });
     }
-
+    
     $(document).ready(function () {
+        
+        $(".cat_spinner").slick({
+            dots: true
+        });
+        
+        $('.cat_spinner_nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.cat_spinner',
+            dots: true,
+            centerMode: true,
+            focusOnSelect: true
+          });
+        
         $('#portrait_select').on('change', function() {
         if($('#portrait_select').prop('files').length > 0){
             FindusUtil.blockUI();            
-            var formData = new FormData();                  
+            var bundleId = $("#animal\\[bundle_id\\]").val();
+            console.log("bundle :"+ bundleId);
+            var formData = new FormData();                      
             formData.append('file', $('#portrait_select').prop('files')[0]);
             $.ajax({
-                url: 'index.php?module=animal\\UploadPicture', 
+                url: 'index.php?module=animal\\UploadPicture&bundleId='+bundleId, 
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -81,8 +93,10 @@
                 success: function(e){
                     console.log(e);
                     var result = JSON.parse(e);
-                    $("#portrait").attr("src", "./images/portraits/"+result.name);
-                    $("#animal\\[portrait\\]").val(result.name);
+                    console.log(result.id);
+                    $("#animal\\[bundle_id\\]").val(result.id);
+                    var lastImage = result.ownImage[result.ownImage.length - 1];
+                    $('.cat_spinner').slick('slickAdd','<div><img class="portrait" src="./images/portraits/'+lastImage.name+'"/></div>');
                 },
                 error: function(e){
                     FindusUtil.showErrorDialog("Fehler beim Hochladen des Bildes.", 
@@ -95,6 +109,7 @@
             $("#animal\\[portrait\\]").val("");
          }
         });
+        
         
         $("#animal\\[species\\]").change(function (event) {
             var selected = parseInt($("#animal\\[species\\]").val(), 10);

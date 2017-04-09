@@ -1,4 +1,5 @@
 <?php
+//error_reporting(0);
 //use the nice classloader provided by composer.
 $classLoader = require_once './vendor/autoload.php';
 $classLoader->add('findus', "./classes");

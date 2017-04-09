@@ -93,11 +93,18 @@
             <div id="pictures_tab">
                 <div class="pure-control-group">          
                     <!-- TODO: add a placeholder image -->
-                    <img  id="portrait" alt="Bild des Tieres"/>
+                    <!--<img  id="portrait" alt="Bild des Tieres"/>-->
+                    <div class="cat_spinner" style="min-height: 468px;">
+<!--                        <div><img class="portrait" src="./images/portraits/Findus58cf03787a1753.97755168.PNG"/></div>
+                        <div><img class="portrait" src="./images/portraits/Findus58cf037edb4555.97030865.PNG"/></div>
+                        <div><img class="portrait" src="./images/portraits/Findus58cf0c78631694.74503903.png"/></div>-->
+                    </div>
+                    <!--<div class="cat_spinner_nav"></div>-->
                 </div>
                 <div class="pure-control-group">
-                    <input type="file"  id="portrait_select"/>                    
+                    <input type="file"  id="portrait_select" />                    
                     <input type="hidden" name="animal[portrait]" id="animal[portrait]" value=""/>
+                    <input type="hidden" name="animal[bundle_id]" id="animal[bundle_id]" value="0"/>
                 </div>
             </div>
             <div class="pure-controls">

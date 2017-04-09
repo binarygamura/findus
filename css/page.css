@@ -4,7 +4,7 @@
  * to overwrite css rules set by other stylesheets.
  */
 
-#portrait {
+.portrait {
     object-fit: contain;
     width: 100%;
     height: 450px;

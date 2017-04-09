@@ -83,10 +83,10 @@ $(document).ready(function () {
             var data = admissionTypeTable.row($(this).parent().parent()).data();
             if (data.state === 'ACTIVE') {
                 $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>")
-                $title = "Eingangsart entfernen?"
+                $title = "Eingangsart entfernen?";
             } else {
                 $msg = $("<div>Wollen Sie wirklich " + data.name + " reaktivieren?</div>")
-                $title = "Eingangsart hinzufügen?"
+                $title = "Eingangsart hinzufügen?";
             }
                 $msg.dialog({
                 modal: true,
@@ -137,7 +137,7 @@ $(document).ready(function () {
                             url: "?module=admission\\AddAdmissionType",
                             data: {
                                 admissionType_name: admissionTypeName,
-                                admissionType_description: admissionTypeDescription,
+                                admissionType_description: admissionTypeDescription
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

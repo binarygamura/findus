@@ -83,10 +83,10 @@ $(document).ready(function () {
             var data = veterinarianTable.row($(this).parent().parent()).data();
             if (data.state === 'ACTIVE') {
                 $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>")
-                $title = "Tierarzt entfernen?"
+                $title = "Tierarzt entfernen?";
             } else {
                 $msg = $("<div>Wollen Sie wirklich " + data.name + " reaktivieren?</div>")
-                $title = "Tierarzt hinzufügen?"
+                $title = "Tierarzt hinzufügen?";
             }
                 $msg.dialog({
                 modal: true,

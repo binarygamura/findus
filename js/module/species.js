@@ -60,7 +60,7 @@ $(document).ready(function () {
                                 //get the name currently typed into the name field of the dialog.
                                 race_name: $("#race_name", self).val(),
                                 //the id is immutable.
-                                race_id:raceId,
+                                race_id:raceId
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

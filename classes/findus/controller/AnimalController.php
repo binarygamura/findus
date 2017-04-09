@@ -43,7 +43,7 @@ class AnimalController {
             throw new ControllerException("Es existiert kein Tier mit den Parametern ".$searchFilter);
         }
         $data = [];
-        foreach($result as $key => $value){
+        foreach($result as $value){
             $data[] = $value;
         }
         return $data;
@@ -54,6 +54,21 @@ class AnimalController {
         foreach($animalData as $key => $value){
             $animal->$key = $value;
         }
+        if($animal->bundle_id >= 0){
+            $animal->bundle = R::findOne("imageBundle", "id = ?", [$animal->bundle_id]);
+            count($animal->bundle->ownImageList);
+        }
         return R::store($animal);
+    }
+    
+    public static function getLatestFoundAnimals($limit = 5){
+        $animals = R::find("animal", "bundle_id != 0 ORDER BY id LIMIT ?", [$limit]);
+        $result = [];
+        foreach($animals as $animal){
+            $animal->bundle = R::findOne("imageBundle", "id = ?", [$animal->bundle_id]);
+            count($animal->bundle->ownImageList);
+            $result[] = $animal;
+        }
+        return $result;
     }
 }

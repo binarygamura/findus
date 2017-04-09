@@ -15,12 +15,8 @@ class ImageBundleController {
         return R::findOne("imageBundle", "id = ?", $bundleId);
     }
     
-    public static function addToImageBundle($bundleId){
+    public static function addUploadToImageBundle($bundleId){
         
-        $bundle = $bundleId ? R::findOne("imageBundle", "id = ?" , $bundleId) : R::dispense("imageBundle");        
-        if(!isset($bundle->images)){
-            $bundle->images = [];
-        }
         if(!isset($_FILES['file']) || !isset($_FILES['file']['name']) || $_FILES['file']['size'] == 0){
             throw new \findus\common\ModuleException("no image data to upload!".print_r($_FILES, true));
         }
@@ -45,8 +41,18 @@ class ImageBundleController {
         if(!move_uploaded_file($tmpFileName, $absoluteDestination)){
             throw new \findus\common\ModuleException("unable to store file in \"".$absoluteDestination."\"");
         }
-        array_push($bundle->images, $destination);
+        
+        $bundle = $bundleId ? R::findOne("imagebundle", "id = ?" , [$bundleId]) : R::dispense("imagebundle");        
+        
+        $image = R::dispense("image");
+        $image->name = $destination;
+        R::store($image);
+        
+        $bundle->ownImageList[] = $image;
         R::store($bundle);
+        
+        $bundle = R::findOne("imagebundle","id = ?", [$bundle->id]);
+        count($bundle->ownImageList);
         return $bundle;
     }    
 }

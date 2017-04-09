@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous"/>
         <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
         <link href="./css/style.css" rel="stylesheet" type="text/css"/>
         <link href="./css/page.css" rel="stylesheet" type="text/css"/>
         <link rel="apple-touch-icon" sizes="57x57" href="./images/favicon/apple-icon-57x57.png"/>

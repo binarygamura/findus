@@ -17,7 +17,8 @@ class HomeModule extends \findus\common\AbstractModule {
     
     public function execute() {
         $response = new \findus\common\TemplateResponse();
-        $response->addTemplateName("home.htpl");
+        $response->addScript('home.js');
+        $response->addTemplateName('home.htpl');
         return $response;
     }
 
