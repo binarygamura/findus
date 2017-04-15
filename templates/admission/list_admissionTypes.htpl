@@ -6,6 +6,7 @@
                 <th>ID</th>
                 <th>Bezeichnung</th>
                 <th>Beschreibung</th>
+                <th style="visibility:collapse;" hidden="true">Foto-Show</th>
                 <th>Aktionen</th>
             </tr>
         </thead>
@@ -15,6 +16,7 @@
                 <td>{$admissionType.id}</td>
                 <td>{$admissionType.name}</td>
                 <td>{$admissionType.description}</td>
+                <td style="visibility:collapse;" hidden="true">{$admissionType.spinner}</td>
                 <td>{$admissionType.state}</td>
             </tr>
             {/foreach}

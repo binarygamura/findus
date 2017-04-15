@@ -6,6 +6,7 @@ $(document).ready(function () {
             {data: "id"},
             {data: "name"},
             {data: "description"},
+            {data: "spinner"},
             {
                 data: "state",
                 render: function (data, type, row, meta) {
@@ -51,7 +52,9 @@ $(document).ready(function () {
                                 admissionType_name: $("#admissionType_name", self).val(),
                                 //the id is immutable.
                                 admissionType_id:admissionTypeId,
-                                admissionType_description: $("#admissionType_description", self).val()
+                                admissionType_description: $("#admissionType_description", self).val(),
+// TODO Fred anzeigen des Wertes
+                                admissionType_spinner: $("#admissionType_spinner", self).val()                                
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");
@@ -73,6 +76,7 @@ $(document).ready(function () {
                 //row.
                 $("#admissionType_name", content).val(selectedAdmissionType.name);
                 $("#admissionType_id", content).val(selectedAdmissionType.id);
+                $("#admissionType_spinner", content).val(selectedAdmissionType.spinner);
                 $("#admissionType_description", content).val(selectedAdmissionType.description);
             });
         });
@@ -131,13 +135,15 @@ $(document).ready(function () {
                         FindusUtil.blockUI();
                         var admissionTypeName = $("#admissionType_name", this).val();
                         var admissionTypeDescription = $("#admissionType_description", this).val();
+                        var admissionTypeSpinner = $("#admissionType_spinner", this).val();
                         var self = this;
                         $.ajax({
                             type: "POST",
                             url: "?module=admission\\AddAdmissionType",
                             data: {
                                 admissionType_name: admissionTypeName,
-                                admissionType_description: admissionTypeDescription
+                                admissionType_description: admissionTypeDescription,
+                                admissionType_spinner: admissionTypeSpinner
                             },
                             success: function (e) {
                                 $(self).dialog("destroy");

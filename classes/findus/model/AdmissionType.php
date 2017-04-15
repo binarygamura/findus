@@ -11,7 +11,6 @@ use RedBeanPHP\SimpleModel;
 class AdmissionType extends SimpleModel {
     
      public function isActive(){
-         return true;
         return ($this->bean->state == 'ACTIVE');
     }
   

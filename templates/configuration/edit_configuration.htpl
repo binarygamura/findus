@@ -1,17 +1,59 @@
-<div>
-    <form action="" method="POST" class="pure-form pure-form-aligned">
+<h2>Konfiguration anpassen</h2>
+
+<div class="box">
+    <form action="" method="POST" id="edit_configuration_form" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
-                <input type="hidden" name="admissionType_id" id="admissionType_id"/>
+                <input type="hidden" name="configuration_id" id="configuration_id"/>
             </div>
             <div class="pure-control-group">
-                <label for="admissionType_name">Bezeichnung:</label>
-                <input type="text" maxlength="20" name="admissionType_name" id="admissionType_name" placeholder="Bezeichnung der Art des Eingangs"/>
+                <h3>Foto-Spinner Konfiguration</h3>
             </div>
             <div class="pure-control-group">
-                <label for="admissionType_description">Beschreibung:</label>
-                <input type="text" maxlength="200" name="admissionType_description" id="admissionType_description" placeholder="Beschreibung der Art des Eingangs"/>
+               <label for="configuration_spinnerTime">Anzeigezeit:</label>
+               <input type="number" name="configuration_spinnerTime" id="configuration_spinnerTime" placeholder="Zeit in Sekunden"/>
+           </div>
+            <div class="pure-control-group">
+               <label for="configuration_spinnerDays">Anzahl der Tage:</label>
+               <input type="number" name="configuration_spinnerDays" id="configuration_spinnerDays" placeholder="Zeit in Tagen"/>
+           </div>
+            <div class="pure-control-group">
+               <label for="configuration_spinnerMin">Min. Anzahl der Fotos:</label>
+               <input type="number" name="configuration_spinnerMin" id="configuration_spinnerMin" placeholder="Mindestens x Fotos"/>
+           </div>
+            <div class="pure-control-group">
+               <label for="configuration_spinnerDays">Max. Anzahl der Fotos:</label>
+               <input type="number" name="configuration_spinnerMax" id="configuration_spinnerMax" placeholder="Maximal x Fotos"/>
+           </div>
+            <div class="pure-control-group">
+                <h3>Kontakt Konfiguration</h3>
             </div>
+            <div class="pure-control-group">
+               <label for="configuration_contactLine1">Zeile 1:</label>
+               <input type="text" name="configuration_contactLine1" id="configuration_contactLine1" placeholder="Oberste Zeile"/>
+           </div>
+            <div class="pure-control-group">
+               <label for="configuration_contactLine2">Zeile 2:</label>
+               <input type="text" name="configuration_contactLine2" id="configuration_contactLine2" placeholder="Zweite Zeile"/>
+           </div>
+            <div class="pure-control-group">
+               <label for="configuration_contactLine3">Zeile 3:</label>
+               <input type="text" name="configuration_contactLine3" id="configuration_contactLine3" placeholder="Dritte Zeile"/>
+           </div>
+            <div class="pure-control-group">
+               <label for="configuration_contactLine4">Zeile 4:</label>
+               <input type="text" name="configuration_contactLine4" id="configuration_contactLine4" placeholder="Vierte Zeile"/>
+           </div>
+            <div class="pure-control-group">
+               <label for="configuration_contactLine5">Zeile 5:</label>
+               <input type="text" name="configuration_contactLine5" id="configuration_contactLine5" placeholder="Unterste Zeile"/>
+           </div>
         </fieldset>
     </form>
+    <div>
+        <ul id="error_list">
+
+        </ul>
+    </div>
+    
 </div>

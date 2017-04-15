@@ -1,38 +1,47 @@
 <?php
 
-namespace findus\modules\admission;
+namespace findus\modules\configuration;
 
 use \RedBeanPHP\R;
 
 /**
- * Description of UpdateAdmissionTypeModule
+ * Description of UpdateConfigurationModule
  *
  * @author tierhilfe
  */
-class UpdateAdmissionTypeModule  extends \findus\common\AbstractModule {
+class UpdateConfigurationModule  extends \findus\common\AbstractModule {
     
     function __construct() {
-        $this->requiredRole = \findus\model\User::MANAGEMENT;
+        $this->requiredRole = \findus\model\User::ADMIN;
     }
     
     public function execute() {
-        $admissionTypeId = filter_input(INPUT_POST, 'admissionType_id', FILTER_VALIDATE_INT);
-        $admissionTypeName = filter_input(INPUT_POST, 'admissionType_name');
-        $admissionTypeDescription = filter_input(INPUT_POST, 'admissionType_description');
-        if(!$admissionTypeId){
-            throw new \findus\controller\ControllerException("Es wurde keine ID angegeben.");
-        }
+        $configurationSpinnerTime = filter_input(INPUT_POST, 'configuration_spinnerTime', FILTER_VALIDATE_INT);
+        $configurationSpinnerDays = filter_input(INPUT_POST, 'configuration_spinnerDays', FILTER_VALIDATE_INT);
+        $configurationSpinnerMax = filter_input(INPUT_POST, 'configuration_spinnerMax', FILTER_VALIDATE_INT);
+        $configurationSpinnerMin = filter_input(INPUT_POST, 'configuration_spinnerMin', FILTER_VALIDATE_INT);
+        $configurationContactLine1 = filter_input(INPUT_POST, 'configuration_contactLine1');
+        $configurationContactLine2 = filter_input(INPUT_POST, 'configuration_contactLine2');
+        $configurationContactLine3 = filter_input(INPUT_POST, 'configuration_contactLine3');
+        $configurationContactLine4 = filter_input(INPUT_POST, 'configuration_contactLine4');
+        $configurationContactLine5 = filter_input(INPUT_POST, 'configuration_contactLine5');
         
-        $admissionType = R::findOne('admissionType', 'id = ?', [$admissionTypeId]);
+        $configuration = R::findOne('configuration', 'id = 1');
         if(!$admissionType){
             
             throw new \findus\controller\ControllerException("Es wurde keine Eingangsart mit der ID ".$admissionTypeId." gefunden.");
         }
         
-        \findus\controller\AdmissionTypeController::updateAdmissionType([
-            'admissionType_id' => $admissionTypeId,
-            'admissionType_name' => $admissionTypeName,
-            'admissionType_description' => $admissionTypeDescription
+        \findus\controller\ConfigurationController::updateConfiguration([
+            'configuration_spinnerTime' => $configurationSpinnerTime,
+            'configuration_spinnerDays' => $configurationSpinnerDays,
+            'configuration_spinnerMin' => $configurationSpinnerMin,
+            'configuration_spinnerMax' => $configurationSpinnerMax,
+            'configuration_contactLine1' => $configurationContactLine1,
+            'configuration_contactLine2' => $configurationContactLine2,
+            'configuration_contactLine3' => $configurationContactLine3,
+            'configuration_contactLine4' => $configurationContactLine4,
+            'configuration_contactLine5' => $configurationContactLine5,
             ]);
 
         $response = new \findus\common\JsonResponse();

@@ -12,6 +12,10 @@
                 <label for="admissionType_description">Beschreibung:</label>
                 <input type="text" maxlength="200" name="admissionType_description" id="admissionType_description" placeholder="Beschreibung der Art des Eingangs"/>
             </div>
+            <div class="pure-control-group">
+                <label for="admissionType_spinner">Anzeige in der Foto-Show:</label>
+                <input type="checkbox" name="admissionType_spinner" id="admissionType_spinner" value="1"/>
+            </div>
         </fieldset>
     </form>
 </div>

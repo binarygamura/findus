@@ -4,11 +4,11 @@ namespace findus\model;
 use RedBeanPHP\SimpleModel;
 
 /**
- * Description of admission
+ * Description of system instance configuration properties
  *
  * @author tierhilfe
  */
-class Admission extends SimpleModel {
+class Configuration extends SimpleModel {
     
    
 }

@@ -19,6 +19,7 @@ class UpdateAdmissionTypeModule  extends \findus\common\AbstractModule {
         $admissionTypeId = filter_input(INPUT_POST, 'admissionType_id', FILTER_VALIDATE_INT);
         $admissionTypeName = filter_input(INPUT_POST, 'admissionType_name');
         $admissionTypeDescription = filter_input(INPUT_POST, 'admissionType_description');
+        $admissionTypeSpinner = filter_input(INPUT_POST, 'admissionType_spinner', FILTER_VALIDATE_BOOLEAN);
         if(!$admissionTypeId){
             throw new \findus\controller\ControllerException("Es wurde keine ID angegeben.");
         }
@@ -32,7 +33,8 @@ class UpdateAdmissionTypeModule  extends \findus\common\AbstractModule {
         \findus\controller\AdmissionTypeController::updateAdmissionType([
             'admissionType_id' => $admissionTypeId,
             'admissionType_name' => $admissionTypeName,
-            'admissionType_description' => $admissionTypeDescription
+            'admissionType_description' => $admissionTypeDescription,
+            'admissionType_spinner' => $admissionTypeSpinner
             ]);
 
         $response = new \findus\common\JsonResponse();

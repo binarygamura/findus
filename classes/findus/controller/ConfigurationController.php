@@ -4,90 +4,84 @@ namespace findus\controller;
 
 use \RedBeanPHP\R;
 
+    Const SPINNER_TIME = 3;
+    Const SPINNER_DAYS = 30;
+    Const SPINNER_MIN = 3;
+    Const SPINNER_MAX = 3;
+
+    
 /**
- * Description of AdmissionTypeControlle
+ * Description of ConfigurationController
  *
  * @author tierhilfe
  */
-class AdmissionTypeController {
+class ConfigurationController {
     
-    public static function getAllAdmissionTypes(){
-        return R::findAll('admissiontype');
-    }
-    
-    public static function getAllActiveAdmissionTypes(){
-        return R::find('admissiontype','state = \'ACTIVE\'');
-    }
-
-    public static function getAdmissionTypeById($admissionTypeId){
-        $admissionType = R::findOne('admissionType', 'id = ?', [$admissionTypeId]);
-        if(!$admissionType){
-            throw new ControllerException("Es existiert keine Behandlungsart mit der ID ".$admissionTypeId);
-        }
-        return $admissionType;
-    }
-    
-    public static function createNewAdmissionType(array $admissionTypeData){
-        $newAdmissionType = R::dispense('admissiontype');
-        if(!isset($admissionTypeData['admissionType_name']) || trim($admissionTypeData['admissionType_name']) == ''){
-            throw new ControllerException('Bitte einen Namen angeben.');
-        }
- 
-        $name = trim($admissionTypeData['admissionType_name']);
         
-        $admissionType = R::findOne('admissiontype', 'name = ?', [$name]);
-        if($admissionType){
-            throw new ControllerException("Diese Eingangsart ist bereits vorhanden.");
-        }
+    public static function getConfiguration(){
+        $configuration = R::findOne('configuration', 'id = 1');
+        if (!$configuration) {
+            $defaultConfiguration = R::dispense('configuration');
+            // Spinner: Anzeigedauer eines Fotos in sec
+            $defaultConfiguration['spinnerTime']=SPINNER_TIME;
+            // Spinner: Anzahl der Tage für die Tiersuche (Eingangsdatum)
+            $defaultConfiguration['spinnerDays']=SPINNER_DAYS;
+            // Spinner: Minimale Anzahl der Fotos 
+            //          auch wenn im Zeitraum weniger da waren
+            //          0 heißt, dann nur die im Zeitraum liegenden Fotos
+            $defaultConfiguration['spinnerMin']=SPINNER_MIN;
+            // Spinner: Maximale Anzahl der Fotos 
+            //          auch wenn im Zeitraum mehr da waren
+            //          0 heißt unendlich
+            $defaultConfiguration['spinnerMax']=SPINNER_MAX;
 
-        $newAdmissionType['name'] = $name;
-        $newAdmissionType['description'] = $admissionTypeData['admissionType_description'];
-        $newAdmissionType['state'] = 'ACTIVE';
-        R::store($newAdmissionType);
+            // Zeilen im Kontakt-Bereich
+            $defaultConfiguration['contactLine1']="Zeile Verein";
+            $defaultConfiguration['contactLine2']="Zeile Strasse";
+            $defaultConfiguration['contactLine3']="Zeile Ort";
+            $defaultConfiguration['contactLine4']="Zeile Hompage";
+            $defaultConfiguration['contactLine5']="Zeile Mail";
+
+            R::store($defaultConfiguration);
+        }
+            
+        return R::findOne('configuration', 'id = 1');
     }
     
-    public static function updateAdmissionType(array $admissionTypeData){
-        if(!isset($admissionTypeData['admissionType_id']) || trim($admissionTypeData['admissionType_id']) == ''){
-            throw new ControllerException('Bitte eine Id angeben.');
+    public static function updateConfiguration(array $configurationData){
+        $spinnerTime=trim($configurationData['configuration_spinnerTime']);
+        if (!$spinnerTime){
+            $spinnerTime=SPINNER_TIME;
         }
-        if(!isset($admissionTypeData['admissionType_name']) || trim($admissionTypeData['admissionType_name']) == ''){
-            throw new ControllerException('Bitte einen Namen angeben.');
+        $spinnerDays=trim($configurationData['configuration_spinnerDays']);
+        if (!$spinnerDays){
+            $spinnerDays=SPINNER_DAYS;
         }
-        if(!isset($admissionTypeData['admissionType_description']) || trim($admissionTypeData['admissionType_description']) == ''){
-            throw new ControllerException('Bitte eine Beschreibung angeben.');
+        $spinnerMin=trim($configurationData['configuration_spinnerMin']);
+        if (!$spinnerMin){
+            $spinnerMin=SPINNER_MIN;
         }
- 
-        $id = $admissionTypeData['admissionType_id'];
-        $name = trim($admissionTypeData['admissionType_name']);
+        $spinnerMax=trim($configurationData['configuration_spinnerMax']);
+        if (!$spinnerMax){
+            $spinnerMax=SPINNER_MAX;
+        }
         
-        $admissionType = R::findOne('admissiontype', 'id = ?', [$id]);
-        if(!$admissionType){
-            throw new ControllerException("Keine Eingangsart mit der id ". $id . " gefunden.");
+        $configuration = R::findOne('configuration', 'id = 1');
+        if(!$configuration){
+            throw new ControllerException("Keine Konfiguration gefunden.");
         }
 
-        $admissionType['name'] = $name;
-        $admissionType['state'] = 'ACTIVE';
-        $admissionType['description'] = $admissionTypeData['admissionType_description'];
-        R::store($admissionType);
-    } 
+        $configuration['spinnerTime'] = $spinnerTime;
+        $configuration['spinnerDays'] = $spinnerDays;
+        $configuration['spinnerMin'] = $spinnerMin;
+        $configuration['spinnerMax'] = $spinnerMax;
+        $configuration['contactLine1'] = $configurationData['configuration_contactLine1'];
+        $configuration['contactLine2'] = $configurationData['configuration_contactLine2'];
+        $configuration['contactLine3'] = $configurationData['configuration_contactLine3'];
+        $configuration['contactLine4'] = $configurationData['configuration_contactLine4'];
+        $configuration['contactLine5'] = $configurationData['configuration_contactLine5'];
 
-    public static function switchAdmissionTypeState(array $admissionTypeData){
-        if(!isset($admissionTypeData['admissionType_id']) || trim($admissionTypeData['admissionType_id']) == ''){
-            throw new ControllerException('Bitte eine Id angeben.');
-        }
-        $id = $admissionTypeData['admissionType_id'];
-        
-        $admissionType = R::findOne('admissiontype', 'id = ?', [$id]);
-        if(!$admissionType){
-            throw new ControllerException("Keine Eingangsart mit der id ". $id . " gefunden.");
-        }
-
-        if ($admissionType['state']==='ACTIVE') {
-            $admissionType['state'] = 'DEACTIVE';
-        } else {
-            $admissionType['state'] = 'ACTIVE';
-        }
-        R::store($admissionType);
+        R::store($configuration);
     } 
     
 }

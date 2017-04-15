@@ -21,7 +21,8 @@ class AddAdmissionTypeModule  extends \findus\common\AbstractModule {
         }
         \findus\controller\AdmissionTypeController::createNewAdmissionType([
             'admissionType_name' => filter_input(INPUT_POST, 'admissionType_name'),
-            'admissionType_description' => filter_input(INPUT_POST, 'admissionType_description')
+            'admissionType_description' => filter_input(INPUT_POST, 'admissionType_description'),
+            'admissionType_spinner' => filter_input(INPUT_POST, 'admissionType_spinner')
             ]);
         $resonse = new \findus\common\JsonResponse();
         $resonse->setBody("{}");

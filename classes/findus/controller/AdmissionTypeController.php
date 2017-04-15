@@ -42,6 +42,7 @@ class AdmissionTypeController {
 
         $newAdmissionType['name'] = $name;
         $newAdmissionType['description'] = $admissionTypeData['admissionType_description'];
+        $newAdmissionType['spinner'] = $admissionTypeData['admissionType_spinner'];
         $newAdmissionType['state'] = 'ACTIVE';
         R::store($newAdmissionType);
     }
@@ -68,6 +69,7 @@ class AdmissionTypeController {
         $admissionType['name'] = $name;
         $admissionType['state'] = 'ACTIVE';
         $admissionType['description'] = $admissionTypeData['admissionType_description'];
+        $admissionType['spinner'] = $admissionTypeData['admissionType_spinner'];
         R::store($admissionType);
     } 
 
