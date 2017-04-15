@@ -1,0 +1,17 @@
+<div>
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <input type="hidden" name="admissionType_id" id="admissionType_id"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="admissionType_name">Bezeichnung:</label>
+                <input type="text" maxlength="20" name="admissionType_name" id="admissionType_name" placeholder="Bezeichnung der Art des Eingangs"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="admissionType_description">Beschreibung:</label>
+                <input type="text" maxlength="200" name="admissionType_description" id="admissionType_description" placeholder="Beschreibung der Art des Eingangs"/>
+            </div>
+        </fieldset>
+    </form>
+</div>
