@@ -32,7 +32,21 @@ class UserController{
     public static function getGuestUser(){
         $matches = R::find('user', 'id = 1');
         if(count($matches) == 0 || count($matches) > 1){
-             return false;
+            // create default guest and admin
+            $newGuestUser = R::dispense('user');
+            $newGuestUser['username'] = 'Gast';
+            $newGuestUser['password'] = 'Gast';
+            $newGuestUser['role'] = 1;
+            $newGuestUser['displayname'] = 'Gast';
+            R::store($newGuestUser);
+            $newAdminUser = R::dispense('user');
+            $newAdminUser['username'] = 'admin';
+            $newAdminUser['password'] = 'admin';
+            $newAdminUser['role'] = 15;
+            $newAdminUser['displayname'] = 'Admin';
+            R::store($newAdminUser);
+            
+            $matches = R::find('user', 'id = 1');
          }
          return array_pop($matches);
     }

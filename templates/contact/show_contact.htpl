@@ -1,0 +1,13 @@
+<div class="box">
+    <h2>Kontakt</h2>
+
+    <br/>
+    <br/>
+    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine1" id="configuration_contactLine1" placeholder="Oberste Zeile" readonly/><br/>
+    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine2" id="configuration_contactLine2" placeholder="Zweite Zeile" readonly/><br/>
+    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine3" id="configuration_contactLine3" placeholder="Dritte Zeile" readonly/><br/>
+    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine4" id="configuration_contactLine4" placeholder="Vierte Zeile" readonly/><br/>
+    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine5" id="configuration_contactLine5" placeholder="Unterste Zeile" readonly/><br/>
+
+</div>
+
