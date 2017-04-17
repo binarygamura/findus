@@ -68,7 +68,7 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="animal[vaccinationCard]">Impfausweis vorhanden:</label>
-                        <input type="checkbox" name="animal[vaccinationCard]" id="animal[vaccinationCard]" value="1"/>
+                        <input type="checkbox" name="animal[vaccinationCard]" id="animal[vaccinationCard]" {if isset($animal.vaccinationCard) and $animal.vaccinationCard eq 1 }checked{/if} value="1"/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[age]">Alter:</label>
@@ -97,13 +97,21 @@
                 <div class="pure-control-group">          
                     <!-- TODO: add a placeholder image -->
                     <div class="cat_spinner" style="min-height: 468px;">
+                        {if isset($bundle)}
+                            {foreach item=image from=$bundle->ownImageList}
+                            <div>
+                                <img class="portrait" src="./images/portraits/{$image.name}" alt="portrait_image"/>
+                                <input type="checkbox" {if $image.is_portrait}checked{/if} class="selected_portrait" value="{$image.name}" name="animal[portrait]">Portrait?</input>
+                            </div>
+                            {/foreach}
+                        {/if}
                     </div>
                 </div>
                 <div class="pure-control-group">
                     <input type="file"  id="portrait_select" class="pure-button"/>
                     <input type="button" id="delete_portrait_button" class="button-success pure-button" value="löschen"/> 
                     <!--<input type="hidden" name="animal[portrait]" id="animal[portrait]" value=""/>-->
-                    <input type="hidden" name="animal[bundle_id]" id="animal[bundle_id]" value="0"/>
+                    <input type="hidden" name="animal[bundle_id]" id="animal[bundle_id]" value="{if isset($bundle.id)}{$bundle.id}{else}0{/if}"/>
                 </div>
             </div>
             <div class="pure-controls">

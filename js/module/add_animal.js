@@ -64,17 +64,18 @@
     $(document).ready(function () {
         
         $(".cat_spinner").slick({
-            dots: true
+//            dots: true,
+//            focusOnSelect: true
+//            adaptiveHeight: true
+//            centerMode: true,
+//            variableWidth: true
         });
-        
-        $('.cat_spinner_nav').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            asNavFor: '.cat_spinner',
-            dots: true,
-            centerMode: true,
-            focusOnSelect: true
-          });
+        $('.selected_portrait').on('change', function() {
+            $('.selected_portrait').not(this).prop('checked', false);
+        });
+//        setTimeout(function(){
+//            $(".cat_spinner").hide().show(0);
+//        })
         
         $('#delete_portrait_button').click(function(e){            
             var currentSlide = $('.cat_spinner').slick('slickCurrentSlide');
