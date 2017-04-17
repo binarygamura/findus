@@ -4,51 +4,54 @@
     <form action="" method="POST" id="edit_configuration_form" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
-                <input type="hidden" name="configuration_id" id="configuration_id"/>
+                <input type="hidden" name="configuration[id]" id="configuration[id]"/>
             </div>
             <div class="pure-control-group">
                 <h3>Foto-Spinner Konfiguration</h3>
             </div>
             <div class="pure-control-group">
                <label for="configuration_spinnerTime">Anzeigezeit:</label>
-               <input type="number" name="configuration_spinnerTime" id="configuration_spinnerTime" placeholder="Zeit in Sekunden"/>
+               <input type="number" name="configuration_spinnerTime" id="configuration_spinnerTime" value="{if isset($configuration.spinnerTime)}{$configuration.spinnerTime}{/if}" placeholder="Zeit in Sekunden"/>
            </div>
             <div class="pure-control-group">
                <label for="configuration_spinnerDays">Anzahl der Tage:</label>
-               <input type="number" name="configuration_spinnerDays" id="configuration_spinnerDays" placeholder="Zeit in Tagen"/>
+               <input type="number" name="configuration_spinnerDays" id="configuration_spinnerDays" value="{if isset($configuration.spinnerDays)}{$configuration.spinnerDays}{/if}" placeholder="Zeit in Tagen"/>
            </div>
             <div class="pure-control-group">
                <label for="configuration_spinnerMin">Min. Anzahl der Fotos:</label>
-               <input type="number" name="configuration_spinnerMin" id="configuration_spinnerMin" placeholder="Mindestens x Fotos"/>
+               <input type="number" name="configuration_spinnerMin" id="configuration_spinnerMin" value="{if isset($configuration.spinnerMin)}{$configuration.spinnerMin}{/if}" placeholder="Mindestens x Fotos"/>
            </div>
             <div class="pure-control-group">
                <label for="configuration_spinnerDays">Max. Anzahl der Fotos:</label>
-               <input type="number" name="configuration_spinnerMax" id="configuration_spinnerMax" placeholder="Maximal x Fotos"/>
+               <input type="number" name="configuration_spinnerMax" id="configuration_spinnerMax" value="{if isset($configuration.spinnerMax)}{$configuration.spinnerMax}{/if}" placeholder="Maximal x Fotos"/>
            </div>
             <div class="pure-control-group">
                 <h3>Kontakt Konfiguration</h3>
             </div>
             <div class="pure-control-group">
                <label for="configuration_contactLine1">Zeile 1:</label>
-               <input type="text" name="configuration_contactLine1" id="configuration_contactLine1" placeholder="Oberste Zeile"/>
+               <input type="text" name="configuration_contactLine1" id="configuration_contactLine1" value="{if isset($configuration.contactLine1)}{$configuration.contactLine1}{/if}" placeholder="Oberste Zeile"/>
            </div>
             <div class="pure-control-group">
                <label for="configuration_contactLine2">Zeile 2:</label>
-               <input type="text" name="configuration_contactLine2" id="configuration_contactLine2" placeholder="Zweite Zeile"/>
+               <input type="text" name="configuration_contactLine2" id="configuration_contactLine2" value="{if isset($configuration.contactLine2)}{$configuration.contactLine2}{/if}" placeholder="Zweite Zeile"/>
            </div>
             <div class="pure-control-group">
                <label for="configuration_contactLine3">Zeile 3:</label>
-               <input type="text" name="configuration_contactLine3" id="configuration_contactLine3" placeholder="Dritte Zeile"/>
+               <input type="text" name="configuration_contactLine3" id="configuration_contactLine3" value="{if isset($configuration.contactLine3)}{$configuration.contactLine3}{/if}" placeholder="Dritte Zeile"/>
            </div>
             <div class="pure-control-group">
                <label for="configuration_contactLine4">Zeile 4:</label>
-               <input type="text" name="configuration_contactLine4" id="configuration_contactLine4" placeholder="Vierte Zeile"/>
+               <input type="text" name="configuration_contactLine4" id="configuration_contactLine4" value="{if isset($configuration.contactLine4)}{$configuration.contactLine4}{/if}" placeholder="Vierte Zeile"/>
            </div>
             <div class="pure-control-group">
                <label for="configuration_contactLine5">Zeile 5:</label>
-               <input type="text" name="configuration_contactLine5" id="configuration_contactLine5" placeholder="Unterste Zeile"/>
+               <input type="text" name="configuration_contactLine5" id="configuration_contactLine5" value="{if isset($configuration.contactLine5)}{$configuration.contactLine5}{/if}" placeholder="Unterste Zeile"/>
            </div>
         </fieldset>
+        <div class="pure-controls">
+            <input class="button-success pure-button" type="submit" id="update_button" name="update_button" value="Speichern"/>
+        </div>
     </form>
     <div>
         <ul id="error_list">

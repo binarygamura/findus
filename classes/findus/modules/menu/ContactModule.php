@@ -11,7 +11,6 @@ class ContactModule extends \findus\common\AbstractModule {
         $response = new \findus\common\TemplateResponse();
         $response->setValue('configuration', \findus\controller\ConfigurationController::getConfiguration());
         $response->addTemplateName('contact\show_contact.htpl');
-        $response->addScript("show_contact.js");
         return $response;
     }
 }

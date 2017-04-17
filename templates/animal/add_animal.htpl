@@ -68,7 +68,7 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="animal[vaccinationCard]">Impfausweis vorhanden:</label>
-                        <input type="checkbox" name="animal[vaccinationCard" id="animal[vaccinationCard" value="1"/>
+                        <input type="checkbox" name="animal[vaccinationCard]" id="animal[vaccinationCard]" value="1"/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[age]">Alter:</label>

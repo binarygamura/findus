@@ -7,7 +7,7 @@ use \RedBeanPHP\R;
     Const SPINNER_TIME = 3;
     Const SPINNER_DAYS = 30;
     Const SPINNER_MIN = 3;
-    Const SPINNER_MAX = 3;
+    Const SPINNER_MAX = 20;
 
     
 /**
@@ -39,7 +39,7 @@ class ConfigurationController {
             $defaultConfiguration['contactLine1']="Zeile Verein";
             $defaultConfiguration['contactLine2']="Zeile Strasse";
             $defaultConfiguration['contactLine3']="Zeile Ort";
-            $defaultConfiguration['contactLine4']="Zeile Hompage";
+            $defaultConfiguration['contactLine4']="Zeile Homepage";
             $defaultConfiguration['contactLine5']="Zeile Mail";
 
             R::store($defaultConfiguration);

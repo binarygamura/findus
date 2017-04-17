@@ -27,9 +27,9 @@ class UpdateConfigurationModule  extends \findus\common\AbstractModule {
         $configurationContactLine5 = filter_input(INPUT_POST, 'configuration_contactLine5');
         
         $configuration = R::findOne('configuration', 'id = 1');
-        if(!$admissionType){
+        if(!$configuration){
             
-            throw new \findus\controller\ControllerException("Es wurde keine Eingangsart mit der ID ".$admissionTypeId." gefunden.");
+            throw new \findus\controller\ControllerException("Es wurde keine Konfiguration gefunden.");
         }
         
         \findus\controller\ConfigurationController::updateConfiguration([

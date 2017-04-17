@@ -3,11 +3,15 @@
 
     <br/>
     <br/>
-    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine1" id="configuration_contactLine1" placeholder="Oberste Zeile" readonly/><br/>
-    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine2" id="configuration_contactLine2" placeholder="Zweite Zeile" readonly/><br/>
-    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine3" id="configuration_contactLine3" placeholder="Dritte Zeile" readonly/><br/>
-    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine4" id="configuration_contactLine4" placeholder="Vierte Zeile" readonly/><br/>
-    <input type="text" style="color: white; background-color: transparent; border: none" name="configuration_contactLine5" id="configuration_contactLine5" placeholder="Unterste Zeile" readonly/><br/>
-
+    <form action="" method="POST" id="show_contact_form" class="pure-form pure-form-aligned">
+        <fieldset>
+            <input type="text" style="color: white; background-color: transparent; border: none;" name="configuration_contactLine1" id="configuration_contactLine1" value="{if isset($configuration.contactLine1)}{$configuration.contactLine1}{/if}" readonly/><br/>
+            <input type="text" style="color: white; background-color: transparent; border: none;" name="configuration_contactLine2" id="configuration_contactLine2" value="{if isset($configuration.contactLine2)}{$configuration.contactLine2}{/if}" readonly/><br/>
+            <input type="text" style="color: white; background-color: transparent; border: none;" name="configuration_contactLine3" id="configuration_contactLine3" value="{if isset($configuration.contactLine3)}{$configuration.contactLine3}{/if}" readonly/><br/>
+            <input type="text" style="color: white; background-color: transparent; border: none;" name="configuration_contactLine4" id="configuration_contactLine4" value="{if isset($configuration.contactLine4)}{$configuration.contactLine4}{/if}" readonly/><br/>
+            <input type="text" style="color: white; background-color: transparent; border: none;" name="configuration_contactLine5" id="configuration_contactLine5" value="{if isset($configuration.contactLine5)}{$configuration.contactLine5}{/if}" readonly/><br/>
+        </fieldset>
+    </form>
+    
 </div>
 
