@@ -94,6 +94,30 @@ class AnimalController {
         foreach($animalData as $key => $value){
             $animal->$key = $value;
         }
+        if($animal->bundle_id > 0){
+            $bundle = R::findOne("imagebundle", "id = ?", [$animal->bundle_id]);
+            if(isset($animal->portrait) && $animal->portrait != ""){
+                foreach($bundle->ownImageList as $image){
+                    if($animal->portrait == $image->name){
+                        $image->isPortrait = true;
+                        break;
+                    }
+                }
+            }
+            else{
+                foreach($bundle->ownImageList as $image){
+                    $image->isPortrait = true;
+                    break;
+                }
+            }
+            R::store($bundle);
+            $animal->bundle = $bundle;
+            
+            count($animal->bundle->ownImageList);
+        } else {
+            $animal -> bundle_id = NULL;
+        }
+
         R::store($animal);
         return $animal;
     }
