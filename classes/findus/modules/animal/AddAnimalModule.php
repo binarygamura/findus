@@ -22,9 +22,7 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             //TODO: the following code looks very repetitive. perhaps we should refactor things here
             //and put code into functions.
             $animalData['id'] = isset($animalData['id']) ? intval(trim($animalData['id'])) : 0;
-            if($animalData['id'] > 0){
-                $errors['id'] = "Bitte den Datensatz speichern.";
-            }
+            $id=$animalData['id'];
 
             $animalData['name'] = isset($animalData['name']) ? trim($animalData['name']) : "";
             if($animalData['name'] == ""){
@@ -66,7 +64,10 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             if(count($errors) > 0){
                 $response = new \findus\common\JsonResponse($errors, 400);
             }
-            else {
+            else if ($id > 0) {
+                \findus\controller\AnimalController::updateAnimal($animalData);
+                $response = new \findus\common\JsonResponse(["id" => $id]);
+            } else {
                 $id = \findus\controller\AnimalController::createNewAnimal($animalData);
                 $response = new \findus\common\JsonResponse(["id" => $id]);
             }

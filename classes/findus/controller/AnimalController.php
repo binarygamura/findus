@@ -87,6 +87,17 @@ class AnimalController {
         return R::store($animal);
     }
     
+    public static function updateAnimal(array $animalData){
+        $animalId = $animalData['id'];
+        $animal = R::findOne("animal", "id = ?", [$animalId]);
+        
+        foreach($animalData as $key => $value){
+            $animal->$key = $value;
+        }
+        R::store($animal);
+        return $animal;
+    }
+
     public static function getLatestFoundAnimals($limit = 5){
         $animals = R::find("animal", "bundle_id != 0 ORDER BY id LIMIT ?", [$limit]);
         $result = [];
