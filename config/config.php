@@ -13,6 +13,10 @@ $config = [
         'stage' => STAGE_DEV,
         'title' => 'Tierhilfe'
     ],
+    "login" => [
+        "enableRecaptcha" => false,
+        "secret" => ""
+    ],
     'uploads' => [
         
     ],

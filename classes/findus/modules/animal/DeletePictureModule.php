@@ -19,27 +19,21 @@
 namespace findus\modules\animal;
 
 /**
- * Description of UploadPictureModule
+ * Description of DeletePictureModule
  *
- * @author binary gamura
+ * @author boreas
  */
-class UploadPictureModule extends \findus\common\AbstractModule {
+class DeletePictureModule extends \findus\common\AbstractModule {
     
     function __construct() {
         $this->requiredRole = \findus\model\User::USER;
     }
-    
+
     public function execute() {
-        
-        $bundleId = filter_input(INPUT_GET, "bundleId", FILTER_SANITIZE_NUMBER_INT);
-        if($bundleId === false){
-            throw new \findus\common\ModuleException("Es wurde keine Bundle-Id angegeben.");
+        $fileName = filter_input(INPUT_POST, "filename", FILTER_SANITIZE_STRING);
+        if($fileName === false){
+            throw new \findus\common\ModuleException("Es wurde kein Bildname angegeben.");
         }
-        $isPortraitPic = filter_input(INPUT_GET, "portrait");
-        if($isPortraitPic === false){
-            throw new \findus\common\ModuleException("Es wurde nicht angegeben, ob das Bild das Portrait sein soll.");
-        }
-        $bundle = \findus\controller\ImageBundleController::addUploadToImageBundle($bundleId);
-        return new \findus\common\JsonResponse($bundle);
+        \findus\controller\ImageBundleController::deleteImageByFilename($fileName);
     }
 }

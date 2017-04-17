@@ -12,9 +12,19 @@ use \RedBeanPHP\R;
 class ImageBundleController {
     
     public static function getBundleById($bundleId){
-        return R::findOne("imageBundle", "id = ?", $bundleId);
+        return R::findOne("imagebundle", "id = ?", $bundleId);
     }
     
+    public static function deleteImageByFilename($fileName){
+        $image = R::findOne("image", "name = ?", [$fileName]);
+        if($image == NULL){
+            throw new ControllerException("Das angegebene Bild konnte nicht gefunden werden.");
+        }
+        R::trash($image);
+        $directoryOfApplication = dirname(filter_input(INPUT_SERVER, 'SCRIPT_FILENAME' ));
+        unlink($directoryOfApplication."/images/portraits/",$fileName);
+    }
+
     public static function addUploadToImageBundle($bundleId){
         
         if(!isset($_FILES['file']) || !isset($_FILES['file']['name']) || $_FILES['file']['size'] == 0){
@@ -42,10 +52,17 @@ class ImageBundleController {
             throw new \findus\common\ModuleException("unable to store file in \"".$absoluteDestination."\"");
         }
         
-        $bundle = $bundleId ? R::findOne("imagebundle", "id = ?" , [$bundleId]) : R::dispense("imagebundle");        
+        if($bundleId){
+            $bundle = R::findOne("imagebundle", "id = ?" , [$bundleId]);
+        }
+        else {
+            $bundle = R::dispense("imagebundle");
+            $bundle->portrait = "";
+        }
         
         $image = R::dispense("image");
         $image->name = $destination;
+        $image->isPortrait = false;
         R::store($image);
         
         $bundle->ownImageList[] = $image;

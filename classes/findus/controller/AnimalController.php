@@ -53,13 +53,35 @@ class AnimalController {
         return $data;
     }
 
+    public static function getAnimalById($id){
+        return R::findOne("animal", "id = ?", [$id]);
+    }
+
+
     public static function createNewAnimal(array $animalData){
         $animal = R::dispense('animal');
         foreach($animalData as $key => $value){
             $animal->$key = $value;
         }
-        if($animal->bundle_id >= 0){
-            $animal->bundle = R::findOne("imageBundle", "id = ?", [$animal->bundle_id]);
+        if($animal->bundle_id > 0){
+            $bundle = R::findOne("imagebundle", "id = ?", [$animal->bundle_id]);
+            if(isset($animal->portrait) && $animal->portrait != ""){
+                foreach($bundle->ownImageList as $image){
+                    if($animal->portrait == $image->name){
+                        $image->isPortrait = true;
+                        break;
+                    }
+                }
+            }
+            else{
+                foreach($bundle->ownImageList as $image){
+                    $image->isPortrait = true;
+                    break;
+                }
+            }
+            R::store($bundle);
+            $animal->bundle = $bundle;
+            
             count($animal->bundle->ownImageList);
         }
         return R::store($animal);

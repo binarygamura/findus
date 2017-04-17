@@ -2,8 +2,8 @@
     function updateRacesList(speciesId){
         return new Promise(function(resolve, reject){
             $.ajax({
-                type: "GET",
-                url: "?module=species\\GetRaces",
+                type: 'GET',
+                url: '?module=species\\GetRaces',
                 data: {"species_id": speciesId},
                 success: function(e){
                     resolve(JSON.parse(e));
@@ -19,30 +19,30 @@
             },
             function (e) {
                 var parsedData = JSON.parse(e);
-                var raceSelect = $("#animal\\[race\\]");
+                var raceSelect = $('#animal\\[race\\]');
                 raceSelect.empty();
-                raceSelect.append("<option value=\"-1\">--&gt; bitte auswählen &lt;--</option>");
+                raceSelect.append('<option value=\"-1\">--&gt; bitte auswählen &lt;--</option>');
                 parsedData.data.forEach(function (element) {
-                    raceSelect.append("<option value=\"" + element.id + "\">" + element.name + "</option>");
+                    raceSelect.append('<option value=\"' + element.id + '\">' + element.name + '</option>');
                 }
             );}
         );
     }
 
     function renderRacesList(raceslistResponse){
-        var raceSelect = $("#animal\\[race\\]");
+        var raceSelect = $('#animal\\[race\\]');
         raceSelect.empty();
-        raceSelect.append("<option value=\"-1\">--&gt; bitte auswählen &lt;--</option>");
+        raceSelect.append('<option value=\"-1\">--&gt; bitte auswählen &lt;--</option>');
         raceslistResponse.data.forEach(function (element) {
-            raceSelect.append("<option value=\"" + element.id + "\">" + element.name + "</option>");
+            raceSelect.append('<option value=\"' + element.id + '\">' + element.name + '</option>');
         });
     }
 
     function updateSpeciesList(){
         return new Promise(function(resolve, reject){
             $.ajax({
-                type: "GET",
-                url: "?module=species\\GetSpecies",
+                type: 'GET',
+                url: '?module=species\\GetSpecies',
                 success: function(e){
                     resolve(JSON.parse(e));
                 },
@@ -54,10 +54,10 @@
     }
     
     function renderSpeciesList(speciesResponse){
-        var speciesSelect = $("#animal\\[species\\]").empty();
-        speciesSelect.append("<option value=\"-1\">--&gt; bitte auswählen &lt;--</option>");
+        var speciesSelect = $('#animal\\[species\\]').empty();
+        speciesSelect.append('<option value=\"-1\">--&gt; bitte auswählen &lt;--</option>');
         speciesResponse.data.forEach(function (element) {
-            speciesSelect.append("<option value=\"" + element.id + "\">" + element.name + "</option>");
+            speciesSelect.append('<option value=\"' + element.id + '\">' + element.name + '</option>');
         });
     }
     
@@ -76,38 +76,67 @@
             focusOnSelect: true
           });
         
+        $('#delete_portrait_button').click(function(e){            
+            var currentSlide = $('.cat_spinner').slick('slickCurrentSlide');
+            if(currentSlide || currentSlide === 0){
+                FindusUtil.blockUI();
+                var formData = new FormData();
+                var fileName = $(".slick-current input[type='checkbox']").val();
+                console.log("deleting "+fileName);
+                formData.append('filename', fileName);
+                $.ajax({
+                    url: 'index.php?module=animal\\DeletePicture', 
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    type: 'POST',
+                    success: function(e){
+                        $('.cat_spinner').slick('slickRemove', currentSlide);
+                    },
+                    error: function(e){
+                        FindusUtil.showErrorDialog('Fehler beim Löschen eines Bildes.', 
+                        'Es ist ein Fehler beim Löschen des Bildes aufgetreten.');
+                    }
+                 });
+            }
+        });
+        
+        
         $('#portrait_select').on('change', function() {
-        if($('#portrait_select').prop('files').length > 0){
-            FindusUtil.blockUI();            
-            var bundleId = $("#animal\\[bundle_id\\]").val();
-            console.log("bundle :"+ bundleId);
-            var formData = new FormData();                      
-            formData.append('file', $('#portrait_select').prop('files')[0]);
-            $.ajax({
-                url: 'index.php?module=animal\\UploadPicture&bundleId='+bundleId, 
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: formData,                         
-                type: 'POST',
-                success: function(e){
-                    console.log(e);
-                    var result = JSON.parse(e);
-                    console.log(result.id);
-                    $("#animal\\[bundle_id\\]").val(result.id);
-                    var lastImage = result.ownImage[result.ownImage.length - 1];
-                    $('.cat_spinner').slick('slickAdd','<div><img class="portrait" src="./images/portraits/'+lastImage.name+'"/></div>');
-                },
-                error: function(e){
-                    FindusUtil.showErrorDialog("Fehler beim Hochladen des Bildes.", 
-                    "Es ist ein Fehler beim Hochladen des Bildes aufgetreten.");
-                }
-             });
-         }
-         else {
-            $("#portrait").attr("src", "");
-            $("#animal\\[portrait\\]").val("");
-         }
+            if($('#portrait_select').prop('files').length > 0){
+                FindusUtil.blockUI();
+                var bundleId = $("#animal\\[bundle_id\\]").val();
+                var formData = new FormData();                      
+                formData.append('file', $('#portrait_select').prop('files')[0]);
+                $.ajax({
+                    url: 'index.php?module=animal\\UploadPicture&bundleId='+bundleId, 
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,                         
+                    type: 'POST',
+                    success: function(e){
+                        var result = JSON.parse(e);
+                        $('#animal\\[bundle_id\\]').val(result.id);
+                        var lastImage = result.ownImage[result.ownImage.length - 1];
+                        $context = $('.cat_spinner').slick('slickAdd','<div>\n\
+                            <img class="portrait" src="./images/portraits/'+lastImage.name+'"/>\n\
+                            <input type="checkbox" class=\"selected_portrait\" value="'+lastImage.name+'" name="animal[portrait]">Portrait?</input></div>');
+                        $('.selected_portrait').on('change', function() {
+                            $('.selected_portrait').not(this).prop('checked', false);
+                        });                    
+                    },
+                    error: function(e){
+                        FindusUtil.showErrorDialog("Fehler beim Hochladen des Bildes.", 
+                        "Es ist ein Fehler beim Hochladen des Bildes aufgetreten.");
+                    }
+                 });
+             }
+             else {
+                $("#portrait").attr("src", "");
+                $("#animal\\[portrait\\]").val("");
+             }
         });
         
         
@@ -119,8 +148,10 @@
             }
         });
 
-        $('#create_button').click(function (e) {
+        $('#create_button1').click(function (e) {
+            e.preventDefault();
             FindusUtil.blockUI();
+//            $("animal[portrait]").val($('.selected_portrait:checked').val());
             $.ajax({
                 type: "POST",
                 url: "?module=animal\\AddAnimal",
@@ -149,7 +180,7 @@
                     });
                 }
             });
-            e.preventDefault();
+            
         });
 
         $('#add_species_button').click(function (e) {

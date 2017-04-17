@@ -30,6 +30,9 @@
         <meta name="msapplication-TileColor" content="#ffffff"/>
         <meta name="msapplication-TileImage" content="./images/favicon/ms-icon-144x144.png"/>
         <meta name="theme-color" content="#ffffff"/>
+        {foreach item=script from=$top_scripts}
+        <script src='{$script}'></script>
+        {/foreach}
     </head>
     <body>
         <div id="main">
@@ -66,7 +69,7 @@
         <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
         <script src="./js/common.js"></script>
         <script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
-        {foreach item=script from=$scripts}
+        {foreach item=script from=$bottom_scripts}
         <script src='./js/module/{$script}'></script>
         {/foreach}
     </body>

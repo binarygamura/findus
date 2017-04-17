@@ -67,14 +67,23 @@ class UpdateAnimalModule extends \findus\common\AbstractModule {
                 $response = new \findus\common\JsonResponse($errors, 400);
             }
             else {
-                $id = \findus\controller\AnimalController::createNewAnimal($animalData);
+//                $id = \findus\controller\AnimalController::createNewAnimal($animalData);
                 $response = new \findus\common\JsonResponse(["id" => $id]);
             }
         }
         else {
+            
+            $animalId = filter_input(INPUT_GET, 'animalId', FILTER_VALIDATE_INT);
+            if($animalId === false){
+                throw new \findus\common\ModuleException('Es wurde keine ID angegeben.');
+            }
+            $animal = \findus\controller\AnimalController::getAnimalById($animalId);
+            $species = \findus\controller\SpeciesController::getSpeciesById($animal->species);
             $response = new \findus\common\TemplateResponse();
             $response->setValue('all_species', \findus\controller\SpeciesController::getAllSpecies());
-            $response->addScript("add_animal.js");
+            $response->setValue('all_races', \findus\controller\RaceController::getAllRacesFor($species->box()));
+            $response->setValue('animal', $animal);
+            $response->addScript('add_animal.js');
             $response->addTemplateName("animal\add_animal.htpl");
         }
         return $response;

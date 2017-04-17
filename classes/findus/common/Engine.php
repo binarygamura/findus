@@ -77,7 +77,8 @@ class Engine {
             $values['topMenu'] = $this->renderTopMenu($user);
             $values['sideMenu'] = $this->renderSideMenu($user);
             $values['user'] = $_SESSION['user']->box();
-            $values['scripts'] = $response->getScripts();
+            $values['bottom_scripts'] = $response->getBottomScripts();
+            $values['top_scripts'] = $response->getTopScripts();            
             foreach($values as $key => $value){
                 $smarty->assign($key, $value);
             }

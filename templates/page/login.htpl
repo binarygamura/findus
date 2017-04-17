@@ -1,6 +1,12 @@
+
+<script>
+    function submitForm(token) {
+        document.getElementById("login_form").submit();
+    }   
+</script>
 <h2>Login</h2>
 <div class="box">
-    <form action="" method="POST" class="pure-form pure-form-aligned">
+    <form action="" method="POST" class="pure-form pure-form-aligned" id="login_form">
         <fieldset>
             <div class="pure-control-group">
                 <label for="user_name">Login:</label>
@@ -11,9 +17,12 @@
                 <input type="password"  name="password" id="password" placeholder="Passwort"/>
             </div>
             <div class="pure-controls">
-                <input class="pure-button" type="submit" name="login_button" value="Login"/>
+                <input type="hidden" value="1" name="login"/>
+                <input class="pure-button g-recaptcha" type="submit" name="login_button" value="Login" data-sitekey="6LeZSB0UAAAAAILZLV2rEVWiFx3B39R_xRSKckh4" data-callback="submitForm"/>
                 <input class="pure-button" type="reset" name="reset_button" value="zurücksetzen"/>
             </div>
         </fieldset>
     </form>
 </div>
+
+

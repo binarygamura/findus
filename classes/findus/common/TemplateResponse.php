@@ -12,19 +12,27 @@ class TemplateResponse extends Response {
     
     private $values = [];
     
-    private $scripts = [];
+    private $bottomScripts = [];
+    
+    private $topScripts = [];
     
     public function __construct() {
         parent::__construct();
     }
     
-    public function getScripts() {
-        return $this->scripts;
+    public function getBottomScripts() {
+        return $this->bottomScripts;
+    }
+    
+    function getTopScripts() {
+        return $this->topScripts;
     }
 
-    public function addScript($script){
-        $this->scripts[] = $script;
+    public function addScript($script, $bottom = true){
+        $bottom ? $this->bottomScripts[] = $script : $this->topScripts = $script;
     }
+    
+    
     public function setValue($key, $value){
         $this->values[$key] = $value;
     }

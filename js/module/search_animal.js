@@ -9,7 +9,7 @@
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return "<a class=\"edit_animal\" href=\"\">bearbeiten</a>";
+                    return "<a class=\"edit_animal\" href=\"?module=animal\\UpdateAnimal&animalId="+data.id+"\">bearbeiten</a>";
                 }
             }
         ]
@@ -115,46 +115,46 @@ $(document).ready(function () {
             }
         });
         
-        $('a.edit_animal').click(function(e){
-            e.preventDefault();
-//            initClickHandler();
-            var selectedAnimal = animalTable.row($(this).parent().parent()).data();
-            var animalId = selectedAnimal.id;
-            $.get("./templates/animal/add_animal.htpl", function (data) {
-                var content = $(data).dialog({
-                    title: "Tier \""+selectedAnimal.name+"\" bearbeiten",
-                    modal: true,
-                    buttons: {
-                        "speichern": function () {
-                        FindusUtil.blockUI();
-                        var self = this;
-                        $.ajax({
-                            type: "POST",
-                            url: "?module=animal\\UpdateAnimal",
-                            data: {
-                                animal_name: $("#animal_name", self).val(),
-                                animal_id:animalId,
-                            },
-                            success: function (e) {
-                                $(self).dialog("destroy");
-                                location.reload();
-                            },
-                            error: function (e) {
-                                var error = JSON.parse(e.responseText);
-                                FindusUtil.showErrorDialog("Fehler", error.message);
-                            }
-                        });
-                        
-                    },
-                        "abbrechen": function(){
-                            $(this).dialog("destroy");
-                        }
-                    }
-                });
-                $("#animal_name", content).val(selectedTherapyType.name);
-                $("#animal_id", content).val(selectedTherapyType.id);
-            });
-        });
+//        $('a.edit_animal').click(function(e){
+//            e.preventDefault();
+////            initClickHandler();
+//            var selectedAnimal = animalTable.row($(this).parent().parent()).data();
+//            var animalId = selectedAnimal.id;
+//            $.get("./templates/animal/add_animal.htpl", function (data) {
+//                var content = $(data).dialog({
+//                    title: "Tier \""+selectedAnimal.name+"\" bearbeiten",
+//                    modal: true,
+//                    buttons: {
+//                        "speichern": function () {
+//                        FindusUtil.blockUI();
+//                        var self = this;
+//                        $.ajax({
+//                            type: "POST",
+//                            url: "?module=animal\\UpdateAnimal",
+//                            data: {
+//                                animal_name: $("#animal_name", self).val(),
+//                                animal_id:animalId,
+//                            },
+//                            success: function (e) {
+//                                $(self).dialog("destroy");
+//                                location.reload();
+//                            },
+//                            error: function (e) {
+//                                var error = JSON.parse(e.responseText);
+//                                FindusUtil.showErrorDialog("Fehler", error.message);
+//                            }
+//                        });
+//                        
+//                    },
+//                        "abbrechen": function(){
+//                            $(this).dialog("destroy");
+//                        }
+//                    }
+//                });
+//                $("#animal_name", content).val(selectedTherapyType.name);
+//                $("#animal_id", content).val(selectedTherapyType.id);
+//            });
+//        });
     }
 
        $("#animal\\[species\\]").change(function (event) {

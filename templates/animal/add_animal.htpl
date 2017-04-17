@@ -1,4 +1,4 @@
-<h2>Tier hinzufügen</h2>
+<h2>{if isset($animal)}Tier editieren {else} Tier hinzufügen{/if}</h2>
 <div class="box">
     <form action="" method="POST" id="add_animal_form" class="pure-form pure-form-aligned">
         <div class="tabs">
@@ -11,18 +11,18 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="animal[id]">ID:</label>
-                        <input type="text" maxlength="5" name="animal[id]" id="animal[id]" placeholder="ID" readonly="readonly" title="Die ID wird vom System vergeben und kann nicht manuell eingegeben werden."/>
+                        <input type="text" maxlength="5" name="animal[id]" id="animal[id]" placeholder="ID" readonly="readonly" value="{if isset($animal.id)}{$animal.id}{/if}" title="Die ID wird vom System vergeben und kann nicht manuell eingegeben werden."/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[name]">Name:</label>
-                        <input type="text" name="animal[name]" id="animal[name]" placeholder="Name des Tieres" value="{if isset($smarty.post.animal.name)}{$smarty.post.animal.name}{/if}"/>
+                        <input type="text" name="animal[name]" id="animal[name]" placeholder="Name des Tieres" value="{if isset($smarty.post.animal.name)}{$smarty.post.animal.name}{elseif isset($animal.name)}{$animal.name}{/if}"/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[species]">Art:</label>
                         <select name="animal[species]" id="animal[species]">
                             <option value="-1">--&gt; bitte auswählen &lt;--</option>
                             {foreach item=species from=$all_species}
-                            <option value="{$species.id}">{$species.name}</option>
+                            <option {if isset($animal.species) && $animal.species eq $species.id}selected{/if} value="{$species.id}">{$species.name}</option>
                             {/foreach}
                         </select>
                         <a class="add_button" id="add_species_button" href=""><img src="./images/add.png" alt="Tierart hinzufügen"/></a>
@@ -31,33 +31,36 @@
                         <label for="animal[race]">Rasse:</label>
                         <select name="animal[race]" id="animal[race]" title="Bitte die Rasse angeben.">
                             <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                            {foreach item=race from=$all_races}
+                            <option {if isset($animal.race) && $race.id eq $animal.race}selected{/if} value="{$race.id}">{$race.name}</option>
+                            {/foreach}
                         </select>
                         <a class="add_button" id="add_race_button" href=""><img src="./images/add.png" alt="Tierart hinzufügen"/></a>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[sex]">Geschlecht:</label>
                         <select name="animal[sex]" id="animal[sex]">
-                            <option value="">--&gt; bitte auswählen &lt;--</option>
-                            <option value="UNKNOWN">unklar</option>
-                            <option value="FEMALE">weiblich</option>
-                            <option value="MALE">männlich</option>
+                            <option {if isset($animal.sex) && $animal.sex eq ""}selected{/if} value="">--&gt; bitte auswählen &lt;--</option>
+                            <option {if isset($animal.sex) && $animal.sex eq "UNKNOWN"}selected{/if} value="UNKNOWN">unklar</option>
+                            <option {if isset($animal.sex) && $animal.sex eq "FEMALE"}selected{/if} value="FEMALE">weiblich</option>
+                            <option {if isset($animal.sex) && $animal.sex eq "MALE"}selected{/if} value="MALE">männlich</option>
                         </select>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[color]">Farbe:</label>
-                        <input type="text"  name="animal[color]" id="animal[color]" placeholder="Farbe des Tieres" title="Mögliche Wert sind hier z.B. braun, weiß, etc..."/>
+                        <input type="text"  name="animal[color]" id="animal[color]" value="{if isset($animal.color)}{$animal.color}{/if}" placeholder="Farbe des Tieres" title="Mögliche Wert sind hier z.B. braun, weiß, etc..."/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[attributes]">Besondere Merkmale:</label>
-                        <textarea id="animal[attributes]" name="animal[attributes]" rows="5" cols="40" title="Sind Merkmale vorhanden, die dieses Tier von anderen eindeutig unterscheiden, sind diese hier zu vermerken."></textarea>
+                        <textarea id="animal[attributes]" name="animal[attributes]" rows="5" cols="40" title="Sind Merkmale vorhanden, die dieses Tier von anderen eindeutig unterscheiden, sind diese hier zu vermerken.">{if isset($animal.attributes)}{$animal.attributes}{/if}</textarea>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[chip]">Chip-Nummer:</label>
-                        <input type="text"  name="animal[chip]" id="animal[chip]" placeholder="Chip-Nummer"/>
+                        <input type="text"  name="animal[chip]" id="animal[chip]" value="{if isset($animal.chip)}{$animal.chip}{/if}" placeholder="Chip-Nummer"/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[tatoo]">Tätowierung:</label>
-                        <input type="text"  name="animal[tatoo]" id="animal[tatoo]" placeholder="Tätowierung"/>
+                        <input type="text"  name="animal[tatoo]" id="animal[tatoo]" value="{if isset($animal.tatoo)}{$animal.tatoo}{/if}" placeholder="Tätowierung"/>
                     </div>
                 </fieldset>
             </div>
@@ -69,23 +72,23 @@
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[age]">Alter:</label>
-                        <input type="text"  name="animal[age]" id="animal[age]" placeholder="Alter des Tieres"/>
+                        <input type="text"  name="animal[age]" id="animal[age]" value="{if isset($animal.age)}{$animal.age}{/if}" placeholder="Alter des Tieres"/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[knownDiseases]">Bekannte Erkrankungen:</label>
-                        <textarea id="animal[knownDiseases]" name="animal[knownDiseases]" rows="5" cols="40"></textarea>
+                        <textarea id="animal[knownDiseases]" name="animal[knownDiseases]" rows="5" cols="40">{if isset($animal.knownDiseases)}{$animal.knownDiseases}{/if}</textarea>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[generalState]">Allgemeinzustand:</label>
-                        <textarea id="animal[generalState]" name="animal[generalState]" rows="5" cols="40"></textarea>
+                        <textarea id="animal[generalState]" name="animal[generalState]" rows="5" cols="40">{if isset($animal.generalState)}{$animal.generalState}{/if}</textarea>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[behaviour]">Verhalten:</label>
-                        <textarea id="animal[behaviour]" name="animal[behaviour]" rows="5" cols="40"></textarea>
+                        <textarea id="animal[behaviour]" name="animal[behaviour]" rows="5" cols="40">{if isset($animal.behaviour)}{$animal.behaviour}{/if}</textarea>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[notes]">Sonstige Bemerkungen:</label>
-                        <textarea id="animal[notes]" name="animal[notes]" rows="5" cols="40"></textarea>
+                        <textarea id="animal[notes]" name="animal[notes]" rows="5" cols="40">{if isset($animal.notes)}{$animal.notes}{/if}</textarea>
                     </div>
                     <input type="hidden" name="create_button" value="true"/>
                 </fieldset>
@@ -93,23 +96,19 @@
             <div id="pictures_tab">
                 <div class="pure-control-group">          
                     <!-- TODO: add a placeholder image -->
-                    <!--<img  id="portrait" alt="Bild des Tieres"/>-->
                     <div class="cat_spinner" style="min-height: 468px;">
-<!--                        <div><img class="portrait" src="./images/portraits/Findus58cf03787a1753.97755168.PNG"/></div>
-                        <div><img class="portrait" src="./images/portraits/Findus58cf037edb4555.97030865.PNG"/></div>
-                        <div><img class="portrait" src="./images/portraits/Findus58cf0c78631694.74503903.png"/></div>-->
                     </div>
-                    <!--<div class="cat_spinner_nav"></div>-->
                 </div>
                 <div class="pure-control-group">
-                    <input type="file"  id="portrait_select" />                    
-                    <input type="hidden" name="animal[portrait]" id="animal[portrait]" value=""/>
+                    <input type="file"  id="portrait_select" class="pure-button"/>
+                    <input type="button" id="delete_portrait_button" class="button-success pure-button" value="löschen"/> 
+                    <!--<input type="hidden" name="animal[portrait]" id="animal[portrait]" value=""/>-->
                     <input type="hidden" name="animal[bundle_id]" id="animal[bundle_id]" value="0"/>
                 </div>
             </div>
             <div class="pure-controls">
-                <input class="button-success pure-button" type="submit" id="update_button" name="update_button" value="Speichern"/>
-                <input class="button-success pure-button" type="submit" id="create_button" name="create_button" value="Erstellen"/>
+                <!--<input class="button-success pure-button" type="submit" id="update_button" name="update_button" value="Speichern"/>-->
+                <input class="button-success pure-button" type="submit" id="create_button1" name="create_button1" value="Erstellen"/>
                 <input class="button-warning pure-button" type="reset" id="reset_button" name="reset_button" value="zurücksetzen"/>
             </div>
         </div>
