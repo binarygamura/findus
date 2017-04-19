@@ -11,6 +11,7 @@ new incoming animal.
 ## How can i contribute?
 Feel free if you have experience in PHP, JS, CSS and webdevelopment in general.
 We are always looking for new developers. If you want to apply, please send us an email.
+Thanks.
 
 ##  Used software and other stuff
 * [Pure CSS](https://purecss.io)
