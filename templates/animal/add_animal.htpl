@@ -6,7 +6,7 @@
                 <li><a href="#general_tab">Allgemeines</a></li>
                 <li><a href="#notes_tab">Hinweise</a></li>
                 <li><a href="#pictures_tab">Bilder</a></li>
-                <li><a href="#admission_tab">Eingänge</a></li>
+                <li><a href="#admission_tab">Zugänge</a></li>
             </ul>
             <div id="general_tab">
                 <fieldset>
