@@ -5,7 +5,8 @@
             <ul>
                 <li><a href="#general_tab">Allgemeines</a></li>
                 <li><a href="#notes_tab">Hinweise</a></li>
-                <li><a href="#pictures_tab">Bild</a></li>
+                <li><a href="#pictures_tab">Bilder</a></li>
+                <li><a href="#admission_tab">Eingänge</a></li>
             </ul>
             <div id="general_tab">
                 <fieldset>
@@ -114,6 +115,15 @@
                     <input type="hidden" name="animal[bundle_id]" id="animal[bundle_id]" value="{if isset($bundle.id)}{$bundle.id}{else}0{/if}"/>
                 </div>
             </div>
+            <div id="admission_tab">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="animal[ownAdmissionList[date]]">Aufnahmetag:</label>
+<!--                        <input type="text"  name="animal[ownAdmissionList[date]]" id="animal[ownAdmissionList[date]]" value="{if isset($animal.ownAdmissionList.date)}{$animal.ownAdmissionList.date}{/if}" placeholder="Tag der Aufnahme"/>
+-->
+                    </div>                    
+                </fieldset>
+            </div>    
             <div class="pure-controls">
                 <!--<input class="button-success pure-button" type="submit" id="update_button" name="update_button" value="Speichern"/>-->
                 <input class="button-success pure-button" type="submit" id="create_button1" name="create_button1" value="Erstellen"/>
