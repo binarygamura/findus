@@ -11,8 +11,9 @@ use \RedBeanPHP\R;
  */
 class ImageBundleController {
     
-    public static function getBundleById($bundleId){
-        return R::findOne("imagebundle", "id = ?", $bundleId);
+    public static function getBundleById($bundleId){        
+        $bundle = R::findOne("imagebundle", "id = ?", [$bundleId]);
+        return $bundle;
     }
     
     public static function deleteImageByFilename($fileName){

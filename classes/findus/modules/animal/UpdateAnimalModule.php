@@ -82,6 +82,9 @@ class UpdateAnimalModule extends \findus\common\AbstractModule {
             $response = new \findus\common\TemplateResponse();
             $response->setValue('all_species', \findus\controller\SpeciesController::getAllSpecies());
             $response->setValue('all_races', \findus\controller\RaceController::getAllRacesFor($species->box()));
+            if($animal->bundle_id){
+                $response->setValue('bundle', \findus\controller\ImageBundleController::getBundleById($animal->bundle_id));
+            }
             $response->setValue('animal', $animal);
             $response->addScript('add_animal.js');
             $response->addTemplateName("animal\add_animal.htpl");
