@@ -117,6 +117,22 @@ class AnimalController {
         } else {
             $animal -> bundle_id = NULL;
         }
+        // test create admission 
+        $admission = R::dispense('admission');
+        $admission['date'] = time();
+        $admission['employee'] = \findus\controller\EmployeeController::getEmployeeById(1);
+        $admission['admissionType'] = \findus\controller\AdmissionTypeController::getAdmissionTypeById(10);
+        $admission['reason']='Keine Zeit mehr';
+        $admission['remarks']='Die Person war zwar sehr nett, aber auch etwas schrullig. Irgendwie kam sie mir vor wie eine Ente und als hätte ich sie schon einmal gesehen, aber das kann ja nicht sein. Wird sind doch nicht im Comic hier';
+        $person = R::dispense('person');
+        $person['name'] = 'Donald Duck';
+        $person['street'] = 'Gänsestrasse 11';
+        $person['postalCode'] = '08151';
+        $person['city'] = 'Entenhausen';
+        $person['organization'] = false;
+        $admission['person'] = $person;
+        
+        $animal->ownAdmissionList[] = $admission;
 
         R::store($animal);
         return $animal;
