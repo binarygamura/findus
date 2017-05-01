@@ -97,11 +97,11 @@
             <div id="pictures_tab">
                 <div class="pure-control-group">          
                     <!-- TODO: add a placeholder image -->
-                    <div class="cat_spinner" style="min-height: 468px;">
+                    <div class="cat_spinner" > <!-- style="min-height: 468px;" -->
                         {if isset($bundle)}
                             {foreach item=image from=$bundle->ownImageList}
                             <div>
-                                <img class="portrait" src="./images/portraits/{$image.name}" alt="portrait_image"/>
+                                <img  class="portrait" src="./images/portraits/{$image.name}" alt="portrait_image"/> 
                                 <input type="checkbox" {if $image.is_portrait}checked{/if} class="selected_portrait" value="{$image.name}" name="animal[portrait]">Portrait?</input>
                             </div>
                             {/foreach}
@@ -119,14 +119,12 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="animal[ownAdmissionList[date]]">Aufnahmetag:</label>
-<!--                        <input type="text"  name="animal[ownAdmissionList[date]]" id="animal[ownAdmissionList[date]]" value="{if isset($animal.ownAdmissionList.date)}{$animal.ownAdmissionList.date}{/if}" placeholder="Tag der Aufnahme"/>
--->
+                        <input type="text"  name="animal[ownAdmissionList[date]]" id="animal[ownAdmissionList[date]]" value="{if isset($animal.ownAdmissionList.date)}{$animal.ownAdmissionList.date}{/if}" placeholder="Tag der Aufnahme"/>
                     </div>                    
                 </fieldset>
             </div>    
             <div class="pure-controls">
-                <!--<input class="button-success pure-button" type="submit" id="update_button" name="update_button" value="Speichern"/>-->
-                <input class="button-success pure-button" type="submit" id="create_button1" name="create_button1" value="Erstellen"/>
+                <input class="button-success pure-button" type="submit" id="create_button1" name="create_button1" value="{if isset($animal.id)}Aktualisieren{else}Erstellen{/if}"/>
                 <input class="button-warning pure-button" type="reset" id="reset_button" name="reset_button" value="zurücksetzen"/>
             </div>
         </div>

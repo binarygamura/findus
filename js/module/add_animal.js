@@ -63,19 +63,23 @@
     
     $(document).ready(function () {
         
+        
+        $( "#animal\\[ownAdmissionList\\[date\\]\\]" ).datepicker();
+        
         $(".cat_spinner").slick({
-//            dots: true,
+            dots: true,
+            slidesToShow: 1
 //            focusOnSelect: true
-//            adaptiveHeight: true
+//            adaptiveHeight: true,
 //            centerMode: true,
 //            variableWidth: true
         });
+        
+        
+        
         $('.selected_portrait').on('change', function() {
             $('.selected_portrait').not(this).prop('checked', false);
         });
-//        setTimeout(function(){
-//            $(".cat_spinner").hide().show(0);
-//        })
         
         $('#delete_portrait_button').click(function(e){            
             var currentSlide = $('.cat_spinner').slick('slickCurrentSlide');

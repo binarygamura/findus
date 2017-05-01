@@ -9,7 +9,7 @@
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return "<a class=\"edit_animal\" href=\"?module=animal\\UpdateAnimal&animalId="+data.id+"\">bearbeiten</a>";
+                    return "<a class=\"edit_animal\" href=\"?module=menu\\Employee&subModule=animal\\UpdateAnimal&animalId="+data.id+"\">bearbeiten</a>";
                 }
             }
         ]

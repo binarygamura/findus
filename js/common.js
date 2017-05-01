@@ -64,7 +64,32 @@ FindusUtil = {
 //unblock by default if an ajax call comes to an end.
 $(document).ajaxStop($.unblockUI);
 
-$(document).ready(function(){
+$(document).ready(function(){    
+    
+    
+    $.datepicker.setDefaults({
+        prevText: '&#x3c;zurück', prevStatus: '',
+        prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+        nextText: 'Vor&#x3e;', nextStatus: '',
+        nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+        currentText: 'heute', currentStatus: '',
+        todayText: 'heute', todayStatus: '',
+        clearText: '-', clearStatus: '',
+        closeText: 'schließen', closeStatus: '',
+        firstDay: 1,
+        buttonText: 'auswählen',
+        monthNames: ['Januar','Februar','März','April','Mai','Juni',
+        'Juli','August','September','Oktober','November','Dezember'],
+        monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+        'Jul','Aug','Sep','Okt','Nov','Dez'],
+        dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+        dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+        dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+        showMonthAfterYear: false,
+        showOn: 'focus',
+//        buttonImageOnly: true,
+        dateFormat:'dd.mm.yy'
+     });
     FindusUtil.initTable("table.default");
     $(".tabs").tabs();
     $(document ).tooltip({
