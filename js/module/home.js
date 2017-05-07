@@ -8,7 +8,6 @@ $(document).ready(function(){
     
     $.get("?module=animal\\GetLatestAnimals",[], function(data){
         var result = JSON.parse(data);
-        console.log(result);
         var markup = "";
         result.forEach(function(animal){            
             markup += '<div><img class="portrait" src="./images/portraits/'+animal.bundle.ownImage[0].name+'"/>\

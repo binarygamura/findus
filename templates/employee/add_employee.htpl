@@ -2,9 +2,6 @@
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
-                <input type="text" name="employee_id" id="employee_id"/>
-            </div>
-            <div class="pure-control-group">
                 <label for="employee_name">Nachname:</label>
                 <input type="text" maxlength="50" name="employee_name" id="employee_name" placeholder="Nachname"/>
             </div>

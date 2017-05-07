@@ -9,11 +9,12 @@ $(document).ready(function () {
             {data: "spinner"},
             {
                 data: "state",
+                orderable: false,
                 render: function (data, type, row, meta) {
                     if(data==='DEACTIVE'){
                         return "<a class=\"switch_admissionTypeState\" href=\"\">aktivieren</a>";
                     } else {
-                        return "<a class=\"switch_admissionTypeState\" href=\"\">entfernen</a>&nbsp;<a class=\"edit_admissionType\" href=\"\">bearbeiten</a>";
+                        return "<a class=\"switch_admissionTypeState\" href=\"\"><img src=\"./images/cancel.png\" title=\"löschen\" alt=\"löschen\"/></a>&nbsp;<a class=\"edit_admissionType\" href=\"\"><img src=\"./images/toolbar_edit.png\" title=\"bearbeiten\" alt=\"bearbeiten\"/></a>";
                     }
                 }
             }
@@ -78,13 +79,11 @@ $(document).ready(function () {
                 $("#admissionType_id", content).val(selectedAdmissionType.id);
                 $("#admissionType_spinner", content).prop('checked', selectedAdmissionType.spinner === "1" ? true : false);
                 $("#admissionType_description", content).val(selectedAdmissionType.description);
-                console.log(selectedAdmissionType);
             });
         });
         
         $('a.switch_admissionTypeState').click(function (e) {
             e.preventDefault();
-            initClickHandler();
             var data = admissionTypeTable.row($(this).parent().parent()).data();
             if (data.state === 'ACTIVE') {
                 $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>")
@@ -137,7 +136,6 @@ $(document).ready(function () {
                         var admissionTypeName = $("#admissionType_name", this).val();
                         var admissionTypeDescription = $("#admissionType_description", this).val();
                         var admissionTypeSpinner = $("#admissionType_spinner", this).is(":checked");
-                        console.log(admissionTypeSpinner);
                         var self = this;
                         $.ajax({
                             type: "POST",

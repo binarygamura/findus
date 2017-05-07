@@ -1,5 +1,5 @@
 <div>
-    <form action="" method="POST" class="pure-form pure-form-aligned">
+    <form action="test" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
                 <label for="user_id">Id:</label>
@@ -13,15 +13,15 @@
                 <label for="user_password">Passwort:</label>
                 <input type="password" maxlength="20" name="user_password" id="user_password" placeholder="Passwort des Benutzers"/>
             </div>
-                    <div class="pure-control-group">
-                        <label for="user[role">Rolle:</label>
-                        <select name="user[role]" id="user_role">
-                            <option value="">--&gt; bitte auswählen &lt;--</option>
-                            <option value="3">Mitarbeiter</option>
-                            <option value="7">Vorstand</option>
-                            <option value="15">Admin</option>
-                        </select>
-                    </div>
+            <div class="pure-control-group">
+                <label for="user[role]">Rolle:</label>
+                <select name="user[role]" id="user_role">
+                    <option value="">--&gt; bitte auswählen &lt;--</option>
+                    <option value="3">Mitarbeiter</option>
+                    <option value="7">Vorstand</option>
+                    <option value="15">Admin</option>
+                </select>
+            </div>
         </fieldset>
     </form>
 </div>

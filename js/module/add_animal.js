@@ -87,7 +87,6 @@
                 FindusUtil.blockUI();
                 var formData = new FormData();
                 var fileName = $(".slick-current input[type='checkbox']").val();
-                console.log("deleting "+fileName);
                 formData.append('filename', fileName);
                 $.ajax({
                     url: 'index.php?module=animal\\DeletePicture', 

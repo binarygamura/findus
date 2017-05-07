@@ -42,7 +42,7 @@ class VeterinarianController {
 
         $newVeterinarian['name'] = $name;
         $newVeterinarian['state'] = 'ACTIVE';
-        $newVeterinarian['description'] = $veterinarianData['veterinarian_description'];
+        $newVeterinarian['description'] = trim($veterinarianData['veterinarian_description']);
         R::store($newVeterinarian);
     }
     
@@ -63,7 +63,7 @@ class VeterinarianController {
         }
 
         $veterinarian['name'] = $name;
-        $veterinarian['description'] = $veterinarianData['veterinarian_description'];
+        $veterinarian['description'] = trim($veterinarianData['veterinarian_description']);
         R::store($veterinarian);
     } 
 

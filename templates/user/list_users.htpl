@@ -5,6 +5,7 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Rolle</th>
                 <th>Aktionen</th>
             </tr>
         </thead>
@@ -13,9 +14,10 @@
             <tr>
                 <td>{$user.id}</td>
                 <td>{$user.username}</td>
+                <td>{$user.role}</td>
                 <td></td>
-                <td style="display:none;">{$user.password}</td>
-                <td style="display:none;">{$user.role}</td>
+                <!--<td style="display:none;">{$user.password}</td>-->
+                <!--<td style="display:none;">{$user.role}</td>-->
             </tr>
             {/foreach}
         </tbody>

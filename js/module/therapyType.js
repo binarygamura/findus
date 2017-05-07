@@ -7,12 +7,13 @@ $(document).ready(function () {
             {data: "name"},
             {data: "description"},
             {
+                orderable: false,
                 data: "state",
                 render: function (data, type, row, meta) {
                     if(data==='DEACTIVE'){
                         return "<a class=\"switch_therapyTypeState\" href=\"\">aktivieren</a>";
                     } else {
-                        return "<a class=\"switch_therapyTypeState\" href=\"\">entfernen</a>&nbsp;<a class=\"edit_therapyType\" href=\"\">bearbeiten</a>";
+                        return "<a class=\"switch_therapyTypeState\" href=\"\"><img src=\"./images/cancel.png\" title=\"löschen\" alt=\"löschen\"/></a>&nbsp;<a class=\"edit_therapyType\" href=\"\"><img src=\"./images/toolbar_edit.png\" title=\"bearbeiten\" alt=\"bearbeiten\"/></a>";
                     }
                 }
             }
@@ -31,7 +32,6 @@ $(document).ready(function () {
         
         $('a.edit_therapyType').click(function(e){
             e.preventDefault();
-            initClickHandler();
             var selectedTherapyType = therapyTypeTable.row($(this).parent().parent()).data();
             var therapyTypeId = selectedTherapyType.id;
             $.get("./templates/therapy/add_therapyType.htpl", function (data) {
@@ -74,7 +74,6 @@ $(document).ready(function () {
         
         $('a.switch_therapyTypeState').click(function (e) {
             e.preventDefault();
-            initClickHandler();
             var data = therapyTypeTable.row($(this).parent().parent()).data();
             if (data.state === 'ACTIVE') {
                 $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>");

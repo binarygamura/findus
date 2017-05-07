@@ -8,11 +8,12 @@ $(document).ready(function () {
             {data: "description"},
             {
                 data: "state",
+                orderable: false,
                 render: function (data, type, row, meta) {
                     if(data==='DEACTIVE'){
                         return "<a class=\"switch_veterinarianState\" href=\"\">aktivieren</a>";
                     } else {
-                        return "<a class=\"switch_veterinarianState\" href=\"\">entfernen</a>&nbsp;<a class=\"edit_veterinarian\" href=\"\">bearbeiten</a>";
+                        return "<a class=\"switch_veterinarianState\" href=\"\"><img src=\"./images/cancel.png\" title=\"löschen\" alt=\"löschen\"/></a>&nbsp;<a class=\"edit_veterinarian\" href=\"\"><img src=\"./images/toolbar_edit.png\" title=\"bearbeiten\" alt=\"bearbeiten\"/></a>";
                     }
                 }
             }
@@ -31,7 +32,6 @@ $(document).ready(function () {
         
         $('a.edit_veterinarian').click(function(e){
             e.preventDefault();
-            initClickHandler();
             //the following gets data for the currently selected row.
             var selectedVeterinarian = veterinarianTable.row($(this).parent().parent()).data();
             var veterinarianId = selectedVeterinarian.id;
@@ -79,7 +79,6 @@ $(document).ready(function () {
         
         $('a.switch_veterinarianState').click(function (e) {
             e.preventDefault();
-            initClickHandler();
             var data = veterinarianTable.row($(this).parent().parent()).data();
             if (data.state === 'ACTIVE') {
                 $msg = $("<div>Wollen Sie wirklich " + data.name + " deaktivieren?</div>")

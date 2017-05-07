@@ -10,6 +10,10 @@
     height: 450px;
 }
 
+.pure-form-aligned .pure-control-group label {
+    width:5em;
+}
+
 /*.ui-widget-content[aria-hidden="true"] {
     display: block !important;
     height: 0px;

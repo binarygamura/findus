@@ -1,6 +1,5 @@
 <div class="box">
     <h2>Kontakt</h2>
-
     <br/>
     <br/>
     <form action="" method="POST" id="show_contact_form" class="pure-form pure-form-aligned">
@@ -12,6 +11,12 @@
             <input type="text" style="color: white; background-color: transparent; border: none;" name="configuration_contactLine5" id="configuration_contactLine5" value="{if isset($configuration.contactLine5)}{$configuration.contactLine5}{/if}" readonly/><br/>
         </fieldset>
     </form>
-    
+<!--    <address>
+        {if isset($configuration.contactLine1)}{$configuration.contactLine1}{/if}<br>
+        {if isset($configuration.contactLine2)}{$configuration.contactLine2}{/if}<br>
+        {if isset($configuration.contactLine3)}{$configuration.contactLine3}{/if}<br>
+        {if isset($configuration.contactLine4)}{$configuration.contactLine4}{/if}<br>
+        {if isset($configuration.contactLine5)}{$configuration.contactLine5}{/if}<br>
+    </address>-->
 </div>
 

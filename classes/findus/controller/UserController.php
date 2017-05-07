@@ -32,6 +32,7 @@ class UserController{
     public static function getGuestUser(){
         $matches = R::find('user', 'id = 1');
         if(count($matches) == 0 || count($matches) > 1){
+            //TODO: move this to the installer script.
             // create default guest and admin
             $newGuestUser = R::dispense('user');
             $newGuestUser['username'] = 'Gast';
@@ -73,6 +74,23 @@ class UserController{
         R::store($newUser);
     }
     
+    public static function setPassword(array $userData){
+        if(!isset($userData['user_id']) || trim($userData['user_id']) == ''){
+            throw new ControllerException('Bitte eine Id angeben.');
+        }
+        //TODO: implement some kind of password policy?
+        if(!isset($userData['user_password']) || trim($userData['user_password']) == ''){
+            throw new ControllerException('Bitte ein Passwort an.');
+        }
+        
+        $user = R::findOne('user', 'id = ?', [$userData['user_id']]);
+        if(!$user){
+            throw new ControllerException("Es existiert kein Benutzer mit der ID ".$userData['user_id']);
+        }
+        $user['password'] = $userData['user_password'];
+        R::store($user);
+    }
+    
     public static function updateUser(array $userData){
         if(!isset($userData['user_id']) || trim($userData['user_id']) == ''){
             throw new ControllerException('Bitte eine Id angeben.');
@@ -82,21 +100,16 @@ class UserController{
         }
         $name = trim($userData['user_name']);
         $id = trim($userData['user_id']);
-        if(!isset($userData['user_password']) || trim($userData['user_password']) == ''){
-            throw new ControllerException('Bitte ein Passwort angeben.');
-        }
         $user = R::findOne('user', 'id = ?', [$id]);
         if(!$user){
             throw new ControllerException("Kein Benutzer mit der id ". $id . " gefunden.");
         }
-        $password = trim($userData['user_password']);
         $role = trim($userData['user_role']);
+        //TODO: display name is hard coded.
         $user['username'] = $name;
-        $user['password'] = $password;
         $user['role'] = $role;
         $user['displayname'] = 'Mitarbeiter';
         R::store($user);
     }
-    
 }
 

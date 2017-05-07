@@ -6,13 +6,32 @@ $(document).ready(function () {
             {data: "id"},
             {data: "name"},
             {
-                data: "user",
-                render: function (data, type, row, meta) {
-                    return "<a class=\"delete_user\" href=\"\">löschen</a>&nbsp;<a class=\"edit_user\" href=\"\">bearbeiten</a>";
+                data: "role",
+                render: function(data, type, row, meta){
+                    switch(data){
+                        case "0":
+                        case "1":
+                            return "Besucher";
+                        case "3":
+                            return "Mitarbeiter";
+                        case "7":
+                            return "Vorstand";
+                        case "15":
+                            return "Admin";
+                        default: 
+                            return "unbekannt ("+data+")";
+                    }
                 }
             },
-            {data:"password"},
-            {data:"role"}
+            {
+                data: "user",
+                orderable: false,
+                render: function (data, type, row, meta) {
+                    return "<a class=\"delete_user\" href=\"\"><img src=\"./images/cancel.png\" title=\"löschen\" alt=\"löschen\"/></a>&nbsp;\n\
+                            <a class=\"edit_user\" href=\"\"><img src=\"./images/toolbar_edit.png\" title=\"bearbeiten\" alt=\"bearbeiten\"/></a>\n\
+                            <a class=\"set_password\" href=\"\"><img src=\"./images/change_password.png\" title=\"Passwort setzen\" alt=\"Passwort setzen\"/></a>";
+                }
+            }
         ]
     });
 
@@ -44,7 +63,6 @@ $(document).ready(function () {
                             data: {
                                 "user_name": $("#user_name", self).val(),
                                 "user_id":userId,
-                                "user_password": $("#user_password", self).val(),
                                 "user_role": $("#user_role", self).val()                                
                             },
                             success: function (e) {
@@ -56,20 +74,60 @@ $(document).ready(function () {
                                 FindusUtil.showErrorDialog("Fehler", error.message);
                             }
                         });
-                        
                     },
                         "abbrechen": function(){
                             $(this).dialog("destroy");
                         }
                     }
                 });
+                $("#user_password", content).parent().hide();
+                $("#user_name", content).val(selectedUser.name);
+                $("#user_id", content).parent().hide();
+                $("#user_role", content).val(selectedUser.role);
             });
         });
          
+        $('a.set_password').click(function (e) {
+            e.preventDefault();
+            var selected = userTable.row($(this).parent().parent()).data();
+            $.get('./templates/user/set_password.htpl', function (data) {
+                $(data).dialog({
+                    title: 'Passwort für '+selected.name+' setzen',
+                    modal: true,
+                    buttons: {
+                        "setzen": function () {
+                            FindusUtil.blockUI();
+                            var userPassword = $('#user_password', this).val();
+                            var userPasswordRepeat = $('#user_password_repeat', this).val();
+                            var userId = selected.id;
+                            var self = this;
+                            $.ajax({
+                                type: 'POST',
+                                url: '?module=user\\SetPassword',
+                                data: {
+                                    user_id: userId,
+                                    user_password: userPassword,
+                                    user_password_repeat: userPasswordRepeat
+                                },
+                                success: function (e) {
+                                    $(self).dialog("destroy");
+                                },
+                                error: function (e) {
+                                    var error = JSON.parse(e.responseText);
+                                    FindusUtil.showErrorDialog("Fehler", error.message);
+                                }
+                            });
+                        },
+                        "abbrechen": function () {
+                            $(this).dialog("close").dialog("destroy");
+                        }
+                    }
+                });
+            });
+        });
          
         $('a.delete_user').click(function (e) {
             e.preventDefault();
-            initClickHandler();
             var data = userTable.row($(this).parent().parent()).data();
             $("<div>Wollen Sie wirklich " + data.name + " entfernen?</div>").dialog({
                 modal: true,
@@ -106,7 +164,7 @@ $(document).ready(function () {
     $('#add_user_button').click(function (e) {
         e.preventDefault();
         $.get("./templates/user/add_user.htpl", function (data) {
-            $(data).dialog({
+            var content = $(data).dialog({
                 title: "Benutzer hinzufügen",
                 modal: true,
                 buttons: {
@@ -129,6 +187,7 @@ $(document).ready(function () {
                                 location.reload();
                             },
                             error: function (e) {
+                                $.unblockUI();
                                 var error = JSON.parse(e.responseText);
                                 FindusUtil.showErrorDialog("Fehler", error.message);
                             }
@@ -139,6 +198,7 @@ $(document).ready(function () {
                     }
                 }
             });
+            $("#user_id", content).parent().hide();
         });
     });
 });

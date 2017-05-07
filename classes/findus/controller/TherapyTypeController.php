@@ -32,7 +32,9 @@ class TherapyTypeController {
         if(!isset($therapyTypeData['therapyType_name']) || trim($therapyTypeData['therapyType_name']) == ''){
             throw new ControllerException('Bitte einen Namen angeben.');
         }
- 
+        if(!isset($therapyTypeData['therapyType_description']) || trim($therapyTypeData['therapyType_description']) == ''){
+            throw new ControllerException('Bitte eine Beschreibung angeben.');
+        }
         $name = trim($therapyTypeData['therapyType_name']);
         
         $therapyType = R::findOne('therapytype', 'name = ?', [$name]);
@@ -41,7 +43,7 @@ class TherapyTypeController {
         }
 
         $newTherapyType['name'] = $name;
-        $newTherapyType['description'] = $therapyTypeData['therapyType_description'];
+        $newTherapyType['description'] = trim($therapyTypeData['therapyType_description']);
         $newTherapyType['state'] = 'ACTIVE';
         R::store($newTherapyType);
     }

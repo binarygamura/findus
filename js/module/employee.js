@@ -7,12 +7,13 @@ $(document).ready(function () {
             {data: "name"},
             {data: "firstName"},
             {
+                orderable: false,
                 data: "state",
                 render: function (data, type, row, meta) {
                     if(data==='DEACTIVE'){
                         return "<a class=\"switch_employeeState\" href=\"\">aktivieren</a>";
                     } else {
-                        return "<a class=\"switch_employeeState\" href=\"\">entfernen</a>&nbsp;<a class=\"edit_employee\" href=\"\">bearbeiten</a>";
+                        return "<a class=\"switch_employeeState\" href=\"\"><img src=\"./images/cancel.png\" title=\"löschen\" alt=\"löschen\"/></a>&nbsp;<a class=\"edit_employee\" href=\"\"><img src=\"./images/toolbar_edit.png\" title=\"bearbeiten\" alt=\"bearbeiten\"/></a>";
                     }
                 }
             }
@@ -31,7 +32,6 @@ $(document).ready(function () {
         
         $('a.edit_employee').click(function(e){
             e.preventDefault();
-            initClickHandler();
             var selectedEmployee = employeeTable.row($(this).parent().parent()).data();
             var employeeId = selectedEmployee.id;
             $.get("./templates/employee/add_employee.htpl", function (data) {
@@ -74,7 +74,6 @@ $(document).ready(function () {
         
         $('a.switch_employeeState').click(function (e) {
             e.preventDefault();
-            initClickHandler();
             var data = employeeTable.row($(this).parent().parent()).data();
             if (data.state === 'ACTIVE') {
                 $msg = $("<div>Wollen Sie wirklich " + data.firstName + " " + data.name + " deaktivieren?</div>")

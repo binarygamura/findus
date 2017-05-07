@@ -2,9 +2,6 @@
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
-                <input type="text" name="therapyType_id" id="therapyType_id"/>
-            </div>
-            <div class="pure-control-group">
                 <label for="therapyType_name">Bezeichnung:</label>
                 <input type="text" maxlength="20" name="therapyType_name" id="therapyType_name" placeholder="Bezeichnung der Art des Eingangs"/>
             </div>

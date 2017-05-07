@@ -9,8 +9,9 @@ $(document).ready(function () {
             {data: "name"},
             {
                 data: null,
+                orderable: false,
                 render: function (data, type, row, meta) {
-                    return "<a class=\"delete_race\" href=\"\">löschen</a>&nbsp;<a class=\"rename_race\" href=\"\">umbenennen</a>";
+                    return "<a class=\"delete_race\" href=\"\"><img src=\"./images/cancel.png\" title=\"löschen\" alt=\"löschen\"/></a>&nbsp;<a class=\"rename_race\" href=\"\"><img src=\"./images/toolbar_edit.png\" title=\"umbenennen\" alt=\"umbenennen\"/></a>";
                 }
             }
         ]
@@ -140,7 +141,6 @@ $(document).ready(function () {
                         "erstellen": function () {
                             FindusUtil.blockUI();
                             var self = this;
-                            console.log(currentSpecies);
                             $.ajax({
                                 type: "POST",
                                 url: "?module=species\\AddRace",

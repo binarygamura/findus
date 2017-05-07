@@ -33,7 +33,13 @@ class AdmissionTypeController {
             throw new ControllerException('Bitte einen Namen angeben.');
         }
  
+        
         $name = trim($admissionTypeData['admissionType_name']);
+        
+        if(!isset($admissionTypeData['admissionType_description']) || trim($admissionTypeData['admissionType_description']) == ''){
+            throw new ControllerException('Bitte einen Namen angeben.');
+        }
+        $description = trim($admissionTypeData['admissionType_description']);
         
         $admissionType = R::findOne('admissiontype', 'name = ?', [$name]);
         if($admissionType){
@@ -41,7 +47,7 @@ class AdmissionTypeController {
         }
 
         $newAdmissionType['name'] = $name;
-        $newAdmissionType['description'] = $admissionTypeData['admissionType_description'];
+        $newAdmissionType['description'] = $description;
         $newAdmissionType['spinner'] = $admissionTypeData['admissionType_spinner'];
         $newAdmissionType['state'] = 'ACTIVE';
         R::store($newAdmissionType);
@@ -51,8 +57,8 @@ class AdmissionTypeController {
         if(!isset($admissionTypeData['admissionType_id']) || trim($admissionTypeData['admissionType_id']) == ''){
             throw new ControllerException('Bitte eine Id angeben.');
         }
-        if(!isset($admissionTypeData['admissionType_name']) || trim($admissionTypeData['admissionType_name']) == ''){
-            throw new ControllerException('Bitte einen Namen angeben.');
+        if(!isset($admissionTypeData['admissionType_description']) || trim($admissionTypeData['admissionType_description']) == ''){
+            throw new ControllerException('Bitte eine Beschreibung angeben.');
         }
         if(!isset($admissionTypeData['admissionType_description']) || trim($admissionTypeData['admissionType_description']) == ''){
             throw new ControllerException('Bitte eine Beschreibung angeben.');
