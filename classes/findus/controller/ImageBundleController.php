@@ -49,6 +49,11 @@ class ImageBundleController {
         }
         $absoluteDestination = $directoryOfApplication."/images/portraits/".$destination;
         
+        //create directory if it not exists
+        if (!file_exists($directoryOfApplication."/images/portraits")) {
+                mkdir($directoryOfApplication."/images/portraits", 0777, true);
+        }
+        
         if(!move_uploaded_file($tmpFileName, $absoluteDestination)){
             throw new \findus\common\ModuleException("unable to store file in \"".$absoluteDestination."\"");
         }
