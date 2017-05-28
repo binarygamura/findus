@@ -16,7 +16,7 @@ class AdmissionTypeController {
     }
     
     public static function getAllActiveAdmissionTypes(){
-        return R::find('admissiontype','state = \'ACTIVE\'');
+        return R::find('admissiontype','state = \'ACTIVE\' ORDER BY name ASC');
     }
 
     public static function getAdmissionTypeById($admissionTypeId){

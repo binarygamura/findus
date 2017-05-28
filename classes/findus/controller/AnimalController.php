@@ -54,7 +54,7 @@ class AnimalController {
     }
 
     public static function getAnimalById($id){
-        return R::findOne("animal", "id = ?", [$id]);
+        return R::findOne('animal', 'id = ?', [$id]);
     }
 
 
@@ -64,7 +64,7 @@ class AnimalController {
             $animal->$key = $value;
         }
         if($animal->bundle_id > 0){
-            $bundle = R::findOne("imagebundle", "id = ?", [$animal->bundle_id]);
+            $bundle = R::findOne('imagebundle', 'id = ?', [$animal->bundle_id]);
             if(isset($animal->portrait) && $animal->portrait != ""){
                 foreach($bundle->ownImageList as $image){
                     if($animal->portrait == $image->name){

@@ -16,7 +16,7 @@ class EmployeeController {
     }
 
     public static function getAllActiveEmployees(){
-        return R::find('employee','state=\'ACTIVE\'');
+        return R::find('employee','state=\'ACTIVE\' ORDER BY name, first_name ASC');
     }
     
     public static function getEmployeeById($employeeId){
@@ -74,6 +74,7 @@ class EmployeeController {
         $employee['firstName'] = $firstName;
         R::store($employee);
     } 
+    
     public static function switchEmployeeState(array $employeeData){
         if(!isset($employeeData['employee_id']) || trim($employeeData['employee_id']) == ''){
             throw new ControllerException('Bitte eine Id angeben.');

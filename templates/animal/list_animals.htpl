@@ -1,6 +1,6 @@
 <h2>Liste aller Tiere</h2>
 <div class="box">
-    <table id='animal_table' class="pure-table">
+    <table id="animal_table" class="pure-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -22,6 +22,6 @@
             {/foreach}
         </tbody>
     </table>
-    <a href='' id='add_animal_button'>hinzufügen</a>
+    <a href="" id="add_animal_button">hinzufügen</a>
 </div>
 

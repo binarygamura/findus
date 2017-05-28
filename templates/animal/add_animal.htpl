@@ -118,9 +118,45 @@
             <div id="admission_tab">
                 <fieldset>
                     <div class="pure-control-group">
-                        <label for="animal[ownAdmissionList[date]]">Aufnahmetag:</label>
-                        <input type="text"  name="animal[ownAdmissionList[date]]" id="animal[ownAdmissionList[date]]" value="{if isset($animal.ownAdmissionList.date)}{$animal.ownAdmissionList.date}{/if}" placeholder="Tag der Aufnahme"/>
-                    </div>                    
+                        <label for="animal[temp_admission][date]">Aufnahmetag:</label>
+                        <input type="text"  name="animal[temp_admission][date]" id="animal[ownAdmissionList[date]]" value="" placeholder="Tag der Aufnahme"/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_admission][employee_id]">Mitarbeiter:</label>
+                        <select id="animal[temp_admission][employee_id]" name="animal[temp_admission][employee_id]">
+                            <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                            {foreach item=employee from=$all_employees}
+                            <option value="{$employee.id}">{$employee.first_name} {$employee.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_admission][type_id]">Zugangsart:</label>
+                        <select id="animal[temp_admission][type_id]" name="animal[temp_admission][type_id]">
+                            <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                            {foreach item=type from=$all_admission_types}
+                            <option value="{$type.id}">{$type.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_admisson][finder_id]">Finder:</label>
+                        <input type="text" readonly="readonly" id="animal[temp_admisson][finder_id]" name="animal[temp_admisson][finder_id]"/>
+                        <a class="add_button" id="find_finder_button" href=""><img src="./images/magnifier.png" alt="Person suchen/anlegen"/></a>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_admisson][finder]">Besitzer:</label>
+                        <input type="text" readonly="readonly" id="animal[temp_admisson][owner]" name="animal[temp_admisson][owner]"/>
+                        <a class="add_button" id="find_owner_button" href=""><img src="./images/magnifier.png" alt="Person suchen/anlegen"/></a>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_admisson][reasons]">Gründe:</label>
+                        <textarea id="animal[temp_admisson][reasons]" name="animal[temp_admisson][reasons]" rows="5" cols="40" title=""></textarea>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_admisson][notes]">Bemerkungen:</label>
+                        <textarea id="animal[temp_admisson][notes]" name="animal[temp_admisson][notes]" rows="5" cols="40" title=""></textarea>
+                    </div>
                 </fieldset>
             </div>    
             <div class="pure-controls">

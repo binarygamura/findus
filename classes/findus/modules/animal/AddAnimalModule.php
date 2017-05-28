@@ -56,10 +56,10 @@ class AddAnimalModule extends \findus\common\AbstractModule {
                 $errors['sex'] = "Bitte geben Sie das Geschlecht des Tieres an.";
             }
             
-            $animalData['knownDiseases'] = isset($animalData['knownDiseases']) ? trim($animalData['knownDiseases']) : "";
-            $animalData['generalState'] = isset($animalData['generalState']) ? trim($animalData['generalState']) : "";
-            $animalData['behaviour'] = isset($animalData['behaviour']) ? trim($animalData['behaviour']) : "";
-            $animalData['notes'] = isset($animalData['notes']) ? trim($animalData['notes']) : "";
+            $animalData['knownDiseases'] = isset($animalData['knownDiseases']) ? trim($animalData['knownDiseases']) : '';
+            $animalData['generalState'] = isset($animalData['generalState']) ? trim($animalData['generalState']) : '';
+            $animalData['behaviour'] = isset($animalData['behaviour']) ? trim($animalData['behaviour']) : '';
+            $animalData['notes'] = isset($animalData['notes']) ? trim($animalData['notes']) : '';
             
             if(count($errors) > 0){
                 $response = new \findus\common\JsonResponse($errors, 400);
@@ -69,14 +69,16 @@ class AddAnimalModule extends \findus\common\AbstractModule {
                 $response = new \findus\common\JsonResponse(["id" => $id]);
             } else {
                 $id = \findus\controller\AnimalController::createNewAnimal($animalData);
-                $response = new \findus\common\JsonResponse(["id" => $id]);
+                $response = new \findus\common\JsonResponse(['id' => $id]);
             }
         }
         else {
             $response = new \findus\common\TemplateResponse();
             $response->setValue('all_species', \findus\controller\SpeciesController::getAllSpecies());
-            $response->addScript("add_animal.js");
-            $response->addTemplateName("animal\add_animal.htpl");
+            $response->setValue('all_employees', \findus\controller\EmployeeController::getAllActiveEmployees());
+            $response->setValue('all_admission_types', \findus\controller\AdmissionTypeController::getAllActiveAdmissionTypes());
+            $response->addScript('add_animal.js');
+            $response->addTemplateName('animal\add_animal.htpl');
         }
         return $response;
     }

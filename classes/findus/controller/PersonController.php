@@ -34,6 +34,11 @@ class PersonController {
         }
         return $data;
     }
+    
+    public static function findPerson($searchTerm){
+        //TODO: is it really needed to give an array with the same element six times?
+        return R::find('person', 'name = ? OR street = ? OR postcode = ? OR city = ? OR mobilePhone = ? OR organisation = ?', [$searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm]);
+    }
 
     public static function createNewPerson(array $personData){
         $newPerson = R::dispense('person');
