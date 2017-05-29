@@ -1,0 +1,44 @@
+<h2>{if isset($person)}Person editieren {else} Person hinzufügen{/if}</h2>
+<div>
+    <form action="" method="POST" id="add_person_form" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="person[id]">ID:</label>
+                <input type="text" maxlength="5" name="person[id]" id="person[id]" placeholder="ID" readonly="readonly" value="{if isset($person.id)}{$person.id}{/if}" title="Die ID wird vom System vergeben und kann nicht manuell eingegeben werden."/>
+            </div>
+            <div class="pure-control-group">
+                <label for="person[name]">Name:</label>
+                <input type="text" name="person[name]" id="person[name]" placeholder="Name der Person" value="{if isset($smarty.post.person.name)}{$smarty.post.person.name}{elseif isset($person.name)}{$person.name}{/if}"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="person[street]">Straße:</label>
+                <input type="text" name="person[street]" id="person[street]" placeholder="Straße" value="{if isset($smarty.post.person.street)}{$smarty.post.person.street}{elseif isset($person.street)}{$person.street}{/if}"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="person[postalcode]">Postleitzahl:</label>
+                <input type="text" name="person[postalcode]" id="person[postalcode]" placeholder="PLZ" value="{if isset($smarty.post.person.postalcode)}{$smarty.post.person.postalcode}{elseif isset($person.postalcode)}{$person.postalcode}{/if}"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="person[city]">Ort:</label>
+                <input type="text" name="person[city]" id="person[city]" placeholder="Ort" value="{if isset($smarty.post.person.city)}{$smarty.post.person.city}{elseif isset($person.city)}{$person.city}{/if}"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="person[phone]">Telefonnummer:</label>
+                <input type="text" name="person[phone]" id="person[phone]" placeholder="Telefon" value="{if isset($smarty.post.person.phone)}{$smarty.post.person.phone}{elseif isset($person.phone)}{$person.phone}{/if}"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="person[organization]">Organisation:</label>
+                <input type="checkbox" name="person[organization]" id="person[organization]" {if isset($person.organization) and $person.organization eq 1 }checked{/if} value="1"/>
+            </div>
+        </fieldset>
+        <div class="pure-controls">
+            <input class="button-success pure-button" type="submit" id="create_button1" name="create_button1" value="Erstellen"/>
+            <input class="button-warning pure-button" type="reset" id="reset_button" name="reset_button" value="zurücksetzen"/>
+        </div>
+    </form>
+    <div>
+        <ul id="error_list">
+
+        </ul>
+    </div>
+</div>

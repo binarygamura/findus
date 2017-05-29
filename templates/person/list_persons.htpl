@@ -1,0 +1,27 @@
+<h2>Liste aller Personen</h2>
+<div class="box">
+    <table id='person_table' class="pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Strasse</th>
+                <th>Ort</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=person from=$all_persons}
+            <tr>
+                <td>{$person.id}</td>
+                <td>{$person.name}</td>
+                <td>{$person.street}</td>
+                <td>{$person.city}</td>
+                <td></td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <a href='' id='add_person_button'>hinzufügen</a>
+</div>
+

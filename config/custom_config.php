@@ -7,7 +7,7 @@ $customConfig = [
         "password" => ""
     ],
     "login" => [
-        "enableRecaptcha" => true,
+        "enableRecaptcha" => false,
         "secret" => "6LeZSB0UAAAAAKbBTR4tfO81KaPODv1c8YgAZ43U"
     ],
 ];
