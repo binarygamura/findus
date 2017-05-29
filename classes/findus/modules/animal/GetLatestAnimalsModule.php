@@ -27,7 +27,7 @@ namespace findus\modules\animal;
 class GetLatestAnimalsModule extends \findus\common\AbstractModule {
     
     public function __construct() {
-        $this->requiredRole = \findus\model\User::USER;
+        $this->requiredRole = \findus\model\User::VISITOR;
     }
 
     public function execute() {
