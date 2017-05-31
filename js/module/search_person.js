@@ -123,8 +123,8 @@
 
         $('#add_person_button').click(function (e) {
             e.preventDefault();
-            $.get("./templates/person/add_person.htpl", function (data) {
-                $(data).dialog({
+            $.get("./templates/person/add_person2.htpl", function (data) {
+                var context = $(data).dialog({
                     title: "Person hinzufügen",
                     modal: true,
                     buttons: {
@@ -153,6 +153,7 @@
                         }
                     }
                 });
+//                $("#add_person_form", context).
             });
         });
 

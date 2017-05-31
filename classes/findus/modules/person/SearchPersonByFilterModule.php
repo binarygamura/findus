@@ -18,6 +18,7 @@ class SearchPersonByFilterModule  extends \findus\common\AbstractModule {
         $street = filter_input(INPUT_GET, 'street');        
         $city = filter_input(INPUT_GET, 'city');        
 
+        $filter = [];
         if ($organization && $organization > -1) {
             $filter[] = array('field' => 'organization', 
                       'value'   => $organization);

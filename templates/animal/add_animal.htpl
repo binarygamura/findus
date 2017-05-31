@@ -140,13 +140,15 @@
                         </select>
                     </div>
                     <div class="pure-control-group">
-                        <label for="animal[temp_admisson][finder_id]">Finder:</label>
-                        <input type="text" readonly="readonly" id="animal[temp_admisson][finder_id]" name="animal[temp_admisson][finder_id]"/>
+                        <input type="hidden" id="animal[temp_admisson][finder_id]"/>
+                        <label for="animal[temp_admisson][finder_name]">Finder:</label>
+                        <input type="text" readonly="readonly" id="animal[temp_admisson][finder_name]" name="animal[temp_admisson][finder_name]"/>
                         <a class="add_button" id="find_finder_button" href=""><img src="./images/magnifier.png" alt="Person suchen/anlegen"/></a>
                     </div>
                     <div class="pure-control-group">
-                        <label for="animal[temp_admisson][finder]">Besitzer:</label>
-                        <input type="text" readonly="readonly" id="animal[temp_admisson][owner]" name="animal[temp_admisson][owner]"/>
+                        <input type="hidden" id="animal[temp_admisson][owner_id]"/>
+                        <label for="animal[temp_admisson][owner_name]">Besitzer:</label>
+                        <input type="text" readonly="readonly" id="animal[temp_admisson][owner_name]" name="animal[temp_admisson][owner_name]"/>
                         <a class="add_button" id="find_owner_button" href=""><img src="./images/magnifier.png" alt="Person suchen/anlegen"/></a>
                     </div>
                     <div class="pure-control-group">

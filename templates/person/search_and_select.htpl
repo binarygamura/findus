@@ -1,0 +1,37 @@
+<div>
+    <h2>Person suchen</h2>
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="name">Name:</label>
+                <input type="text"  name="name" id="person_name" placeholder="Name"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="organization">Organisation:</label>
+                <input type="checkbox"  name="organization" id="person_organization"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="street">Strasse:</label>
+                <input type="text"  name="street" id="person_street" placeholder="Strasse"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="city">Ort:</label>
+                <input type="text"  name="city" id="person_city" placeholder="Ort"/>
+            </div>
+      </fieldset>
+    </form>
+    <h2>Ergebniss:</h2>
+    <table id="person_table" class="pure-table">
+        <thead>
+            <tr>
+                <th>Auswahl</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Strasse</th>
+                <th>Stadt</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>

@@ -263,5 +263,131 @@
                 });
             }
         });
+        
+        function initPersonSearchAndSelect(title, namefieldSector, idFieldSelector) {
+//            return new Promise(function(resolve, reject){
+//                
+//            });
+            
+            $.get("./templates/person/search_and_select.htpl", function (data) {
+                $(data).dialog({
+                    title: title,
+                    modal: true,
+                    minWidth: 600,
+                    minHeight: 480,
+                    buttons: {
+                        "suchen": function(){
+                            $.ajax({
+                                type: "GET",
+                                url: "?module=person\\SearchPersonByFilter",
+                                data: {
+                                    "organization": parseInt($("#person_organization").val(), 10),
+                                    "name": $("#person_name").val(),
+                                    "street": $("#person_street").val(),
+                                    "city": $("#person_city").val()
+                                },
+                                success: function (e) {
+                                    var parsedData = JSON.parse(e);
+                                    personTable.clear();
+                                    personTable.rows.add(parsedData.data);
+                                    personTable.draw();
+                                },
+                                error: function (e) {
+                                    reject(e);
+                                }
+                            });
+                        },
+                        "auswählen": function(){
+                            var selected = $("input[name='selection']:checked");
+                            var selectedPersonId = selected.val();
+                            if(selectedPersonId){
+                                var name = $("td:nth-child(3)", selected.parent().parent()).text();
+
+                                console.log(name);
+
+                                $(namefieldSector).val(name);
+                                $(idFieldSelector).val(selectedPersonId);
+                                
+                                $(this).dialog("close").dialog("destroy");
+                            }
+                            else {
+                                FindusUtil.showErrorDialog("Keine Auswahl", "Bitte wählen sie jemanden aus.");
+                            }
+                        },
+                        "erstellen": function () {
+                            $.get("./templates/person/add_person2.htpl", function (data) {
+                                $(data).dialog({
+                                    modal: true,
+                                    buttons: {
+                                        "erstellen": function () {
+                                            var personName = $("#person\\[name\\]", this).val();
+                                            var street = $("#person\\[street\\]", this).val();
+                                            var postalCode = $("#person\\[postalcode\\]", this).val();
+                                            var city = $("#person\\[city\\]", this).val();
+                                            var phone = $("#person\\[phone\\]", this).val();
+                                            var organization = $("#person\\[organization\\]").is(":checked") ? 1 : 0;
+                                            console.log("TOOT! "+organization);
+                                            var self = this;
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "?module=person\\AddPerson",
+                                                data: {
+                                                    person: {
+                                                        name: personName,
+                                                        street: street,
+                                                        postalcode: postalCode,
+                                                        organization: organization,
+                                                        phone: phone,
+                                                        city: city
+                                                    }
+                                                },
+                                                success: function (e) {
+                                                    $(self).dialog("destroy");
+                                                },
+                                                error: function (e) {
+                                                    var error = JSON.parse(e.responseText);
+                                                    FindusUtil.showErrorDialog("Fehler", error.message);
+                                                }
+                                            });
+                                        },
+                                        "abbrechen": function () {
+                                            $(this).dialog("close").dialog("destroy");
+                                        }
+                                    }
+                                });
+                            });
+                        },
+                        "abbrechen": function () {
+                            $(this).dialog("close").dialog("destroy");
+                        }
+                    }
+                });
+
+                var personTable = FindusUtil.initTable("#person_table", {
+                    columns: [
+                        {
+                            data: null,
+                            render: function (data, type, row, meta) {
+                                return "<input type=\"radio\" value=\""+data.id+"\" name=\"selection\">";
+                            },
+                        },
+                        {data: "id"},
+                        {data: "name"},
+                        {data: "street"},
+                        {data: "city"}
+                    ]
+                });
+            });
+        }
+        
+        $("#find_finder_button").click(function(e){
+            e.preventDefault();
+            initPersonSearchAndSelect("Finder suchen/hinzufügen", "#animal\\[temp_admisson\\]\\[finder_name\\]", "#animal\\[temp_admisson\\]\\[finder_id\\]");
+        });
+        
+        $("#find_owner_button").click(function(e){
+            e.preventDefault();
+           initPersonSearchAndSelect("Besitzer suchen/hinzufügen", "#animal\\[temp_admisson\\]\\[owner_name\\]", "#animal\\[temp_admisson\\]\\[owner_id\\]"); 
+        });
     });
 })();

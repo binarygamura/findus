@@ -35,7 +35,7 @@ class PersonController {
         return $data;
     }
 
-    public static function getPersonsByFilter($searchFilter){
+    public static function getPersonsByFilter(array $searchFilter){
         $sql = "";
         $valueArray = array();
         foreach ($searchFilter as $nr => $inhalt)

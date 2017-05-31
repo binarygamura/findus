@@ -1,7 +1,5 @@
 <?php namespace findus\modules\person;
 
-
-
 /**
  * Description of AddPersonModule
  *
@@ -15,7 +13,7 @@ class AddPersonModule extends \findus\common\AbstractModule {
     
     public function execute() {
         
-        if(filter_input(INPUT_POST, 'create_button1')){
+        if(isset($_POST)){
             $errors = [];
             $personData = $_POST['person'];
             
@@ -35,7 +33,7 @@ class AddPersonModule extends \findus\common\AbstractModule {
                 $errors['city'] = "Bitte geben Sie einen Ort an. (".$personData['city'].")";
             }
             
-            $personData['organization'] = isset($personData['organization']) ? 1 : 0;
+            $personData['organization'] = intval($personData['organization']);
             $personData['postalcode'] = isset($personData['postalcode']) ? trim($personData['postalcode']) : "";
             $personData['remarks'] = isset($personData['remarks']) ? trim($personData['remarks']) : "";
             $personData['phone'] = isset($personData['phone']) ? trim($personData['phone']) : "";
@@ -53,7 +51,6 @@ class AddPersonModule extends \findus\common\AbstractModule {
         }
         else {
             $response = new \findus\common\TemplateResponse();
-            $response->addScript("add_person.js");
             $response->addTemplateName("person\add_person.htpl");
         }
         return $response;
