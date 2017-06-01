@@ -153,7 +153,6 @@
                         }
                     }
                 });
-//                $("#add_person_form", context).
             });
         });
 

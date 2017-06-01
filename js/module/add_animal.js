@@ -64,7 +64,7 @@
     $(document).ready(function () {
         
         
-        $( "#animal\\[ownAdmissionList\\[date\\]\\]" ).datepicker();
+        $( "#animal\\[temp_admission\\]\\[date\\]" ).datepicker();
         
         $(".cat_spinner").slick({
             dots: true,
@@ -155,11 +155,12 @@
         $('#create_button1').click(function (e) {
             e.preventDefault();
             FindusUtil.blockUI();
-//            $("animal[portrait]").val($('.selected_portrait:checked').val());
+            var data = $("#add_animal_form").serialize();
+            console.log(data);
             $.ajax({
                 type: "POST",
                 url: "?module=animal\\AddAnimal",
-                data: $("#add_animal_form").serialize(),
+                data: data,
                 success: function (e) {
                     var response = JSON.parse(e);
                     $("<div>\n\Tier wurde erfolgreich erfasst und mit der ID <strong>"+response.id+"</strong> ins System eingetragen.</div>").dialog({
@@ -275,6 +276,9 @@
                     modal: true,
                     minWidth: 600,
                     minHeight: 480,
+                    close: function(){
+                        $(this).dialog("destroy");
+                    },
                     buttons: {
                         "suchen": function(){
                             $.ajax({
@@ -303,7 +307,8 @@
                             if(selectedPersonId){
                                 var name = $("td:nth-child(3)", selected.parent().parent()).text();
 
-                                console.log(name);
+                                console.log(name+" -> "+selectedPersonId);
+
 
                                 $(namefieldSector).val(name);
                                 $(idFieldSelector).val(selectedPersonId);
@@ -318,6 +323,10 @@
                             $.get("./templates/person/add_person2.htpl", function (data) {
                                 $(data).dialog({
                                     modal: true,
+                                    close: function(){
+                                        $(this).dialog("destroy");
+                                    },
+                                    title: "Person hinzufügen",
                                     buttons: {
                                         "erstellen": function () {
                                             var personName = $("#person\\[name\\]", this).val();
@@ -382,12 +391,12 @@
         
         $("#find_finder_button").click(function(e){
             e.preventDefault();
-            initPersonSearchAndSelect("Finder suchen/hinzufügen", "#animal\\[temp_admisson\\]\\[finder_name\\]", "#animal\\[temp_admisson\\]\\[finder_id\\]");
+            initPersonSearchAndSelect("Finder suchen/hinzufügen", "#animal\\[temp_admission\\]\\[finder_name\\]", "#animal\\[temp_admission\\]\\[finder_id\\]");
         });
         
         $("#find_owner_button").click(function(e){
             e.preventDefault();
-           initPersonSearchAndSelect("Besitzer suchen/hinzufügen", "#animal\\[temp_admisson\\]\\[owner_name\\]", "#animal\\[temp_admisson\\]\\[owner_id\\]"); 
+           initPersonSearchAndSelect("Besitzer suchen/hinzufügen", "#animal\\[temp_admission\\]\\[owner_name\\]", "#animal\\[temp_admission\\]\\[owner_id\\]"); 
         });
     });
 })();

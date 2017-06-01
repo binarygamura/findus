@@ -22,7 +22,7 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             //TODO: the following code looks very repetitive. perhaps we should refactor things here
             //and put code into functions.
             $animalData['id'] = isset($animalData['id']) ? intval(trim($animalData['id'])) : 0;
-            $id=$animalData['id'];
+            $id = $animalData['id'];
 
             $animalData['name'] = isset($animalData['name']) ? trim($animalData['name']) : "";
             if($animalData['name'] == ""){
@@ -46,6 +46,32 @@ class AddAnimalModule extends \findus\common\AbstractModule {
                 $animalData['color'] = strtolower($animalData['color']);
             }
             
+            
+            $animalData['temp_admission']['finder_id'] = isset($animalData['temp_admission']['finder_id']) ? intval($animalData['temp_admission']['finder_id']) : 0;
+            if($animalData['temp_admission']['finder_id'] <= 0) {
+                $errors['finder_id'] = "Bitte geben sie den Finder an.";
+            }
+            $animalData['temp_admission']['type_id'] = isset($animalData['temp_admission']['type_id']) ? intval($animalData['temp_admission']['type_id']) : 0;
+            if($animalData['temp_admission']['type_id'] <= 0){
+                $errors['owner_id'] = "Bitte wählen sie den Zugangstyp aus.";
+            }
+            $animalData['temp_admission']['owner_id'] = isset($animalData['temp_admission']['owner_id']) ? intval($animalData['temp_admission']['owner_id']) : 0;
+            if($animalData['temp_admission']['owner_id'] <= 0){
+                $errors['owner_id'] = "Bitte geben sie den Besitzer an.";
+            }
+            
+            $animalData['temp_admission']['employee_id'] = isset($animalData['temp_admission']['employee_id']) ? intval($animalData['temp_admission']['employee_id']) : 0;
+            if($animalData['temp_admission']['employee_id'] <= 0){
+                $errors['owner_id'] = "Bitte geben sie den Mitarbeiter an.";
+            }
+            
+            $animalData['temp_admission']['date'] = isset($animalData['temp_admission']['date']) ? trim($animalData['temp_admission']['date']) : '';
+            if(!$animalData['temp_admission']['date'] || $animalData['temp_admission']['date'] == ''){
+//                $errors['date'] = "Bitte geben Sie das Datum des Zugangs an! (".print_r($animalData['temp_admission'], true).")";
+                $errors['date'] = "Bitte geben Sie das Datum des Zugangs an!";
+            }
+            $animalData['temp_admission']['date'] = \DateTime::createFromFormat('d.m.Y', $animalData['temp_admission']['date']);
+            
             $animalData['attributes'] = isset($animalData['attributes']) ? trim($animalData['attributes']) : "";
             $animalData['chip'] = isset($animalData['chip']) ? trim($animalData['chip']) : "";            
             $animalData['tatoo'] = isset($animalData['tatoo']) ? trim($animalData['tatoo']) : "";
@@ -59,7 +85,9 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             $animalData['knownDiseases'] = isset($animalData['knownDiseases']) ? trim($animalData['knownDiseases']) : '';
             $animalData['generalState'] = isset($animalData['generalState']) ? trim($animalData['generalState']) : '';
             $animalData['behaviour'] = isset($animalData['behaviour']) ? trim($animalData['behaviour']) : '';
-            $animalData['notes'] = isset($animalData['notes']) ? trim($animalData['notes']) : '';
+            $animalData['notes'] = isset($animalData['notes']) ? trim($animalData['notes']) : '';            
+            $animalData['temp_admission']['reasons'] = isset($animalData['temp_admission']['reasons']) ? trim($animalData['temp_admission']['reasons']) : '';
+            $animalData['temp_admission']['notes'] = isset($animalData['temp_admission']['notes']) ? trim($animalData['temp_admission']['notes']) : '';
             
             if(count($errors) > 0){
                 $response = new \findus\common\JsonResponse($errors, 400);

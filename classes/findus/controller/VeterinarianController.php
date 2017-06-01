@@ -22,7 +22,7 @@ class VeterinarianController {
     public static function getVeterinarianById($veterinarianId){
         $veterinarian = R::findOne('veterinarian', 'id = ?', [$veterinarianId]);
         if(!$veterinarian){
-            throw new ControllerException("Es existiert keine Behandlungsart mit der ID ".$veterinarianId);
+            throw new ControllerException("Es existiert keine Tierarzt mit der ID ".$veterinarianId);
         }
         return $veterinarian;
     }

@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 //error_reporting(0);
 //use the nice classloader provided by composer.
 $classLoader = require_once './vendor/autoload.php';
@@ -32,12 +34,15 @@ try {
     
     //add user object to session. if none is set, we create a "visitor".
     if(!isset($_SESSION['user'])){
+        
         $user = findus\controller\UserController::getGuestUser();
         if(!$user){
             throw new Exception("Es konnte kein Gast-User erzeugt werden. Bitte DB prüfen.");
         }
         $_SESSION['user'] = $user;
     }
+    
+    
     
     $moduleName = filter_input(INPUT_GET, 'module');
     $subModuleName = filter_input(INPUT_GET, 'subModule');

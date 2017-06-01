@@ -70,4 +70,12 @@ class Util {
         while(file_exists($directory.$filename));
         return $filename;
     }
+    
+    public static function getAsString($var, $default = ''){
+        return isset($var) ? trim($var) : $default;
+    }
+    
+    public static function getAsInt($var, $default = 0) {
+        return isset($var) ? intval($var) : $default;
+    }
 }

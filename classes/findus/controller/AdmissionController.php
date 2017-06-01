@@ -26,20 +26,23 @@ use \RedBeanPHP\R;
  */
 class AdmissionController {
     
-    public static function addAdmission(array $admissionData, $animalBean){
+    public static function addAdmission(array $admissionData, $animalBean = null){
         $admission = R::dispense('admission');
         $admission->date = $admissionData['date'];
         $admission->employee = EmployeeController::getEmployeeById($admissionData['employee_id']);
         $admission->finder = PersonController::getPersonById($admissionData['finder_id']);
         //is owner a mandatory field?
-        if($admissionData['finder_id']) {
-            $admission->owner = PersonController::getPersonById($admissionData['finder_id']);
+        if($admissionData['owner_id']) {
+            $admission->owner = PersonController::getPersonById($admissionData['owner_id']);
         }        
         $admission->notes = trim($admissionData['notes']);
         $admission->reasons = trim($admissionData['reasons']);
-        $admission->type = AdmissionTypeController::getAdmissionTypeById($admissionData['type']);        
-        $admission->animal = $animalBean;
-        R::store($admission);
+        $admission->type = AdmissionTypeController::getAdmissionTypeById($admissionData['type_id']);        
+        if($animalBean != null){
+            $admission->animal = $animalBean;
+        }
+        $admission->id = R::store($admission);
+        return $admission;
     }
     
     public static function getAdmissionsByAnimalId($animalId){

@@ -24,7 +24,7 @@ class UpdateEmployeeModule  extends \findus\common\AbstractModule {
         }
         $employee = R::findOne('employee', 'id = ?', [$employeeId]);
         if(!$employee){
-            throw new \findus\controller\ControllerException("Es wurde kein Benutzer mit der ID ".$employeeId." gefunden.");
+            throw new \findus\controller\ControllerException("Es wurde kein Mitarbeiter mit der ID ".$employeeId." gefunden.");
         }
         \findus\controller\EmployeeController::updateEmployee([
             'employee_id' => $employeeId,
