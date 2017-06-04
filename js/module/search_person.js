@@ -9,7 +9,7 @@
             {
                 data: null,
                 render: function (data, type, row, meta) {
-                    return "<a class=\"edit_person\" href=\"\">bearbeiten</a>";
+                    return "<a class=\"edit_person\" href=\"\"><img src=\"./images/toolbar_edit.png\" title=\"bearbeiten\" alt=\"bearbeiten\"/></a>";
                 }
             }
         ]
@@ -72,7 +72,7 @@
             //the following gets data for the currently selected row.
             var selectedPerson = personTable.row($(this).parent().parent()).data();
             var personId = selectedPerson.id;
-            $.get("./templates/person/add_Person.htpl", function (data) {
+            $.get("./templates/person/add_Person2.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Person \"" + selectedPerson.name + "\" bearbeiten",
                     modal: true,
@@ -85,14 +85,14 @@
                                 url: "?module=person\\UpdatePerson",
                                 data: {
                                     //get the name currently typed into the name field of the dialog.
-                                    person_name: $("#person_name", self).val(),
+                                    person_name: $("#person\\[name\\]", self).val(),
                                     //the id is immutable.
                                     person_id: personId,
-                                    person_street: $("#person_street", self).val(),
-                                    person_city: $("#person_city", self).val(),
-                                    person_postalcode: $("#person_postalcode", self).val(),
-                                    person_phone: $("#person_phone", self).val(),
-                                    person_organization: $("#person_organization", self).val()
+                                    person_street: $("#person\\[street\\]", self).val(),
+                                    person_city: $("#person\\[city\\]", self).val(),
+                                    person_postalcode: $("#person\\[postalcode\\]", self).val(),
+                                    person_phone: $("#person\\[phone\\]", self).val(),
+                                    person_organization: $("#person\\[organization\\]").is(":checked") ? 1 : 0
                                 },
                                 success: function (e) {
                                     $(self).dialog("destroy");
@@ -112,12 +112,13 @@
                 });
                 //prefill all the fields of the form with data from the previously selected
                 //row.
-                $("#person_name", content).val(selectedPerson.name);
-                $("#person_id", content).val(selectedPerson.id);
-                $("#person_organization", content).val(selectedPerson.organization);
-                $("#person_street", content).val(selectedPerson.street);
-                $("#person_city", content).val(selectedPerson.city);
-                $("#person_phone", content).val(selectedPerson.phone);
+                $("#person\\[name\\]", content).val(selectedPerson.name);
+                $("#person\\[id\\]", content).val(selectedPerson.id);
+                $("#person\\[organization\\]", content).val(selectedPerson.organization);
+                $("#person\\[street\\]", content).val(selectedPerson.street);
+                $("#person\\[postalcode\\]", content).val(selectedPerson.postalcode);
+                $("#person\\[city\\]", content).val(selectedPerson.city);
+                $("#person[phone]", content).val(selectedPerson.phone);
             });
         });
 
@@ -130,23 +131,35 @@
                     buttons: {
                         "erstellen": function () {
                             FindusUtil.blockUI();
-                            var personName = $("#person_name", this).val();
+                            var personName = $("#person\\[name\\]", this).val();
+                            var street = $("#person\\[street\\]", this).val();
+                            var postalCode = $("#person\\[postalcode\\]", this).val();
+                            var city = $("#person\\[city\\]", this).val();
+                            var phone = $("#person\\[phone\\]", this).val();
+                            var organization = $("#person\\[organization\\]").is(":checked") ? 1 : 0;
                             var self = this;
                             $.ajax({
                                 type: "POST",
                                 url: "?module=person\\AddPerson",
                                 data: {
-                                    person_name: personName,
+                                    person: {
+                                        name: personName,
+                                        street: street,
+                                        postalcode: postalCode,
+                                        organization: organization,
+                                        phone: phone,
+                                        city: city
+                                    }
                                 },
                                 success: function (e) {
                                     $(self).dialog("destroy");
-                                    location.reload();
                                 },
                                 error: function (e) {
                                     var error = JSON.parse(e.responseText);
                                     FindusUtil.showErrorDialog("Fehler", error.message);
                                 }
                             });
+                            updatePersonTable();
                         },
                         "abbrechen": function () {
                             $(this).dialog("close").dialog("destroy");
