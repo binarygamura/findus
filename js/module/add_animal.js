@@ -320,7 +320,7 @@
                             }
                         },
                         "erstellen": function () {
-                            $.get("./templates/person/add_person2.htpl", function (data) {
+                            $.get("./templates/person/add_person.htpl", function (data) {
                                 $(data).dialog({
                                     modal: true,
                                     close: function(){

@@ -124,7 +124,7 @@
 
         $('#add_person_button').click(function (e) {
             e.preventDefault();
-            $.get("./templates/person/add_person2.htpl", function (data) {
+            $.get("./templates/person/add_person.htpl", function (data) {
                 var context = $(data).dialog({
                     title: "Person hinzufügen",
                     modal: true,
@@ -153,13 +153,13 @@
                                 },
                                 success: function (e) {
                                     $(self).dialog("destroy");
+                                    updatePersonTable();
                                 },
                                 error: function (e) {
                                     var error = JSON.parse(e.responseText);
                                     FindusUtil.showErrorDialog("Fehler", error.message);
                                 }
                             });
-                            updatePersonTable();
                         },
                         "abbrechen": function () {
                             $(this).dialog("close").dialog("destroy");
