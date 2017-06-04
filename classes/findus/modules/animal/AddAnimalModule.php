@@ -47,18 +47,13 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             }
             
             
-            $animalData['temp_admission']['finder_id'] = isset($animalData['temp_admission']['finder_id']) ? intval($animalData['temp_admission']['finder_id']) : 0;
-            if($animalData['temp_admission']['finder_id'] <= 0) {
-                $errors['finder_id'] = "Bitte geben sie den Finder an.";
-            }
             $animalData['temp_admission']['type_id'] = isset($animalData['temp_admission']['type_id']) ? intval($animalData['temp_admission']['type_id']) : 0;
             if($animalData['temp_admission']['type_id'] <= 0){
                 $errors['owner_id'] = "Bitte wählen sie den Zugangstyp aus.";
             }
+
             $animalData['temp_admission']['owner_id'] = isset($animalData['temp_admission']['owner_id']) ? intval($animalData['temp_admission']['owner_id']) : 0;
-            if($animalData['temp_admission']['owner_id'] <= 0){
-                $errors['owner_id'] = "Bitte geben sie den Besitzer an.";
-            }
+            $animalData['temp_admission']['finder_id'] = isset($animalData['temp_admission']['finder_id']) ? intval($animalData['temp_admission']['finder_id']) : 0;
             
             $animalData['temp_admission']['employee_id'] = isset($animalData['temp_admission']['employee_id']) ? intval($animalData['temp_admission']['employee_id']) : 0;
             if($animalData['temp_admission']['employee_id'] <= 0){

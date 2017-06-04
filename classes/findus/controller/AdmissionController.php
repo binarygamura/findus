@@ -30,9 +30,10 @@ class AdmissionController {
         $admission = R::dispense('admission');
         $admission->date = $admissionData['date'];
         $admission->employee = EmployeeController::getEmployeeById($admissionData['employee_id']);
-        $admission->finder = PersonController::getPersonById($admissionData['finder_id']);
-        //is owner a mandatory field?
-        if($admissionData['owner_id']) {
+        if($admissionData['finder_id']>0) {
+            $admission->finder = PersonController::getPersonById($admissionData['finder_id']);
+        }
+        if($admissionData['owner_id']>0) {
             $admission->owner = PersonController::getPersonById($admissionData['owner_id']);
         }        
         $admission->notes = trim($admissionData['notes']);
