@@ -7,6 +7,9 @@
                 <th>Name</th>
                 <th>Strasse</th>
                 <th>Ort</th>
+                <th style="visibility:collapse;" hidden="true">Organisation</th>
+                <th style="visibility:collapse;" hidden="true">Postleitzahl</th>
+                <th style="visibility:collapse;" hidden="true">Telefonnummer</th>
                 <th>Aktionen</th>
             </tr>
         </thead>
@@ -17,6 +20,9 @@
                 <td>{$person.name}</td>
                 <td>{$person.street}</td>
                 <td>{$person.city}</td>
+                <td style="visibility:collapse;" hidden="true">{$person.organization}</td>
+                <td style="visibility:collapse;" hidden="true">{$person.postalcode}</td>
+                <td style="visibility:collapse;" hidden="true">{$person.phone}</td>
                 <td></td>
             </tr>
             {/foreach}

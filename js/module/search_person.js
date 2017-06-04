@@ -6,6 +6,9 @@
             {data: "name"},
             {data: "street"},
             {data: "city"},
+            {data: "organization"},
+            {data: "postalcode"},
+            {data: "phone"},
             {
                 data: null,
                 render: function (data, type, row, meta) {
@@ -72,7 +75,7 @@
             //the following gets data for the currently selected row.
             var selectedPerson = personTable.row($(this).parent().parent()).data();
             var personId = selectedPerson.id;
-            $.get("./templates/person/add_Person2.htpl", function (data) {
+            $.get("./templates/person/add_Person.htpl", function (data) {
                 var content = $(data).dialog({
                     title: "Person \"" + selectedPerson.name + "\" bearbeiten",
                     modal: true,
