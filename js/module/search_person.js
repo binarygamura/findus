@@ -82,20 +82,27 @@
                     buttons: {
                         "speichern": function () {
                             FindusUtil.blockUI();
-                            var self = this;
+                            var personName = $("#person\\[name\\]", this).val();
+                             var street = $("#person\\[street\\]", this).val();
+                             var postalCode = $("#person\\[postalcode\\]", this).val();
+                             var city = $("#person\\[city\\]", this).val();
+                             var phone = $("#person\\[phone\\]", this).val();
+                             var organization = $("#person\\[organization\\]").is(":checked") ? 1 : 0;
+                             var self = this;
                             $.ajax({
                                 type: "POST",
                                 url: "?module=person\\UpdatePerson",
+                                
                                 data: {
-                                    //get the name currently typed into the name field of the dialog.
-                                    person_name: $("#person\\[name\\]", self).val(),
-                                    //the id is immutable.
-                                    person_id: personId,
-                                    person_street: $("#person\\[street\\]", self).val(),
-                                    person_city: $("#person\\[city\\]", self).val(),
-                                    person_postalcode: $("#person\\[postalcode\\]", self).val(),
-                                    person_phone: $("#person\\[phone\\]", self).val(),
-                                    person_organization: $("#person\\[organization\\]").is(":checked") ? 1 : 0
+                                    person: {
+                                        id: personId,
+                                        name: personName,
+                                        street: street,
+                                        postalcode: postalCode,
+                                        organization: organization,
+                                        phone: phone,
+                                        city: city
+                                    }
                                 },
                                 success: function (e) {
                                     $(self).dialog("destroy");

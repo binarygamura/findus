@@ -15,7 +15,7 @@ class UpdatePersonModule extends \findus\common\AbstractModule {
     
     public function execute() {
         
-        if(filter_input(INPUT_POST, 'update_button')){
+        if(isset($_POST)){
             $errors = [];
             $personData = $_POST['person'];
             
@@ -23,7 +23,7 @@ class UpdatePersonModule extends \findus\common\AbstractModule {
             if($personData['id'] <= 0){
                 $errors['id'] = "Bitte den Datensatz erst anlegen.";
             }
-            $personData['name'] = isset($personData['name']) ? trim($personData['name']) : "";
+            $personData['person_name'] = isset($personData['name']) ? trim($personData['name']) : "";
             if($personData['name'] == ""){
                 $errors['name'] = "Bitte geben Sie einen Namen an. (".$personData['name'].")";
             }
@@ -51,7 +51,7 @@ class UpdatePersonModule extends \findus\common\AbstractModule {
         }
         else {
             
-            $personId = filter_input(INPUT_GET, 'personId', FILTER_VALIDATE_INT);
+            $personId = filter_input(INPUT_GET, 'person_id', FILTER_VALIDATE_INT);
             if($personId === false){
                 throw new \findus\common\ModuleException('Es wurde keine ID angegeben.');
             }
