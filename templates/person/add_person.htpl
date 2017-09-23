@@ -1,0 +1,27 @@
+<div>
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="data[person_name]">Name:</label>
+                <input type="text" maxlength="20" name="data[person_name]" id="data[person_name]" placeholder="Name der Person (Vor- und Nachname)"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="data[person_street]">Anschrift:</label>
+                <input type="text" maxlength="20" name="data[person_street]" id="data[person_street]" placeholder="Strasse"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="data[person_street]">PLZ und Ort:</label>
+                <input type="text" maxlength="5" name="data[person_postcode]" id="data[person_postcode]" placeholder="Postleitzahl"/>
+                <input type="text" maxlength="50" name="data[person_city]" id="data[person_city]" placeholder="Ort"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="data[person_mobilePhone]">Anschrift:</label>
+                <input type="text" maxlength="20" name="data[person_mobilePhone]" id="data[person_mobilePhone]" placeholder="Handynummer"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="data[person_organisation]">Anschrift:</label>
+                <input type="text" maxlength="50" name="data[person_organisation]" id="data[person_organisation]" placeholder="Firma etc. sofern vorhanden"/>
+            </div>
+        </fieldset>
+    </form>
+</div>

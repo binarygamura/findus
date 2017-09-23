@@ -1,0 +1,35 @@
+<div>
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="query">Suchbegriff:</label>
+                <input type="text" maxlength="20" name="query" id="query" placeholder="query"/>
+            </div>
+            <button type="submit" class="pure-button pure-button-primary">suchen</button>
+        </fieldset>
+    </form>
+    <table id="animal_table" class="pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Anschrift</th>
+                <th>PLZ &amp; Ort</th>
+                <th>Ort</th>
+                <th>Mobilfunknummer</th>
+                <th>Organisation</th>
+            </tr>
+        </thead>
+        <tbody>
+<!--            <tr>
+                <td>{$person.id}</td>
+                <td>{$person.name}</td>
+                <td>{$person.street}</td>
+                <td>{$person.postcode}</td>
+                <td>{$person.city}</td>
+                <td>{$person.organisation}</td>
+            </tr>-->
+        </tbody>
+    </table>
+    <a href="" id="add_animal_button">hinzufügen</a>
+</div>
