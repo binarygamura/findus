@@ -1,35 +1,28 @@
+<h2>Person suchen</h2>
 <div>
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
-                <label for="query">Suchbegriff:</label>
-                <input type="text" maxlength="20" name="query" id="query" placeholder="query"/>
+                <label for="person[name]">Name:</label>
+                <input type="text"  name="person[name]" id="person[name]" placeholder="Name"/>
             </div>
-            <button type="submit" class="pure-button pure-button-primary">suchen</button>
-        </fieldset>
+            <div class="pure-control-group">
+                <label for="person[organization]">Organisation:</label>
+                <input type="checkbox"  name="person[organization]" id="person[organization]" placeholder="Organisation"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="person[street]">Strasse:</label>
+                <input type="text"  name="person[street]" id="person[street]" placeholder="Strasse"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="person[city]">Ort:</label>
+                <input type="text"  name="person[city]" id="person[city]" placeholder="Ort"/>
+            </div>
+            <div>
+                <ul id="error_list">
+
+                </ul>
+            </div>
+      </fieldset>
     </form>
-    <table id="animal_table" class="pure-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Anschrift</th>
-                <th>PLZ &amp; Ort</th>
-                <th>Ort</th>
-                <th>Mobilfunknummer</th>
-                <th>Organisation</th>
-            </tr>
-        </thead>
-        <tbody>
-<!--            <tr>
-                <td>{$person.id}</td>
-                <td>{$person.name}</td>
-                <td>{$person.street}</td>
-                <td>{$person.postcode}</td>
-                <td>{$person.city}</td>
-                <td>{$person.organisation}</td>
-            </tr>-->
-        </tbody>
-    </table>
-    <a href="" id="add_animal_button">hinzufügen</a>
 </div>

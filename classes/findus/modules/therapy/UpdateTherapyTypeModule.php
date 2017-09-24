@@ -22,9 +22,9 @@ class UpdateTherapyTypeModule extends \findus\common\AbstractModule {
         if(!$therapyTypeId){
             throw new \findus\controller\ControllerException("Es wurde keine ID angegeben.");
         }
-        $therapyType = R::findOne('therapyType', 'id = ?', [$therapyTypeId]);
+        $therapyType = R::findOne('therapytype', 'id = ?', [$therapyTypeId]);
         if(!$therapyType){
-            throw new \findus\controller\ControllerException("Es wurde kein Benutzer mit der ID ".$therapyTypeId." gefunden.");
+            throw new \findus\controller\ControllerException("Es wurde keine Behandlungsart mit der ID ".$therapyTypeId." gefunden.");
         }
         \findus\controller\TherapyTypeController::updateTherapyType([
             'therapyType_id' => $therapyTypeId,

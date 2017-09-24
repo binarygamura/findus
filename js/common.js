@@ -58,6 +58,19 @@ FindusUtil = {
             "modal": true,
             "title": title
         });
+    },
+    
+    loadTemplate: function(templateName) {
+        return new Promise(function(resolve, reject){
+            $.ajax(templateName, {
+                success: function(data){
+                    resolve(data);
+                },
+                error: function( jqXHR, textStatus, errorThrown ) {
+                    reject(errorThrown);
+                }
+            });
+        });
     }
 };
 

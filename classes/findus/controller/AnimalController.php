@@ -60,9 +60,18 @@ class AnimalController {
 
     public static function createNewAnimal(array $animalData){
         $animal = R::dispense('animal');
+        
+        $admissionData = $animalData['temp_admission'];
+        $admission = AdmissionController::addAdmission($admissionData);
+        $animal->ownAdmissionList[] = $admission;
+        
+        unset($animalData['temp_admission']);
         foreach($animalData as $key => $value){
             $animal->$key = $value;
         }
+        
+        
+        
         if($animal->bundle_id > 0){
             $bundle = R::findOne('imagebundle', 'id = ?', [$animal->bundle_id]);
             if(isset($animal->portrait) && $animal->portrait != ""){
@@ -126,7 +135,7 @@ class AnimalController {
         $animals = R::find("animal", "bundle_id != 0 ORDER BY id LIMIT ?", [$limit]);
         $result = [];
         foreach($animals as $animal){
-            $animal->bundle = R::findOne("imageBundle", "id = ?", [$animal->bundle_id]);
+            $animal->bundle = R::findOne("imagebundle", "id = ?", [$animal->bundle_id]);
             count($animal->bundle->ownImageList);
             $result[] = $animal;
         }

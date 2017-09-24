@@ -11,7 +11,7 @@ $config = [
     'general' => [
         'maintenance' => false,
         'stage' => STAGE_DEV,
-        'title' => 'Tierhilfe'
+        'title' => 'FindUs'
     ],
     "login" => [
         "enableRecaptcha" => false,
@@ -48,6 +48,7 @@ $config = [
             "menu" => [
                 'Tiere suchen' => 'animal\\SearchAnimal',
                 'Tier erfassen' => 'animal\\AddAnimal',
+                'Personen suchen' => 'person\\SearchPerson',
                 'Tierarten und Rassen' => 'species\\ManageSpecies'
                 ]
             ],

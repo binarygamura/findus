@@ -11,7 +11,7 @@ $(document).ready(function () {
                 data: "state",
                 render: function (data, type, row, meta) {
                     if(data==='DEACTIVE'){
-                        return "<a class=\"switch_employeeState\" href=\"\">aktivieren</a>";
+                        return "<a class=\"switch_employeeState\" href=\"\"><img src=\"./images/accept_button.png\" title=\"aktivieren\" alt=\"aktivieren\" /></a>";
                     } else {
                         return "<a class=\"switch_employeeState\" href=\"\"><img src=\"./images/cancel.png\" title=\"löschen\" alt=\"löschen\"/></a>&nbsp;<a class=\"edit_employee\" href=\"\"><img src=\"./images/toolbar_edit.png\" title=\"bearbeiten\" alt=\"bearbeiten\"/></a>";
                     }

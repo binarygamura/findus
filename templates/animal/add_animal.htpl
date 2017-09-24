@@ -119,12 +119,12 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="animal[temp_admission][date]">Aufnahmetag:</label>
-                        <input type="text"  name="animal[temp_admission][date]" id="animal[ownAdmissionList[date]]" value="" placeholder="Tag der Aufnahme"/>
+                        <input type="text"  name="animal[temp_admission][date]" id="animal[temp_admission][date]" value="" placeholder="Tag der Aufnahme"/>
                     </div>
                     <div class="pure-control-group">
                         <label for="animal[temp_admission][employee_id]">Mitarbeiter:</label>
                         <select id="animal[temp_admission][employee_id]" name="animal[temp_admission][employee_id]">
-                            <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                             <option value="-1">--&gt; bitte auswählen &lt;--</option>
                             {foreach item=employee from=$all_employees}
                             <option value="{$employee.id}">{$employee.first_name} {$employee.name}</option>
                             {/foreach}
@@ -140,22 +140,24 @@
                         </select>
                     </div>
                     <div class="pure-control-group">
-                        <label for="animal[temp_admisson][finder_id]">Finder:</label>
-                        <input type="text" readonly="readonly" id="animal[temp_admisson][finder_id]" name="animal[temp_admisson][finder_id]"/>
+                        <input type="hidden" id="animal[temp_admission][finder_id]" name="animal[temp_admission][finder_id]" value="0"/>
+                        <label for="animal[temp_admission][finder_name]">Finder:</label>
+                        <input type="text" readonly="readonly" id="animal[temp_admission][finder_name]" name="animal[temp_admission][finder_name]"/>
                         <a class="add_button" id="find_finder_button" href=""><img src="./images/magnifier.png" alt="Person suchen/anlegen"/></a>
                     </div>
                     <div class="pure-control-group">
-                        <label for="animal[temp_admisson][finder]">Besitzer:</label>
-                        <input type="text" readonly="readonly" id="animal[temp_admisson][owner]" name="animal[temp_admisson][owner]"/>
+                        <input type="hidden" id="animal[temp_admission][owner_id]" name="animal[temp_admission][owner_id]" value="0"/>
+                        <label for="animal[temp_admission][owner_name]">Besitzer:</label>
+                        <input type="text" readonly="readonly" id="animal[temp_admission][owner_name]" name="animal[temp_admission][owner_name]"/>
                         <a class="add_button" id="find_owner_button" href=""><img src="./images/magnifier.png" alt="Person suchen/anlegen"/></a>
                     </div>
                     <div class="pure-control-group">
-                        <label for="animal[temp_admisson][reasons]">Gründe:</label>
-                        <textarea id="animal[temp_admisson][reasons]" name="animal[temp_admisson][reasons]" rows="5" cols="40" title=""></textarea>
+                        <label for="animal[temp_admission][reasons]">Gründe:</label>
+                        <textarea id="animal[temp_admission][reasons]" name="animal[temp_admission][reasons]" rows="5" cols="40" title=""></textarea>
                     </div>
                     <div class="pure-control-group">
-                        <label for="animal[temp_admisson][notes]">Bemerkungen:</label>
-                        <textarea id="animal[temp_admisson][notes]" name="animal[temp_admisson][notes]" rows="5" cols="40" title=""></textarea>
+                        <label for="animal[temp_admission][notes]">Bemerkungen:</label>
+                        <textarea id="animal[temp_admission][notes]" name="animal[temp_admission][notes]" rows="5" cols="40" title=""></textarea>
                     </div>
                 </fieldset>
             </div>    

@@ -31,7 +31,7 @@ class UserController{
 
     public static function getGuestUser(){
         $matches = R::find('user', 'id = 1');
-        if(count($matches) == 0 || count($matches) > 1){
+        if(count($matches) == 0){
             //TODO: move this to the installer script.
             // create default guest and admin
             $newGuestUser = R::dispense('user');

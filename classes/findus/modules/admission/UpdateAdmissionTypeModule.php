@@ -24,7 +24,7 @@ class UpdateAdmissionTypeModule  extends \findus\common\AbstractModule {
             throw new \findus\controller\ControllerException("Es wurde keine ID angegeben.");
         }
         
-        $admissionType = R::findOne('admissionType', 'id = ?', [$admissionTypeId]);
+        $admissionType = R::findOne('admissiontype', 'id = ?', [$admissionTypeId]);
         if(!$admissionType){
             
             throw new \findus\controller\ControllerException("Es wurde keine Eingangsart mit der ID ".$admissionTypeId." gefunden.");

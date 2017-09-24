@@ -34,37 +34,50 @@ class PersonController {
         }
         return $data;
     }
-    
-    public static function findPerson($searchTerm){
-        //TODO: is it really needed to give an array with the same element six times?
-        return R::find('person', 'name = ? OR street = ? OR postcode = ? OR city = ? OR mobilePhone = ? OR organisation = ?', [$searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm]);
+
+    public static function getPersonsByFilter(array $searchFilter){
+        $sql = "";
+        $valueArray = array();
+        foreach ($searchFilter as $nr => $inhalt)
+        {            
+            if (($inhalt['field'] == 'name') || ($inhalt['field'] == 'city') || ($inhalt['field'] == 'street')) {
+                $sql .= strtolower($inhalt['field']) ." like ? " ." and ";
+                $valueArray[] = "%" .strtolower($inhalt['value']) ."%";
+            } else {
+                $sql .= strtolower($inhalt['field']) ." = ? " ." and ";
+                $valueArray[] = $inhalt['value'];
+            }
+        }
+        
+        $result = R::find('person', substr($sql,0,-4), $valueArray);
+        $data = [];
+        foreach($result as $value){
+            $data[] = $value;
+        }
+        return $data;
     }
 
-    public static function createNewPerson(array $personData){
-        $newPerson = R::dispense('person');
-        if(!isset($personData['person_name']) || trim($personData['person_name']) == ''){
-            throw new ControllerException('Bitte einen Namen angeben.');
-        }
-        if(!isset($personData['person_street']) || trim($personData['person_street']) == ''){
-            throw new ControllerException('Bitte eine Straße angeben.');
-        }
-        if(!isset($personData['person_city']) || trim($personData['person_city']) == ''){
-            throw new ControllerException('Bitte einen Ort angeben.');
-        }
- 
-        $name = trim($personData['person_name']);
-        $street = trim($personData['person_street']);
+    public static function updatePerson(array $personData){
+        $personId = $personData['id'];
+        $person = R::findOne("person", "id = ?", [$personId]);
         
-        $matches = R::find('person', 'name = ? and street = ? ', [$name, $street]);
-        if(count($matches) > 0){
-            throw new ControllerException('Diese Person ist bereits vorhanden.');
+        foreach($personData as $key => $value){
+            $person->$key = $value;
         }
-        $newPerson['name'] = $name;
-        $newPerson['street'] = $street;
-        $newPerson['postcode'] = $personData['person_postcode'];
-        $newPerson['city'] = $personData['person_city'];
-        $newPerson['mobilePhone'] = $personData['person_mobilePhone'];
-        $newPerson['organisation'] = $personData['person_organisation'];
-        R::store($newPerson);
+
+        R::store($person);
+        return $person;
     }
+    
+    public static function createNewPerson(array $personData){
+        $person = R::dispense('person');
+        
+        foreach($personData as $key => $value){
+            $person->$key = $value;
+        }
+
+        R::store($person);
+        return $person;
+    }
+
 }
