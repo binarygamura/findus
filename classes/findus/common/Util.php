@@ -64,7 +64,7 @@ class Util {
         $filename = false;
         //wow... do-while finally makes sense... this time...
         do {
-            //to we really need more entropy?
+            //do we really need more entropy?
             $filename = uniqid('Findus', true) . $suffix;            
         }
         while(file_exists($directory.$filename));
@@ -77,5 +77,13 @@ class Util {
     
     public static function getAsInt($var, $default = 0) {
         return isset($var) ? intval($var) : $default;
+    }
+    
+    public static function checkIfExists(array $data, array $fields){
+        foreach($fields as $fieldName => $message){
+            if(!isset($data[$fieldName]) || $data[$fieldName] == NULL){
+                throw new \findus\controller\ControllerException($message);
+            }
+        }
     }
 }

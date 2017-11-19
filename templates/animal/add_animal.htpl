@@ -160,6 +160,25 @@
                         <textarea id="animal[temp_admission][notes]" name="animal[temp_admission][notes]" rows="5" cols="40" title=""></textarea>
                     </div>
                 </fieldset>
+                {if isset($animal)}
+                <h3>Bisherige Zugänge</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Art</th>
+                            <th>Person</th>
+                        </tr>
+                        {foreach from=$all_admissions item=admission}
+                        <tr>
+                            <td>{$admission.id}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {/foreach}
+                    </thead>
+                </table>
+                {/if}
             </div>    
             <div class="pure-controls">
                 <input class="button-success pure-button" type="submit" id="create_button1" name="create_button1" value="{if isset($animal.id)}Aktualisieren{else}Erstellen{/if}"/>

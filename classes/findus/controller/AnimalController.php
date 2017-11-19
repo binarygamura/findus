@@ -54,7 +54,15 @@ class AnimalController {
     }
 
     public static function getAnimalById($id){
-        return R::findOne('animal', 'id = ?', [$id]);
+        $animal = R::findOne('animal', 'id = ?', [$id]);
+        if($animal){
+            foreach($animal->ownAdmissionList as $admission){
+                count($admission->employee);
+                count($admission->finder);
+                count($admission->owner);
+            }
+        }
+        return $animal;
     }
 
 
@@ -69,8 +77,6 @@ class AnimalController {
         foreach($animalData as $key => $value){
             $animal->$key = $value;
         }
-        
-        
         
         if($animal->bundle_id > 0){
             $bundle = R::findOne('imagebundle', 'id = ?', [$animal->bundle_id]);
@@ -97,9 +103,14 @@ class AnimalController {
     }
     
     public static function updateAnimal(array $animalData){
+        if(!isset($animalData['id'])){
+            
+        }
         $animalId = $animalData['id'];
         $animal = R::findOne("animal", "id = ?", [$animalId]);
-        
+        if(!$animal){
+            throw new ControllerException("Es existiert kein Tier mit der ID ".$animalId);
+        }
         foreach($animalData as $key => $value){
             $animal->$key = $value;
         }

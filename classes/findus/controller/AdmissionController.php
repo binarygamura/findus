@@ -29,16 +29,30 @@ class AdmissionController {
     public static function addAdmission(array $admissionData, $animalBean = null){
         $admission = R::dispense('admission');
         $admission->date = $admissionData['date'];
+        
         $admission->employee = EmployeeController::getEmployeeById($admissionData['employee_id']);
-        if($admissionData['finder_id']>0) {
-            $admission->finder = PersonController::getPersonById($admissionData['finder_id']);
+        if(!$admission->employee){
+            throw new ControllerException("Es existiert kein Mitarbeiter mit der ID ".$admissionData['employee_id']);
         }
-        if($admissionData['owner_id']>0) {
+        if($admissionData['finder_id'] > 0) {
+            $admission->finder = PersonController::getPersonById($admissionData['finder_id']);
+            if(!$admission->finder){
+                throw new ControllerException("Es existiert keine Person (Finder) mit der ID ".$admissionData['finder_id']);
+            }
+        }
+        if($admissionData['owner_id'] > 0) {
             $admission->owner = PersonController::getPersonById($admissionData['owner_id']);
+            if(!$admission->owner){
+                throw new ControllerException("Es existiert keine Person (Besitzer) mit der ID ".$admissionData['owner_id']);
+            }
         }        
         $admission->notes = trim($admissionData['notes']);
         $admission->reasons = trim($admissionData['reasons']);
+        print_r($admissionData);
         $admission->type = AdmissionTypeController::getAdmissionTypeById($admissionData['type_id']);        
+        if(!$admission->type){
+            throw new ControllerException("Es existiert kein Zugangstyp mit der ID ".$admissionData['type_id']);
+        }
         if($animalBean != null){
             $admission->animal = $animalBean;
         }
@@ -46,8 +60,9 @@ class AdmissionController {
         return $admission;
     }
     
+    
     public static function getAdmissionsByAnimalId($animalId){
-        return R::find('admission', 'animal_id = ? ORDER BY admission_inserted DESC', [$animalId]);
+        return R::find('admission', 'animal_id = ? ORDER BY date DESC', [$animalId]);
     }
     
     public static function editAdmission(array $admissionData){

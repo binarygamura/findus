@@ -20,6 +20,9 @@ class AdmissionTypeController {
     }
 
     public static function getAdmissionTypeById($admissionTypeId){
+        if(!$admissionTypeId){
+            throw new ControllerException('Es wurde keine Zugangstyp-ID angegeben.');
+        }
         $admissionType = R::findOne('admissiontype', 'id = ?', [$admissionTypeId]);
         if(!$admissionType){
             throw new ControllerException("Es existiert keine Zugangsart mit der ID ".$admissionTypeId);

@@ -335,7 +335,6 @@
                                             var city = $("#person\\[city\\]", this).val();
                                             var phone = $("#person\\[phone\\]", this).val();
                                             var organization = $("#person\\[organization\\]").is(":checked") ? 1 : 0;
-                                            console.log("TOOT! "+organization);
                                             var self = this;
                                             $.ajax({
                                                 type: "POST",
@@ -391,6 +390,7 @@
         
         $("#find_finder_button").click(function(e){
             e.preventDefault();
+            console.log("LICK!");
             initPersonSearchAndSelect("Finder suchen/hinzufügen", "#animal\\[temp_admission\\]\\[finder_name\\]", "#animal\\[temp_admission\\]\\[finder_id\\]");
         });
         
