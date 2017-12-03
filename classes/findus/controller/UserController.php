@@ -40,18 +40,6 @@ class UserController{
             $newGuestUser['role'] = 1;
             $newGuestUser['displayname'] = 'Gast';
             R::store($newGuestUser);
-            $newEmployeeUser = R::dispense('user');
-            $newEmployeeUser['username'] = 'Mitarbeiter';
-            $newEmployeeUser['password'] = 'Mitarbeiter';
-            $newEmployeeUser['role'] = 3;
-            $newEmployeeUser['displayname'] = 'Mitarbeiter';
-            R::store($newEmployeeUser);
-            $newDirectorUser = R::dispense('user');
-            $newDirectorUser['username'] = 'Vorstand';
-            $newDirectorUser['password'] = 'Vorstand';
-            $newDirectorUser['role'] = 7;
-            $newDirectorUser['displayname'] = 'Vorstand';
-            R::store($newDirectorUser);
             $newAdminUser = R::dispense('user');
             $newAdminUser['username'] = 'admin';
             $newAdminUser['password'] = 'admin';
