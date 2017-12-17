@@ -67,6 +67,16 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             }
             $animalData['temp_admission']['date'] = \DateTime::createFromFormat('d.m.Y', $animalData['temp_admission']['date']);
             
+            
+            $animalData['temp_departure']['type_id'] = isset($animalData['temp_departure']['type_id']) ? intval($animalData['temp_departure']['type_id']) : 0;
+
+            $animalData['temp_departure']['owner_id'] = isset($animalData['temp_departure']['owner_id']) ? intval($animalData['temp_departure']['owner_id']) : 0;
+            
+            $animalData['temp_departure']['employee_id'] = isset($animalData['temp_departure']['employee_id']) ? intval($animalData['temp_departure']['employee_id']) : 0;
+            
+            $animalData['temp_departure']['date'] = isset($animalData['temp_departure']['date']) ? trim($animalData['temp_departure']['date']) : '';
+            $animalData['temp_departure']['date'] = \DateTime::createFromFormat('d.m.Y', $animalData['temp_departure']['date']);
+
             $animalData['attributes'] = isset($animalData['attributes']) ? trim($animalData['attributes']) : "";
             $animalData['chip'] = isset($animalData['chip']) ? trim($animalData['chip']) : "";            
             $animalData['tatoo'] = isset($animalData['tatoo']) ? trim($animalData['tatoo']) : "";
@@ -100,6 +110,7 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             $response->setValue('all_species', \findus\controller\SpeciesController::getAllSpecies());
             $response->setValue('all_employees', \findus\controller\EmployeeController::getAllActiveEmployees());
             $response->setValue('all_admission_types', \findus\controller\AdmissionTypeController::getAllActiveAdmissionTypes());
+            $response->setValue('all_departure_types', \findus\controller\DepartureTypeController::getAllActiveDepartureTypes());
             $response->addScript('add_animal.js');
             $response->addTemplateName('animal\add_animal.htpl');
         }

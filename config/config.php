@@ -57,6 +57,7 @@ $config = [
             "module" => "menu\\Management",
             "menu" => [
                 "Eingangsarten" =>  "admission\\ManageAdmissionTypes",
+                "Abgangsarten" =>  "departure\\ManageDepartureTypes",
                 "Behandlungsarten" =>  "therapy\\ManageTherapyTypes",
                 "Vereinsmitglieder" =>  "employee\\ManageEmployees",
                 "Tierärzte" =>  "veterinarian\\ManageVeterinarians",

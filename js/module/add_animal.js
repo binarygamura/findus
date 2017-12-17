@@ -65,6 +65,7 @@
         
         
         $( "#animal\\[temp_admission\\]\\[date\\]" ).datepicker();
+        $( "#animal\\[temp_departure\\]\\[date\\]" ).datepicker();
         
         $(".cat_spinner").slick({
             dots: true,
@@ -398,5 +399,11 @@
             e.preventDefault();
            initPersonSearchAndSelect("Besitzer suchen/hinzufügen", "#animal\\[temp_admission\\]\\[owner_name\\]", "#animal\\[temp_admission\\]\\[owner_id\\]"); 
         });
+
+        $("#find_new_owner_button").click(function(e){
+            e.preventDefault();
+           initPersonSearchAndSelect("Besitzer suchen/hinzufügen", "#animal\\[temp_departure\\]\\[owner_name\\]", "#animal\\[temp_departure\\]\\[owner_id\\]"); 
+        });
+
     });
 })();

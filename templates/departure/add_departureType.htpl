@@ -1,0 +1,17 @@
+<div>
+    <form action="" method="POST" class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <input type="hidden" name="departureType_id" id="departureType_id"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="departureType_name">Bezeichnung:</label>
+                <input type="text" maxlength="20" name="departureType_name" id="departureType_name" placeholder="Bezeichnung der Art des Eingangs"/>
+            </div>
+            <div class="pure-control-group">
+                <label for="departureType_description">Beschreibung:</label>
+                <input type="text" maxlength="200" name="departureType_description" id="departureType_description" placeholder="Beschreibung der Art des Eingangs"/>
+            </div>
+        </fieldset>
+    </form>
+</div>

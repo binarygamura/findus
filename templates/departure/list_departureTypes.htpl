@@ -1,0 +1,25 @@
+<h2>Liste aller Eingansarten</h2>
+<div class="box">
+    <table id="departureType_table" class="departureType_table pure-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bezeichnung</th>
+                <th>Beschreibung</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach item=departureType from=$all_departureTypes}
+            <tr>
+                <td>{$departureType.id}</td>
+                <td>{$departureType.name}</td>
+                <td>{$departureType.description}</td>
+                <td>{$departureType.state}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    <a href='' id='add_departureType_button'>hinzufügen</a>
+</div>
+

@@ -7,6 +7,7 @@
                 <li><a href="#notes_tab">Hinweise</a></li>
                 <li><a href="#pictures_tab">Bilder</a></li>
                 <li><a href="#admission_tab">Zugänge</a></li>
+                <li><a href="#departure_tab">Abgänge</a></li>
             </ul>
             <div id="general_tab">
                 <fieldset>
@@ -172,6 +173,61 @@
                         {foreach from=$all_admissions item=admission}
                         <tr>
                             <td>{$admission.id}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        {/foreach}
+                    </thead>
+                </table>
+                {/if}
+            </div>    
+            <div id="departure_tab">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_departure][date]">Abgabetag:</label>
+                        <input type="text"  name="animal[temp_departure][date]" id="animal[temp_departure][date]" value="" placeholder="Tag der Abgabe"/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_departure][employee_id]">Mitarbeiter:</label>
+                        <select id="animal[temp_departure][employee_id]" name="animal[temp_departure][employee_id]">
+                             <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                            {foreach item=employee from=$all_employees}
+                            <option value="{$employee.id}">{$employee.first_name} {$employee.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_departure][type_id]">Abgangsart:</label>
+                        <select id="animal[temp_departure][type_id]" name="animal[temp_departure][type_id]">
+                            <option value="-1">--&gt; bitte auswählen &lt;--</option>
+                            {foreach item=type from=$all_departure_types}
+                            <option value="{$type.id}">{$type.name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="pure-control-group">
+                        <input type="hidden" id="animal[temp_departure][owner_id]" name="animal[temp_departure][owner_id]" value="0"/>
+                        <label for="animal[temp_departure][owner_name]">Besitzer:</label>
+                        <input type="text" readonly="readonly" id="animal[temp_departure][owner_name]" name="animal[temp_departure][owner_name]"/>
+                        <a class="add_button" id="find_new_owner_button" href=""><img src="./images/magnifier.png" alt="Person suchen/anlegen"/></a>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="animal[temp_departure][notes]">Bemerkungen:</label>
+                        <textarea id="animal[temp_departure][notes]" name="animal[temp_departure][notes]" rows="5" cols="40" title=""></textarea>
+                    </div>
+                </fieldset>
+                {if isset($animal)}
+                <h3>Bisherige Abgänge</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Art</th>
+                            <th>Person</th>
+                        </tr>
+                        {foreach from=$all_departures item=departure}
+                        <tr>
+                            <td>{$departure.id}</td>
                             <td></td>
                             <td></td>
                         </tr>
