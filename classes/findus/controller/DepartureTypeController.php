@@ -51,7 +51,6 @@ class DepartureTypeController {
 
         $newDepartureType['name'] = $name;
         $newDepartureType['description'] = $description;
-        $newDepartureType['spinner'] = $departureTypeData['departureType_spinner'];
         $newDepartureType['state'] = 'ACTIVE';
         R::store($newDepartureType);
     }
@@ -78,7 +77,6 @@ class DepartureTypeController {
         $departureType['name'] = $name;
         $departureType['state'] = 'ACTIVE';
         $departureType['description'] = $departureTypeData['departureType_description'];
-        $departureType['spinner'] = $departureTypeData['departureType_spinner'];
         R::store($departureType);
     } 
 

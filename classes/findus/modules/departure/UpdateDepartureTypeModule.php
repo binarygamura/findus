@@ -19,7 +19,6 @@ class UpdateDepartureTypeModule  extends \findus\common\AbstractModule {
         $departureTypeId = filter_input(INPUT_POST, 'departureType_id', FILTER_VALIDATE_INT);
         $departureTypeName = filter_input(INPUT_POST, 'departureType_name');
         $departureTypeDescription = filter_input(INPUT_POST, 'departureType_description');
-        $departureTypeSpinner = filter_input(INPUT_POST, 'departureType_spinner', FILTER_VALIDATE_BOOLEAN);
         if(!$departureTypeId){
             throw new \findus\controller\ControllerException("Es wurde keine ID angegeben.");
         }
@@ -33,8 +32,7 @@ class UpdateDepartureTypeModule  extends \findus\common\AbstractModule {
         \findus\controller\DepartureTypeController::updateDepartureType([
             'departureType_id' => $departureTypeId,
             'departureType_name' => $departureTypeName,
-            'departureType_description' => $departureTypeDescription,
-            'departureType_spinner' => $departureTypeSpinner
+            'departureType_description' => $departureTypeDescription
             ]);
 
         $response = new \findus\common\JsonResponse();

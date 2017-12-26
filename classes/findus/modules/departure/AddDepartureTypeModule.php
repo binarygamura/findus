@@ -21,8 +21,7 @@ class AddDepartureTypeModule  extends \findus\common\AbstractModule {
         }
         \findus\controller\DepartureTypeController::createNewDepartureType([
             'departureType_name' => filter_input(INPUT_POST, 'departureType_name'),
-            'departureType_description' => filter_input(INPUT_POST, 'departureType_description'),
-            'departureType_spinner' => filter_input(INPUT_POST, 'departureType_spinner', FILTER_VALIDATE_BOOLEAN)
+            'departureType_description' => filter_input(INPUT_POST, 'departureType_description')
             ]);
         $resonse = new \findus\common\JsonResponse();
         $resonse->setBody("{}");
