@@ -55,17 +55,17 @@ class AnimalController {
 
     public static function getAnimalById($id){
         $animal = R::findOne('animal', 'id = ?', [$id]);
-        if($animal){
-            foreach($animal->ownAdmissionList as $admission){
-                count($admission->employee);
-                count($admission->finder);
-                count($admission->owner);
-            }
-            foreach($animal->ownDepartureList as $departure){
-                count($departure->employee);
-                count($departure->owner);
-            }
-        }
+//        if($animal){
+//            foreach($animal->ownAdmissionList as $admission){
+//                count($admission->employee);
+//                count($admission->finder);
+//                count($admission->owner);
+//            }
+//            foreach($animal->ownDepartureList as $departure){
+//                count($departure->employee);
+//                count($departure->owner);
+//            }
+//        }
         return $animal;
     }
 

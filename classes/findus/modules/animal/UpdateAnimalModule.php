@@ -82,7 +82,8 @@ class UpdateAnimalModule extends \findus\common\AbstractModule {
             $response = new \findus\common\TemplateResponse();
             $response->setValue('all_species', \findus\controller\SpeciesController::getAllSpecies());
             $response->setValue('all_races', \findus\controller\RaceController::getAllRacesFor($species->box()));
-//            $response->setValue('all_admissions', \findus\controller\AdmissionController::getAdmissionsByAnimalId($animalId));
+            $response->setValue('all_admissions', \findus\controller\AdmissionController::getAdmissionsByAnimalId($animalId));
+            $response->setValue('all_departures', \findus\controller\DepartureController::getDeparturesByAnimalId($animalId));
 //            print_r(\findus\controller\AdmissionController::getAdmissionsByAnimalId($animalId));
             if($animal->bundle_id){
                 $response->setValue('bundle', \findus\controller\ImageBundleController::getBundleById($animal->bundle_id));
