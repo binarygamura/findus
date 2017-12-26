@@ -69,14 +69,12 @@ class AddAnimalModule extends \findus\common\AbstractModule {
             
             
             $animalData['temp_departure']['type_id'] = isset($animalData['temp_departure']['type_id']) ? intval($animalData['temp_departure']['type_id']) : 0;
-
             $animalData['temp_departure']['owner_id'] = isset($animalData['temp_departure']['owner_id']) ? intval($animalData['temp_departure']['owner_id']) : 0;
-            
             $animalData['temp_departure']['employee_id'] = isset($animalData['temp_departure']['employee_id']) ? intval($animalData['temp_departure']['employee_id']) : 0;
-            
             $animalData['temp_departure']['date'] = isset($animalData['temp_departure']['date']) ? trim($animalData['temp_departure']['date']) : '';
             $animalData['temp_departure']['date'] = \DateTime::createFromFormat('d.m.Y', $animalData['temp_departure']['date']);
-
+            $animalData['temp_departure']['notes'] = isset($animalData['temp_departure']['notes']) ? trim($animalData['temp_departure']['notes']) : '';
+ 
             $animalData['attributes'] = isset($animalData['attributes']) ? trim($animalData['attributes']) : "";
             $animalData['chip'] = isset($animalData['chip']) ? trim($animalData['chip']) : "";            
             $animalData['tatoo'] = isset($animalData['tatoo']) ? trim($animalData['tatoo']) : "";

@@ -61,6 +61,10 @@ class AnimalController {
                 count($admission->finder);
                 count($admission->owner);
             }
+            foreach($animal->ownDepartureList as $departure){
+                count($departure->employee);
+                count($departure->owner);
+            }
         }
         return $animal;
     }
@@ -73,7 +77,13 @@ class AnimalController {
         $admission = AdmissionController::addAdmission($admissionData);
         $animal->ownAdmissionList[] = $admission;
         
+        $departureData = $animalData['temp_departure'];
+        $departure = DepartureController::addDeparture($departureData);
+        $animal->ownDepartureList[] = $departure;
+        
         unset($animalData['temp_admission']);
+        unset($animalData['temp_departure']);
+
         foreach($animalData as $key => $value){
             $animal->$key = $value;
         }
