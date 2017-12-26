@@ -43,6 +43,7 @@ class RaceController {
         }
         $newRace = R::dispense('race');
         $newRace->name = $raceName;
+        $newRace->state = 'ACTIVE';
         $newRace->species = $species;
 //        $species->races[] = $newRace;
         

@@ -39,6 +39,7 @@ class SpeciesController {
             throw new ControllerException('Diese Tierart ist bereits vorhanden.');
         }
         $newSpecies['name'] = $speciesData['species_name'];
+        $newSpecies['state'] = 'ACTIVE';
         return R::store($newSpecies);
     }
 }
