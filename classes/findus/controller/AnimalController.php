@@ -78,7 +78,8 @@ class AnimalController {
         $animal->ownAdmissionList[] = $admission;
         
         $departureData = $animalData['temp_departure'];
-        if (!empty($departureData)) {
+        $emptyDeparture = !isset($animalData['temp_departure']['type_id']) ? intval($animalData['temp_departure']['type_id']) : 0;
+        if ($emptyDeparture){
             $departure = DepartureController::addDeparture($departureData);
             $animal->ownDepartureList[] = $departure;
         }
@@ -155,10 +156,8 @@ class AnimalController {
     }
 
     public static function getLatestFoundAnimals($limit = 5){
-        $animals = R::find("animal", "bundle_id != 0 ORDER BY id LIMIT ?", [$limit]);
-//        $animals = R::getAll("SELECT animal.* From animal INNER JOIN image on animal.bundle_id = image.imagebundle_id where image.is_portrait = true ORDER BY id LIMIT ?", [$limit]);
-//TODO Fred. Hilfe?! grr
-        
+    $rows = R::getAll("SELECT animal.* From animal INNER JOIN image on animal.bundle_id = image.imagebundle_id where image.is_portrait = true ORDER BY id LIMIT ?", [$limit]);
+    $animals = R::convertToBeans( 'animal', $rows );        
         $result = [];
         foreach($animals as $animal){
             $animal->bundle = R::findOne("imagebundle", "id = ?", [$animal->bundle_id]);

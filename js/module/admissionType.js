@@ -50,7 +50,6 @@ $(document).ready(function () {
                                 //the id is immutable.
                                 admissionType_id: admissionTypeId,
                                 admissionType_description: $("#admissionType_description", self).val(),
-    // TODO Fred anzeigen des Wertes
                                 admissionType_spinner: $("#admissionType_spinner", self).is(':checked')
                             };
                             $.ajax({
