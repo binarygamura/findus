@@ -49,7 +49,8 @@ class RaceController {
         
         R::store($species);
         return R::store($newRace);
-    }
+    }    
+    
     public static function updateRace(array $raceData){
         if(!isset($raceData['race_id']) || trim($raceData['race_id']) == ''){
             throw new ControllerException('Bitte eine Id angeben.');
@@ -64,6 +65,11 @@ class RaceController {
         $race = R::findOne('race', 'id = ?', [$id]);
         if(!$race){
             throw new ControllerException("Keine Rasse mit der id "+ $id + " gefunden.");
+        }
+        //$matches = R::find('species', 'LOWER(name) = ?', [strtolower($name)]);
+        $matches = R::find('race', 'LOWER(name) = ? and species_id = ? ', [strtolower($name), $race->species->id]);
+        if($matches){
+            throw new ControllerException("Diese Tierrasse ist bereits vorhanden.");
         }
 
         $race['name'] = $name;

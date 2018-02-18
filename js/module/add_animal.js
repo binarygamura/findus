@@ -281,15 +281,16 @@
                         $(this).dialog("destroy");
                     },
                     buttons: {
-                        "suchen": function(){
+                        suchen: function(){
+                            FindusUtil.blockUI();
                             $.ajax({
                                 type: "GET",
                                 url: "?module=person\\SearchPersonByFilter",
                                 data: {
-                                    "organization": parseInt($("#person_organization").val(), 10),
-                                    "name": $("#person_name").val(),
-                                    "street": $("#person_street").val(),
-                                    "city": $("#person_city").val()
+                                    organization: $("#person_organization").is(":checked") ? 1 : 0,
+                                    name: $("#person_name").val(),
+                                    street: $("#person_street").val(),
+                                    city: $("#person_city").val()
                                 },
                                 success: function (e) {
                                     var parsedData = JSON.parse(e);
@@ -302,13 +303,13 @@
                                 }
                             });
                         },
-                        "auswählen": function(){
+                        auswählen: function(){
                             var selected = $("input[name='selection']:checked");
                             var selectedPersonId = selected.val();
                             if(selectedPersonId){
                                 var name = $("td:nth-child(3)", selected.parent().parent()).text();
 
-                                console.log(name+" -> "+selectedPersonId);
+//                                console.log(name+" -> "+selectedPersonId);
 
 
                                 $(namefieldSector).val(name);
@@ -320,7 +321,7 @@
                                 FindusUtil.showErrorDialog("Keine Auswahl", "Bitte wählen sie jemanden aus.");
                             }
                         },
-                        "erstellen": function () {
+                        erstellen: function () {
                             $.get("./templates/person/add_person.htpl", function (data) {
                                 $(data).dialog({
                                     modal: true,
@@ -366,7 +367,7 @@
                                 });
                             });
                         },
-                        "abbrechen": function () {
+                        abbrechen: function () {
                             $(this).dialog("close").dialog("destroy");
                         }
                     }
@@ -391,7 +392,6 @@
         
         $("#find_finder_button").click(function(e){
             e.preventDefault();
-            console.log("LICK!");
             initPersonSearchAndSelect("Finder suchen/hinzufügen", "#animal\\[temp_admission\\]\\[finder_name\\]", "#animal\\[temp_admission\\]\\[finder_id\\]");
         });
         

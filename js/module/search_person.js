@@ -6,9 +6,9 @@
             {data: "name"},
             {data: "street"},
             {data: "city"},
-            {data: "organization"},
-            {data: "postalcode"},
-            {data: "phone"},
+//            {data: "organization"},
+//            {data: "postalcode"},
+//            {data: "phone"},
             {
                 data: null,
                 render: function (data, type, row, meta) {
@@ -24,10 +24,11 @@
             $.ajax({
                 type: "GET",
                 url: "?module=person\\SearchPersonByFilter",
-                data: {"organization": parseInt($("#person\\[organization\\]").val(), 10),
-                    "name": $("#person\\[name\\]").val(),
-                    "street": $("#person\\[street\\]").val(),
-                    "city": $("#person\\[city\\]").val()
+                data: {
+                    organization: $("#person\\[organization\\]").is(":checked") ? 1 : 0,
+                    name: $("#person\\[name\\]").val(),
+                    street: $("#person\\[street\\]").val(),
+                    city: $("#person\\[city\\]").val()
                 },
                 success: function (e) {
                     resolve(JSON.parse(e));

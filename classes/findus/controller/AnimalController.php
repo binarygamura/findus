@@ -117,7 +117,7 @@ class AnimalController {
     
     public static function updateAnimal(array $animalData){
         if(!isset($animalData['id'])){
-            
+            throw new ControllerException('Suche ohne ID ist nicht möglich.');
         }
         $animalId = $animalData['id'];
         $animal = R::findOne("animal", "id = ?", [$animalId]);

@@ -105,7 +105,7 @@ $(document).ready(function(){
      });
     FindusUtil.initTable("table.default");
     $(".tabs").tabs();
-    $(document ).tooltip({
+    $(document).tooltip({
       position: {
         my: "center bottom-20",
         at: "center top",
