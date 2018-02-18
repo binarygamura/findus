@@ -91,7 +91,7 @@ class UpdateAnimalModule extends \findus\common\AbstractModule {
             $response->setValue('animal', $animal);
             $response->addScript('add_animal.js');
             $response->addTemplateName("animal\add_animal.htpl");
-            print_r($animal);
+//            print_r($animal);
         }
         return $response;
     }

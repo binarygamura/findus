@@ -48,7 +48,7 @@ class AdmissionController {
         }        
         $admission->notes = trim($admissionData['notes']);
         $admission->reasons = trim($admissionData['reasons']);
-        print_r($admissionData);
+//        print_r($admissionData);
         $admission->type = AdmissionTypeController::getAdmissionTypeById($admissionData['type_id']);        
         if(!$admission->type){
             throw new ControllerException("Es existiert kein Zugangstyp mit der ID ".$admissionData['type_id']);

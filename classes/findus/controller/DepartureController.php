@@ -48,7 +48,7 @@ class DepartureController {
         }        
         $departure->notes = trim($departureData['notes']);
         $departure->reasons = trim($departureData['reasons']);
-        print_r($departureData);
+//        print_r($departureData);
         $departure->type = DepartureTypeController::getDepartureTypeById($departureData['type_id']);        
         if(!$departure->type){
             throw new ControllerException("Es existiert kein Zugangstyp mit der ID ".$departureData['type_id']);

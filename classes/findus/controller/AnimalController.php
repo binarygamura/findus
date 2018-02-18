@@ -31,12 +31,12 @@ class AnimalController {
         return R::findAll('animal');
     }
     
-    public static function getAnimalsByFilter($searchFilter){
+    public static function getAnimalsByFilter(array $searchFilter){
         $sql = "";
         $valueArray = array();
         foreach ($searchFilter as $nr => $inhalt)
         {            
-            if (($inhalt['field'] == 'color') || ($inhalt['field'] == 'tatoo')) {
+            if (($inhalt['field'] == 'color') || ($inhalt['field'] == 'tatoo') || ($inhalt['field'] == 'name')) {
                 $sql .= strtolower($inhalt['field']) ." like ? " ." and ";
                 $valueArray[] = "%" .strtolower($inhalt['value']) ."%";
             } else {

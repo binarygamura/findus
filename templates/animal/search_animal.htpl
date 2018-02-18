@@ -3,9 +3,17 @@
     <form action="" method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
+                <label for="animal[id]">ID:</label>
+                <input type="text"  name="animal[id]" id="animal[id]" placeholder="ID"/>
+            </div>
+            <div class="pure-control-group">
                 <label for="animal[chip]">Chip-Nummer:</label>
                 <input type="text"  name="animal[chip]" id="animal[chip]" placeholder="Chip-Nummer"/>
             </div>
+            <div class="pure-control-group">
+                <label for="animal[name]">Name des Tiers:</label>
+                <input type="text"  name="animal[name]" id="animal[name]" placeholder="Name des Tiers"/>
+            </div>            
             <div class="pure-control-group">
                 <label for="animal[tatoo]">Tätowierung:</label>
                 <input type="text"  name="animal[tatoo]" id="animal[tatoo]" placeholder="Tätowierung"/>

@@ -37,7 +37,7 @@ class ConfigurationController {
 
             // Zeilen im Kontakt-Bereich
             $defaultConfiguration['contactLine1']="Zeile Verein";
-            $defaultConfiguration['contactLine2']="Zeile Strasse";
+            $defaultConfiguration['contactLine2']="Zeile Straße";
             $defaultConfiguration['contactLine3']="Zeile Ort";
             $defaultConfiguration['contactLine4']="Zeile Homepage";
             $defaultConfiguration['contactLine5']="Zeile Mail";
