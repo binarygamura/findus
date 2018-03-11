@@ -1,4 +1,4 @@
-<h2>Liste aller Vereinsmitglieder</h2>
+<h2>Liste aller Mitarbeiter</h2>
 <div class="box">
     <table id="employee_table" class="employee_table pure-table">
         <thead>

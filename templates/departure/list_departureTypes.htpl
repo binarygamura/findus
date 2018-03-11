@@ -1,4 +1,4 @@
-<h2>Liste aller Eingansarten</h2>
+<h2>Liste aller Abgangsarten</h2>
 <div class="box">
     <table id="departureType_table" class="departureType_table pure-table">
         <thead>

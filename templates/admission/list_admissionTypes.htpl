@@ -1,4 +1,4 @@
-<h2>Liste aller Eingansarten</h2>
+<h2>Liste aller Eingangsarten</h2>
 <div class="box">
     <table id="admissionType_table" class="admissionType_table pure-table">
         <thead>
